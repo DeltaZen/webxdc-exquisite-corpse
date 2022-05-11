@@ -22,15 +22,17 @@ const Game: React.FC<{ game: Corpse }> = ({ game }) => {
   const ctx = React.useContext(AppCtx);
   return (
     <li
-      className="flex flex-row items-center justify-between w-full m-2"
+      className="flex flex-col items-center justify-between px-2 m-2 border border-black rounded-lg cursor-pointer"
       onClick={() => ctx?.toggleCurrentGame(game)}
     >
-      <span>{game.gameStatus}</span>
-      <span>{game.sessionName}</span>
-      <span>{game.admin.name}</span>
-      <span>
-        {game.currentRound}/{game.rounds}
-      </span>
+      <span className="font-bold">{game.sessionName}</span>
+      <span>👑{game.admin.name}</span>
+      {game.players.length > 0 && <span>🚶‍♂️{game.players.length}</span>}
+      {game.gameStatus === "playing" && (
+        <span>
+          ⌛{game.currentRound}/{game.rounds}
+        </span>
+      )}
     </li>
   );
 };
