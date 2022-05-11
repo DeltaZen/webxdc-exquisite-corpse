@@ -1,4 +1,5 @@
 import React from "react";
+import PlayerList from "./PlayerList";
 import AppCtx from "../context/AppContext";
 
 interface Corpse {
@@ -47,7 +48,10 @@ const GameView: React.FC<{ game: Corpse }> = ({ game }) => {
   return (
     <>
       <h2 className="m-2 mx-auto text-2xl font-bold">{game.sessionName}</h2>
-      <h3 className="font-bold">Players</h3>
+      <PlayerList players={game.players}>
+        <h3 className="font-bold">Players</h3>
+      </PlayerList>
+
       <ul>
         {game.players.map((player: Player) => {
           return <li key={player.address}>{player.name}</li>;

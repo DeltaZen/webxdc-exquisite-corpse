@@ -48,9 +48,6 @@ const NewGame = () => {
 
   return (
     <>
-      {/* <h1>Name: {corpse.sessionName}</h1>
-      <p>Rounds: {corpse.rounds}</p> */}
-
       <form
         className="flex flex-col items-center justify-center p-2"
         onSubmit={handleSubmit}
@@ -83,8 +80,9 @@ const NewGame = () => {
         </button>
       </form>
 
-      <h2>List of players</h2>
-      <PlayerList players={corpse.players} />
+      <PlayerList players={corpse.players}>
+        <h2 className="font-bold">Players</h2>
+      </PlayerList>
     </>
   );
 };
