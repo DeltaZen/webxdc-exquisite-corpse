@@ -22,7 +22,7 @@ const Game: React.FC<{ game: Corpse }> = ({ game }) => {
   const ctx = React.useContext(AppCtx);
   return (
     <li
-      className="flex flex-row items-center justify-between w-full"
+      className="flex flex-row items-center justify-between w-full m-2"
       onClick={() => ctx?.toggleCurrentGame(game)}
     >
       <span>{game.gameStatus}</span>
