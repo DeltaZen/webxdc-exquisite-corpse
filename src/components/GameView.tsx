@@ -55,7 +55,7 @@ const GameView: React.FC<{ game: Corpse }> = ({ game }) => {
       </ul>
       {ctx?.playerName === game.admin.name ? (
         <>
-          <p>You are admin here</p>
+          <p>Owner: you</p>
           {ctx.currentGame?.gameStatus === "new" && (
             <button
               className="px-4 my-2 border border-primario rounded-xl"
@@ -67,9 +67,8 @@ const GameView: React.FC<{ game: Corpse }> = ({ game }) => {
         </>
       ) : (
         <>
-          <p>Not your game</p>
           <p>
-            Admin: {game.admin.name} ({game.admin.address})
+            Owner: {game.admin.name} ({game.admin.address})
           </p>
           {game.gameStatus === "new" ? (
             <button
