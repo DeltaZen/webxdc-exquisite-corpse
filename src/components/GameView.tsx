@@ -23,7 +23,7 @@ const GameView: React.FC<{ game: Corpse }> = ({ game }) => {
 
   const startGame = (game: Corpse) => {
     const newgame = { ...game, gameStatus: "playing" as "playing" };
-    console.log(newgame);
+    //console.log(newgame);
     const info = `${newgame.admin.name} started "${newgame.sessionName}" in Exquisite Corpse`;
     window.webxdc.sendUpdate({ payload: newgame }, info);
     return newgame;
