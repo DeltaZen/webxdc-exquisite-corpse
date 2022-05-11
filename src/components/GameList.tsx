@@ -22,7 +22,6 @@ interface Player {
 
 const GameList: React.FC<{ games: Corpse[] }> = ({ games }) => {
   const ctx = React.useContext(AppCtx);
-  console.log(ctx?.currentGame);
   return (
     <>
       {ctx && ctx.currentGame ? (
