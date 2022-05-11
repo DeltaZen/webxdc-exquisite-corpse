@@ -74,6 +74,11 @@ const App = () => {
           console.log("new player joined");
           status.games[index].players = payload.players;
         }
+        // check for game status
+        if (currentGame.gameStatus !== payload.gameStatus) {
+          console.log("game status changed");
+          status.games[index].gameStatus = payload.gameStatus;
+        }
         if (currentGame.turnID < payload.turnID) {
           // do stuff
         }
