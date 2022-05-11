@@ -41,7 +41,7 @@ const NewGame = () => {
     e.preventDefault();
     if (corpse.rounds > 1 && corpse.sessionName !== "") {
       const info = `${corpse.admin.name} created ${corpse.sessionName} with ${corpse.rounds} rounds. Join!`;
-      window.webxdc.sendUpdate({ payload: corpse }, info);
+      window.webxdc.sendUpdate({ payload: corpse, info: info }, info);
       ctx.toggleCurrentGame(corpse);
     }
   };
