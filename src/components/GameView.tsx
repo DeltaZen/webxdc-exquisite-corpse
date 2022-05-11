@@ -56,12 +56,14 @@ const GameView: React.FC<{ game: Corpse }> = ({ game }) => {
       {ctx?.playerName === game.admin.name ? (
         <>
           <p>You are admin here</p>
-          <button
-            className="px-4 my-2 border border-primario rounded-xl"
-            onClick={() => ctx?.toggleCurrentGame(startGame(game))}
-          >
-            Start Game
-          </button>
+          {ctx.currentGame?.gameStatus === "new" && (
+            <button
+              className="px-4 my-2 border border-primario rounded-xl"
+              onClick={() => ctx?.toggleCurrentGame(startGame(game))}
+            >
+              Start Game
+            </button>
+          )}
         </>
       ) : (
         <>
