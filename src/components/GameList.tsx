@@ -30,7 +30,7 @@ const GameList: React.FC<{ games: Corpse[] }> = ({ games }) => {
           <GameView game={ctx.currentGame} />
           <button
             onClick={() => ctx?.toggleCurrentGame(undefined)}
-            className="px-4 my-2 border border-primario rounded-xl"
+            className="px-4 mb-2 border border-primario rounded-xl"
           >
             Go back
           </button>
