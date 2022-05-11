@@ -69,6 +69,11 @@ const App = () => {
           (game) => game.sessionName === payload.sessionName
         );
         const currentGame = status.games[index];
+        // check for player list
+        if (currentGame.players.length < payload.players.length) {
+          console.log("new player joined");
+          status.games[index].players = payload.players;
+        }
         if (currentGame.turnID < payload.turnID) {
           // do stuff
         }
