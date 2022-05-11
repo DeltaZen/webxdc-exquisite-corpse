@@ -94,7 +94,7 @@ const App = () => {
         </h1>
         {status.view === "list" ? (
           <>
-            <GameList games={status.games} />
+            {status.games.length > 0 && <GameList games={status.games} />}
             <button
               onClick={() => setStatus({ ...status, view: "new" })}
               className="px-4 border border-primario rounded-xl"
