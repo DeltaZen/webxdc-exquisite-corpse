@@ -34,8 +34,9 @@ const defaultIndexProps = {
   playerAddr: playerAddr,
   view: "list" as "list",
   games: [],
+  toggleCurrentGame: (game: Corpse | undefined) => {},
 };
 
-const AppCtx = React.createContext<IndexProps | null>(null);
+const AppCtx = React.createContext<IndexProps>(defaultIndexProps);
 
 export default AppCtx;
