@@ -3,36 +3,6 @@ import AppCtx from "../context/AppContext";
 import GameButton from "./GameButton";
 import GameView from "./GameView";
 
-interface Corpse {
-  sessionName: string;
-  admin: Player;
-  gameStatus: "new" | "playing" | "closed";
-  players: Player[];
-  currentPlayer: Player;
-  rounds: number;
-  currentRound: number;
-  turnID: number;
-  corpse: string[];
-  spoiler: string;
-}
-
-interface Player {
-  name: string;
-  address: string;
-}
-interface IndexProps {
-  playerName: string;
-  playerAddr: string;
-  currentViewedGame?: Corpse;
-  currentPlayingGame?: Corpse;
-  view: "new" | "list";
-  games: Corpse[];
-}
-interface StatusGroupI {
-  status: IndexProps;
-  gameStatus: "new" | "playing" | "closed";
-  title: string;
-}
 const StatusGroup: React.FC<StatusGroupI> = ({ status, gameStatus, title }) => {
   return status.games.filter((game) => game.gameStatus === gameStatus).length >
     0 ? (

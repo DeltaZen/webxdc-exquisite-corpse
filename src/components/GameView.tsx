@@ -4,33 +4,7 @@ import AppCtx from "../context/AppContext";
 import GameViewNew from "./GameViewNew";
 import GameViewText from "./GameViewText";
 
-interface Corpse {
-  sessionName: string;
-  admin: Player;
-  gameStatus: "new" | "playing" | "closed";
-  players: Player[];
-  currentPlayer: Player;
-  rounds: number;
-  currentRound: number;
-  turnID: number;
-  corpse: string[];
-  spoiler: string;
-}
-
-interface Player {
-  name: string;
-  address: string;
-}
-
 const GameView: React.FC<{ game: Corpse }> = ({ game }) => {
-  //const ctx = React.useContext(AppCtx);
-
-  // let isYourTurn = ctx.currentGame?.currentPlayer.address === ctx.playerAddr;
-  // let players = game.players;
-  // React.useEffect(() => {
-  //   players = game.players;
-  // }, [game]);
-
   return (
     <AppCtx.Consumer>
       {({ status, setStatus }) => (

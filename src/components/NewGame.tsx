@@ -2,23 +2,23 @@ import React, { useEffect, useState } from "react";
 import AppCtx from "../context/AppContext";
 import PlayerList from "./PlayerList";
 
-interface Corpse {
-  sessionName: string;
-  admin: Player;
-  gameStatus: "new" | "playing" | "closed";
-  players: Player[];
-  currentPlayer: Player;
-  rounds: number;
-  currentRound: number;
-  turnID: number;
-  corpse: string[];
-  spoiler: string;
-}
+// interface Corpse {
+//   sessionName: string;
+//   admin: Player;
+//   gameStatus: "new" | "playing" | "closed";
+//   players: Player[];
+//   currentPlayer: Player;
+//   rounds: number;
+//   currentRound: number;
+//   turnID: number;
+//   corpse: string[];
+//   spoiler: string;
+// }
 
-interface Player {
-  name: string;
-  address: string;
-}
+// interface Player {
+//   name: string;
+//   address: string;
+// }
 
 const NewGame = () => {
   const { status, setStatus } = React.useContext(AppCtx);

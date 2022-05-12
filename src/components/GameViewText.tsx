@@ -1,29 +1,8 @@
 import React from "react";
 import AppCtx from "../context/AppContext";
 
-interface Corpse {
-  sessionName: string;
-  admin: Player;
-  gameStatus: "new" | "playing" | "closed";
-  players: Player[];
-  currentPlayer: Player;
-  rounds: number;
-  currentRound: number;
-  turnID: number;
-  corpse: string[];
-  spoiler: string;
-}
-
-interface Player {
-  name: string;
-  address: string;
-}
-
 const GameViewText = () => {
   const { status } = React.useContext(AppCtx);
-
-  //   const playerName = window.webxdc.selfName;
-  //   const playerAddr = window.webxdc.selfAddr;
 
   const [corpse, setCorpse] = React.useState<Corpse>(
     status.currentViewedGame as Corpse

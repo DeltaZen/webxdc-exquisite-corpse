@@ -1,24 +1,6 @@
 import React from "react";
 import AppCtx from "../context/AppContext";
 
-interface Corpse {
-  sessionName: string;
-  admin: Player;
-  gameStatus: "new" | "playing" | "closed";
-  players: Player[];
-  currentPlayer: Player;
-  rounds: number;
-  currentRound: number;
-  turnID: number;
-  corpse: string[];
-  spoiler: string;
-}
-
-interface Player {
-  name: string;
-  address: string;
-}
-
 const Game: React.FC<{ game: Corpse }> = ({ game }) => {
   const { status, setStatus } = React.useContext(AppCtx);
   return (

@@ -1,10 +1,5 @@
 import React from "react";
 
-interface Player {
-  name: string;
-  address: string;
-}
-
 const PlayerList: React.FC<{ players: Player[]; children?: JSX.Element }> = ({
   players,
   children,

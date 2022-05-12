@@ -1,32 +1,6 @@
 import React from "react";
 import AppCtx from "../context/AppContext";
 
-interface Corpse {
-  sessionName: string;
-  admin: Player;
-  gameStatus: "new" | "playing" | "closed";
-  players: Player[];
-  currentPlayer: Player;
-  rounds: number;
-  currentRound: number;
-  turnID: number;
-  corpse: string[];
-  spoiler: string;
-}
-
-interface IndexProps {
-  playerName: string;
-  playerAddr: string;
-  currentGame?: Corpse;
-  view: "new" | "list";
-  games: Corpse[];
-  toggleCurrentGame: (game: Corpse | undefined) => void;
-}
-interface Player {
-  name: string;
-  address: string;
-}
-
 const GameViewNew: React.FC<{ game: Corpse }> = ({ game }) => {
   //const ctx = React.useContext(AppCtx);
 

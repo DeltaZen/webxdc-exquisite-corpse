@@ -1,42 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { createRoot } from "react-dom/client";
-import { ReceivedStatusUpdate } from "../webxdc";
+// import { ReceivedStatusUpdate } from "../webxdc";
 import NewGame from "./components/NewGame";
 import GameList from "./components/GameList";
 import AppCtx from "./context/AppContext";
 import { processUpdate } from "./lib/processUpdate";
 import "./input.css";
-
-interface Corpse {
-  sessionName: string;
-  admin: Player;
-  gameStatus: "new" | "playing" | "closed";
-  players: Player[];
-  currentPlayer: Player;
-  rounds: number;
-  currentRound: number;
-  turnID: number; // unique ID for each turn
-  corpse: string[];
-  spoiler: string;
-}
-
-interface Player {
-  name: string;
-  address: string;
-}
-
-interface IndexProps {
-  playerName: string;
-  playerAddr: string;
-  currentGame?: Corpse;
-  view: "new" | "list";
-  games: Corpse[];
-}
-
-interface ExquisiteContext {
-  ctxProps: IndexProps;
-  setCtxProps: React.Dispatch<React.SetStateAction<IndexProps>>;
-}
 
 const playerName = window.webxdc.selfName;
 const playerAddr = window.webxdc.selfAddr;
