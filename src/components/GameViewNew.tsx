@@ -28,7 +28,9 @@ interface Player {
 }
 
 const GameViewNew: React.FC<{ game: Corpse }> = ({ game }) => {
-  const ctx = React.useContext(AppCtx);
+  //const ctx = React.useContext(AppCtx);
+
+  const playerList = game.players.map((player) => player.address);
 
   const startGame = (game: Corpse) => {
     const newgame = { ...game, gameStatus: "playing" as "playing" };
@@ -38,12 +40,11 @@ const GameViewNew: React.FC<{ game: Corpse }> = ({ game }) => {
     return newgame;
   };
 
-  const joinGame = (game: Corpse) => {
-    const playerList = game.players.map((player) => player.address);
-    if (!playerList.includes(ctx.playerAddr)) {
+  const joinGame = (game: Corpse, playerName: string, playerAddr: string) => {
+    if (!playerList.includes(playerAddr)) {
       const newPlayers = [
         ...game.players,
-        { name: ctx.playerName, address: ctx.playerAddr },
+        { name: playerName, address: playerAddr },
       ];
       const newGame = { ...game, players: newPlayers };
       // send update
@@ -54,13 +55,13 @@ const GameViewNew: React.FC<{ game: Corpse }> = ({ game }) => {
   };
   return (
     <AppCtx.Consumer>
-      {(ctx) =>
-        ctx?.playerName === game.admin.name ? (
+      {({ status, setStatus }) =>
+        status.playerName === game.admin.name ? (
           <>
             <p>Owner: you</p>
             <button
               className="px-4 my-2 border border-primario rounded-xl"
-              onClick={() => ctx?.toggleCurrentGame(startGame(game))}
+              onClick={() => status.toggleCurrentGame(startGame(game))}
             >
               Start Game
             </button>
@@ -70,12 +71,18 @@ const GameViewNew: React.FC<{ game: Corpse }> = ({ game }) => {
             <p>
               Owner: {game.admin.name} ({game.admin.address})
             </p>
-            <button
-              className="px-4 my-2 border border-primario rounded-xl"
-              onClick={() => ctx?.toggleCurrentGame(joinGame(game))}
-            >
-              Join Game
-            </button>
+            {!playerList.includes(status.playerAddr) && (
+              <button
+                className="px-4 my-2 border border-primario rounded-xl"
+                onClick={() =>
+                  status.toggleCurrentGame(
+                    joinGame(game, status.playerName, status.playerAddr)
+                  )
+                }
+              >
+                Join Game
+              </button>
+            )}
           </>
         )
       }

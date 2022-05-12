@@ -21,7 +21,7 @@ interface Player {
 }
 
 const NewGame = () => {
-  const ctx = React.useContext(AppCtx);
+  const { status } = React.useContext(AppCtx);
 
   const playerName = window.webxdc.selfName;
   const playerAddr = window.webxdc.selfAddr;
@@ -45,7 +45,7 @@ const NewGame = () => {
     if (corpse.rounds > 1 && corpse.sessionName !== "") {
       const info = `${corpse.admin.name} created ${corpse.sessionName} with ${corpse.rounds} rounds. Join!`;
       window.webxdc.sendUpdate({ payload: corpse, info: info }, info);
-      ctx.toggleCurrentGame(corpse);
+      status.toggleCurrentGame(corpse);
     }
   };
 
@@ -59,7 +59,7 @@ const NewGame = () => {
           id="sessionName"
           type="text"
           placeholder="Session Name"
-          className="px-1 my-4 dark:bg-gray-800 dark:focus:bg-gray-900 dark:text-white "
+          className="px-1 my-4"
           onChange={(e) =>
             setCorpse({ ...corpse, sessionName: e.target.value })
           }
@@ -68,7 +68,7 @@ const NewGame = () => {
           id="rounds"
           type="number"
           placeholder="Rounds"
-          className="px-1 my-4 dark:bg-gray-800 dark:focus:bg-gray-900 dark:text-white "
+          className="px-1 my-4"
           max={10}
           min={2}
           onChange={(e) =>

@@ -33,8 +33,53 @@ interface IndexProps {
   toggleCurrentGame: (game: Corpse | undefined) => void;
 }
 
+interface ExquisiteContext {
+  ctxProps: IndexProps;
+  setCtxProps: React.Dispatch<React.SetStateAction<IndexProps>>;
+}
+
 const playerName = window.webxdc.selfName;
 const playerAddr = window.webxdc.selfAddr;
+
+const processUpdate = (
+  update: ReceivedStatusUpdate<Corpse>,
+  status: IndexProps,
+  setStatus: React.Dispatch<React.SetStateAction<IndexProps>>
+) => {
+  const payload = update.payload;
+  if (status.games) {
+    const gameList = status.games.map((game) => game.sessionName);
+    // new game that is not in the list
+    if (
+      payload.gameStatus === "new" &&
+      !gameList.includes(payload.sessionName)
+    ) {
+      const games = [...status.games, payload];
+      setStatus({ ...status, games });
+    } else if (gameList.includes(payload.sessionName)) {
+      // handle game update
+      const index = status.games.findIndex(
+        (game) => game.sessionName === payload.sessionName
+      );
+      const currentGame = status.games[index];
+      // check for player list
+      if (currentGame.players.length < payload.players.length) {
+        console.log("new player joined");
+        status.games[index].players = payload.players;
+      }
+      // check for game status
+      if (currentGame.gameStatus !== payload.gameStatus) {
+        console.log("game status changed");
+        status.games[index].gameStatus = payload.gameStatus;
+      }
+      if (currentGame.turnID < payload.turnID) {
+        console.log("new turn\n", status.games[index], "\nvs\n", payload);
+        status.games[index] = payload;
+      }
+    }
+  }
+  console.log("\nprocessing update\n");
+};
 
 const App = () => {
   const year = new Date().getFullYear();
@@ -50,47 +95,16 @@ const App = () => {
     },
   });
 
-  useEffect(() => {
-    window.webxdc.setUpdateListener(receiveUpdate);
-  });
+  const value = { status, setStatus };
 
-  const receiveUpdate = (update: ReceivedStatusUpdate<Corpse>) => {
-    const payload = update.payload;
-    if (status.games) {
-      const gameList = status.games.map((game) => game.sessionName);
-      // new game that is not in the list
-      if (
-        payload.gameStatus === "new" &&
-        !gameList.includes(payload.sessionName)
-      ) {
-        const games = [...status.games, payload];
-        setStatus({ ...status, games });
-      } else if (gameList.includes(payload.sessionName)) {
-        // handle game update
-        const index = status.games.findIndex(
-          (game) => game.sessionName === payload.sessionName
-        );
-        const currentGame = status.games[index];
-        // check for player list
-        if (currentGame.players.length < payload.players.length) {
-          console.log("new player joined");
-          status.games[index].players = payload.players;
-        }
-        // check for game status
-        if (currentGame.gameStatus !== payload.gameStatus) {
-          console.log("game status changed");
-          status.games[index].gameStatus = payload.gameStatus;
-        }
-        if (currentGame.turnID < payload.turnID) {
-          console.log("new turn\n", status.games[index], "\nvs\n", payload);
-          status.games[index] = payload;
-        }
-      }
-    }
-  };
+  useEffect(() => {
+    window.webxdc.setUpdateListener((update) =>
+      processUpdate(update, status, setStatus)
+    );
+  }, [status]);
 
   return (
-    <AppCtx.Provider value={status}>
+    <AppCtx.Provider value={value}>
       <div className="flex flex-col items-center justify-center h-[100vh] w-full">
         <h1 className="my-8 text-xl font-bold text-red-600">
           Exquisite Corpse

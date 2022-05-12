@@ -38,6 +38,14 @@ const defaultIndexProps = {
   toggleCurrentGame: (game: Corpse | undefined) => {},
 };
 
-const AppCtx = React.createContext<IndexProps>(defaultIndexProps);
+interface ExquisiteContext {
+  status: IndexProps;
+  setStatus: React.Dispatch<React.SetStateAction<IndexProps>>;
+}
+
+const AppCtx = React.createContext<ExquisiteContext>({
+  status: defaultIndexProps,
+  setStatus: () => {},
+});
 
 export default AppCtx;

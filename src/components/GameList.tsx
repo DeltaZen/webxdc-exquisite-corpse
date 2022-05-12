@@ -25,12 +25,12 @@ const GameList = () => {
   //const ctx = React.useContext(AppCtx);
   return (
     <AppCtx.Consumer>
-      {({ currentGame, toggleCurrentGame, games }) =>
-        currentGame ? (
+      {({ status, setStatus }) =>
+        status.currentGame ? (
           <>
-            <GameView game={currentGame} />
+            <GameView game={status.currentGame} />
             <button
-              onClick={() => toggleCurrentGame(undefined)}
+              onClick={() => status.toggleCurrentGame(undefined)}
               className="px-4 mb-2 border border-primario rounded-xl"
             >
               Go back
@@ -39,29 +39,28 @@ const GameList = () => {
         ) : (
           <>
             <h2>List of games</h2>
-            {games.filter((game) => game.gameStatus === "new").length > 0 && (
-              <h3>Available</h3>
-            )}
+            {status.games.filter((game) => game.gameStatus === "new").length >
+              0 && <h3>Available</h3>}
             <ul className="container flex flex-row flex-wrap items-center justify-center w-full">
-              {games
+              {status.games
                 .filter((game) => game.gameStatus === "new")
                 .map((game) => {
                   return <GameButton key={game.sessionName} game={game} />;
                 })}
             </ul>
-            {games.filter((game) => game.gameStatus === "playing").length >
-              0 && <h3>In progress</h3>}
+            {status.games.filter((game) => game.gameStatus === "playing")
+              .length > 0 && <h3>In progress</h3>}
             <ul className="container flex flex-row flex-wrap items-center justify-center w-full">
-              {games
+              {status.games
                 .filter((game) => game.gameStatus === "playing")
                 .map((game) => {
                   return <GameButton key={game.sessionName} game={game} />;
                 })}
             </ul>
-            {games.filter((game) => game.gameStatus === "closed").length >
-              0 && <h3>Closed</h3>}
+            {status.games.filter((game) => game.gameStatus === "closed")
+              .length > 0 && <h3>Closed</h3>}
             <ul className="container flex flex-row flex-wrap items-center justify-center w-full">
-              {games
+              {status.games
                 .filter((game) => game.gameStatus === "closed")
                 .map((game) => {
                   return <GameButton key={game.sessionName} game={game} />;

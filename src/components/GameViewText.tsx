@@ -20,12 +20,14 @@ interface Player {
 }
 
 const GameViewText = () => {
-  const ctx = React.useContext(AppCtx);
+  const { status } = React.useContext(AppCtx);
 
   //   const playerName = window.webxdc.selfName;
   //   const playerAddr = window.webxdc.selfAddr;
 
-  const [corpse, setCorpse] = React.useState<Corpse>(ctx.currentGame as Corpse);
+  const [corpse, setCorpse] = React.useState<Corpse>(
+    status.currentGame as Corpse
+  );
   const [text, setText] = React.useState("");
 
   const validateText = (text: string) => {
@@ -50,7 +52,7 @@ const GameViewText = () => {
       const round = Math.abs(turn / corpse.players.length) + 1;
       // find next player
       const nextPlayer = corpse.players[turn % corpse.players.length];
-      console.log(ctx.currentGame);
+      console.log(status.currentGame);
       console.log(nextPlayer);
 
       const texts = [...corpse.corpse, text];
