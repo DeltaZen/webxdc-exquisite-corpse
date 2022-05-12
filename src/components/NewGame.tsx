@@ -39,6 +39,7 @@ const NewGame = () => {
     spoiler: "",
   });
 
+  // TODO: session name must be unique
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (corpse.rounds > 1 && corpse.sessionName !== "") {
