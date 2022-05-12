@@ -40,7 +40,12 @@ const GameViewNew: React.FC<{ game: Corpse }> = ({ game }) => {
     return newgame;
   };
 
-  const joinGame = (game: Corpse, playerName: string, playerAddr: string) => {
+  const joinGame = (
+    game: Corpse,
+    playerName: string,
+    playerAddr: string,
+    send: boolean
+  ) => {
     if (!playerList.includes(playerAddr)) {
       const newPlayers = [
         ...game.players,
@@ -49,7 +54,7 @@ const GameViewNew: React.FC<{ game: Corpse }> = ({ game }) => {
       const newGame = { ...game, players: newPlayers };
       // send update
       const info = `${newGame.admin.name} joined ${newGame.sessionName}`;
-      window.webxdc.sendUpdate({ payload: newGame }, info);
+      send && window.webxdc.sendUpdate({ payload: newGame }, info);
       return newGame;
     }
   };
@@ -86,12 +91,14 @@ const GameViewNew: React.FC<{ game: Corpse }> = ({ game }) => {
                     currentViewedGame: joinGame(
                       game,
                       status.playerName,
-                      status.playerAddr
+                      status.playerAddr,
+                      false
                     ),
                     currentPlayingGame: joinGame(
                       game,
                       status.playerName,
-                      status.playerAddr
+                      status.playerAddr,
+                      true
                     ),
                   })
                 }
