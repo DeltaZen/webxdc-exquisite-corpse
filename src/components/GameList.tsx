@@ -20,6 +20,35 @@ interface Player {
   name: string;
   address: string;
 }
+interface IndexProps {
+  playerName: string;
+  playerAddr: string;
+  currentViewedGame?: Corpse;
+  currentPlayingGame?: Corpse;
+  view: "new" | "list";
+  games: Corpse[];
+}
+interface StatusGroupI {
+  status: IndexProps;
+  gameStatus: "new" | "playing" | "closed";
+  title: string;
+}
+const StatusGroup: React.FC<StatusGroupI> = ({ status, gameStatus, title }) => {
+  return status.games.filter((game) => game.gameStatus === gameStatus).length >
+    0 ? (
+    <>
+      <h3>{title}</h3>
+      <ul className="container flex flex-row flex-wrap items-center justify-center w-full">
+        {status.games
+          .filter((game) => game.gameStatus === gameStatus)
+          .map((game) => {
+            return <GameButton key={game.sessionName} game={game} />;
+          })}
+      </ul>
+      ;
+    </>
+  ) : null;
+};
 
 const GameList = () => {
   //const ctx = React.useContext(AppCtx);
@@ -41,7 +70,14 @@ const GameList = () => {
         ) : (
           <>
             <h2>List of games</h2>
-            {status.games.filter((game) => game.gameStatus === "new").length >
+            <StatusGroup status={status} gameStatus="new" title="Available" />
+            <StatusGroup
+              status={status}
+              gameStatus="playing"
+              title="In progress"
+            />
+            <StatusGroup status={status} gameStatus="closed" title="Closed" />
+            {/* {status.games.filter((game) => game.gameStatus === "new").length >
               0 && <h3>Available</h3>}
             <ul className="container flex flex-row flex-wrap items-center justify-center w-full">
               {status.games
@@ -67,7 +103,7 @@ const GameList = () => {
                 .map((game) => {
                   return <GameButton key={game.sessionName} game={game} />;
                 })}
-            </ul>
+            </ul> */}
           </>
         )
       }
