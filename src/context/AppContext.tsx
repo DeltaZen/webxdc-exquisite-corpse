@@ -27,7 +27,6 @@ interface IndexProps {
   currentGame?: Corpse;
   view: "new" | "list";
   games: Corpse[];
-  toggleCurrentGame: (game: Corpse | undefined) => void;
 }
 
 const defaultIndexProps = {
@@ -35,7 +34,6 @@ const defaultIndexProps = {
   playerAddr: playerAddr,
   view: "list" as "list",
   games: [],
-  toggleCurrentGame: (game: Corpse | undefined) => {},
 };
 
 interface ExquisiteContext {

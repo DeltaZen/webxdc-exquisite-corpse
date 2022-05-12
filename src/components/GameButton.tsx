@@ -20,11 +20,11 @@ interface Player {
 }
 
 const Game: React.FC<{ game: Corpse }> = ({ game }) => {
-  const { status } = React.useContext(AppCtx);
+  const { status, setStatus } = React.useContext(AppCtx);
   return (
     <li
       className="flex flex-col items-center justify-between px-2 m-2 border border-black rounded-lg cursor-pointer"
-      onClick={() => status.toggleCurrentGame(game)}
+      onClick={() => setStatus({ ...status, currentGame: game })}
     >
       <span className="font-bold">{game.sessionName}</span>
       <span>👑{game.admin.name}</span>

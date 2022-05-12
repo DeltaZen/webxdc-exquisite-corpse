@@ -61,7 +61,9 @@ const GameViewNew: React.FC<{ game: Corpse }> = ({ game }) => {
             <p>Owner: you</p>
             <button
               className="px-4 my-2 border border-primario rounded-xl"
-              onClick={() => status.toggleCurrentGame(startGame(game))}
+              onClick={() =>
+                setStatus({ ...status, currentGame: startGame(game) })
+              }
             >
               Start Game
             </button>
@@ -75,9 +77,14 @@ const GameViewNew: React.FC<{ game: Corpse }> = ({ game }) => {
               <button
                 className="px-4 my-2 border border-primario rounded-xl"
                 onClick={() =>
-                  status.toggleCurrentGame(
-                    joinGame(game, status.playerName, status.playerAddr)
-                  )
+                  setStatus({
+                    ...status,
+                    currentGame: joinGame(
+                      game,
+                      status.playerName,
+                      status.playerAddr
+                    ),
+                  })
                 }
               >
                 Join Game

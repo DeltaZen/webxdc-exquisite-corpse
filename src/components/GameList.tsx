@@ -30,7 +30,7 @@ const GameList = () => {
           <>
             <GameView game={status.currentGame} />
             <button
-              onClick={() => status.toggleCurrentGame(undefined)}
+              onClick={() => setStatus({ ...status, currentGame: undefined })}
               className="px-4 mb-2 border border-primario rounded-xl"
             >
               Go back

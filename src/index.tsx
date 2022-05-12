@@ -30,7 +30,6 @@ interface IndexProps {
   currentGame?: Corpse;
   view: "new" | "list";
   games: Corpse[];
-  toggleCurrentGame: (game: Corpse | undefined) => void;
 }
 
 interface ExquisiteContext {
@@ -89,10 +88,6 @@ const App = () => {
     playerAddr: playerAddr,
     view: "list",
     games: [],
-    toggleCurrentGame: (game: Corpse | undefined) => {
-      console.log("setting new state for current game");
-      setStatus({ ...status, currentGame: game });
-    },
   });
 
   const value = { status, setStatus };
