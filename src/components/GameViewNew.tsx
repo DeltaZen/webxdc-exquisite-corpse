@@ -32,11 +32,11 @@ const GameViewNew: React.FC<{ game: Corpse }> = ({ game }) => {
 
   const playerList = game.players.map((player) => player.address);
 
-  const startGame = (game: Corpse) => {
+  const startGame = (game: Corpse, send: boolean) => {
     const newgame = { ...game, gameStatus: "playing" as "playing" };
     //console.log(newgame);
     const info = `${newgame.admin.name} started "${newgame.sessionName}" in Exquisite Corpse`;
-    window.webxdc.sendUpdate({ payload: newgame }, info);
+    send && window.webxdc.sendUpdate({ payload: newgame }, info);
     return newgame;
   };
 
@@ -64,8 +64,8 @@ const GameViewNew: React.FC<{ game: Corpse }> = ({ game }) => {
               onClick={() =>
                 setStatus({
                   ...status,
-                  currentViewedGame: startGame(game),
-                  currentPlayingGame: startGame(game),
+                  currentViewedGame: startGame(game, false),
+                  currentPlayingGame: startGame(game, true),
                 })
               }
             >
