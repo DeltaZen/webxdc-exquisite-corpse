@@ -38,20 +38,48 @@ const GameViewText = () => {
     e.preventDefault();
     console.log(text);
     if (validateText(text)) {
-      const texts = corpse.corpse.push(text);
+      // 3 last words from the previous round
+      const spoiler =
+        corpse.corpse.length > 0
+          ? corpse.corpse[corpse.corpse.length - 1]
+              .split(" ")
+              .slice(-3)
+              .join(" ")
+          : "You are the first one";
       const turn = corpse.turnID++;
       const round = Math.abs(turn / corpse.players.length) + 1;
       // find next player
       const nextPlayer = corpse.players[turn % corpse.players.length];
+      console.log(ctx.currentGame);
+      console.log(nextPlayer);
 
-      //   const info = `${corpse.admin.name} created ${corpse.sessionName} with ${corpse.rounds} rounds. Join!`;
-      //   window.webxdc.sendUpdate({ payload: corpse, info: info }, info);
-      //   ctx.toggleCurrentGame(corpse);
+      const texts = [...corpse.corpse, text];
+
+      const gameStatus =
+        turn === corpse.players.length * corpse.rounds - 1
+          ? "closed"
+          : "playing";
+
+      const newCorpse = {
+        ...corpse,
+        gameStatus,
+        currentPlayer: nextPlayer,
+        currentRound: round,
+        corpse: texts,
+        spoiler,
+      };
+
+      //   ctx.toggleCurrentGame(newCorpse as Corpse);
+      setCorpse(newCorpse as Corpse);
+      const info = `${corpse.sessionName} updated!`;
+      window.webxdc.sendUpdate({ payload: newCorpse }, info);
     }
   };
 
   return (
     <>
+      <h3>It's your turn</h3>
+      <p>Description blah blah blah</p>
       <form
         className="flex flex-col items-center justify-center p-2"
         onSubmit={handleNewtext}
