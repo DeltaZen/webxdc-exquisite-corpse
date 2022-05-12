@@ -26,7 +26,7 @@ const GameViewText = () => {
   //   const playerAddr = window.webxdc.selfAddr;
 
   const [corpse, setCorpse] = React.useState<Corpse>(
-    status.currentGame as Corpse
+    status.currentViewedGame as Corpse
   );
   const [text, setText] = React.useState("");
 
@@ -52,7 +52,7 @@ const GameViewText = () => {
       const round = Math.abs(turn / corpse.players.length) + 1;
       // find next player
       const nextPlayer = corpse.players[turn % corpse.players.length];
-      console.log(status.currentGame);
+      console.log(status.currentViewedGame);
       console.log(nextPlayer);
 
       const texts = [...corpse.corpse, text];

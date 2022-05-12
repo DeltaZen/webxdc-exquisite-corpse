@@ -26,11 +26,13 @@ const GameList = () => {
   return (
     <AppCtx.Consumer>
       {({ status, setStatus }) =>
-        status.currentGame ? (
+        status.currentViewedGame ? (
           <>
-            <GameView game={status.currentGame} />
+            <GameView game={status.currentViewedGame} />
             <button
-              onClick={() => setStatus({ ...status, currentGame: undefined })}
+              onClick={() =>
+                setStatus({ ...status, currentViewedGame: undefined })
+              }
               className="px-4 mb-2 border border-primario rounded-xl"
             >
               Go back

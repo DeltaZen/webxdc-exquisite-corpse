@@ -24,7 +24,8 @@ const playerAddr = window.webxdc.selfAddr;
 interface IndexProps {
   playerName: string;
   playerAddr: string;
-  currentGame?: Corpse;
+  currentViewedGame?: Corpse;
+  currentPlayingGame?: Corpse;
   view: "new" | "list";
   games: Corpse[];
 }

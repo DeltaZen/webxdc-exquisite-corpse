@@ -24,7 +24,10 @@ const Game: React.FC<{ game: Corpse }> = ({ game }) => {
   return (
     <li
       className="flex flex-col items-center justify-between px-2 m-2 border border-black rounded-lg cursor-pointer"
-      onClick={() => setStatus({ ...status, currentGame: game })}
+      onClick={() => {
+        console.log("clicked gameBtn.tsx to set status.currentViewedGame");
+        setStatus({ ...status, currentViewedGame: game });
+      }}
     >
       <span className="font-bold">{game.sessionName}</span>
       <span>👑{game.admin.name}</span>

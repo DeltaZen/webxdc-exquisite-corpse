@@ -21,7 +21,7 @@ interface Player {
 }
 
 const NewGame = () => {
-  const { status } = React.useContext(AppCtx);
+  const { status, setStatus } = React.useContext(AppCtx);
 
   const playerName = window.webxdc.selfName;
   const playerAddr = window.webxdc.selfAddr;
@@ -45,7 +45,11 @@ const NewGame = () => {
     if (corpse.rounds > 1 && corpse.sessionName !== "") {
       const info = `${corpse.admin.name} created ${corpse.sessionName} with ${corpse.rounds} rounds. Join!`;
       window.webxdc.sendUpdate({ payload: corpse, info: info }, info);
-      status.toggleCurrentGame(corpse);
+      setStatus({
+        ...status,
+        currentPlayingGame: corpse,
+        currentViewedGame: corpse,
+      });
     }
   };
 
