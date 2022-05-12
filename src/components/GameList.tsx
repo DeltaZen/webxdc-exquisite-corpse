@@ -13,6 +13,7 @@ interface Corpse {
   currentRound: number;
   turnID: number;
   corpse: string[];
+  spoiler: string;
 }
 
 interface Player {

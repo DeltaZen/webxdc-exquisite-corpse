@@ -10,6 +10,7 @@ interface Corpse {
   currentRound: number;
   turnID: number; // unique ID for each turn
   corpse: string[];
+  spoiler: string;
 }
 
 interface Player {

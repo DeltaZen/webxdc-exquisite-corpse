@@ -1,6 +1,8 @@
 import React from "react";
 import PlayerList from "./PlayerList";
 import AppCtx from "../context/AppContext";
+import GameViewNew from "./GameViewNew";
+import GameViewText from "./GameViewText";
 
 interface Corpse {
   sessionName: string;
@@ -12,6 +14,7 @@ interface Corpse {
   currentRound: number;
   turnID: number;
   corpse: string[];
+  spoiler: string;
 }
 
 interface Player {
@@ -21,6 +24,8 @@ interface Player {
 
 const GameView: React.FC<{ game: Corpse }> = ({ game }) => {
   const ctx = React.useContext(AppCtx);
+
+  let isYourTurn = true;
 
   const startGame = (game: Corpse) => {
     const newgame = { ...game, gameStatus: "playing" as "playing" };
@@ -52,12 +57,30 @@ const GameView: React.FC<{ game: Corpse }> = ({ game }) => {
         <h3 className="font-bold">Players</h3>
       </PlayerList>
 
-      <ul>
-        {game.players.map((player: Player) => {
-          return <li key={player.address}>{player.name}</li>;
-        })}
-      </ul>
-      {ctx?.playerName === game.admin.name ? (
+      {game.gameStatus === "new" && <GameViewNew game={game} />}
+      {game.gameStatus === "playing" && (
+        <>
+          {isYourTurn && (
+            <GameViewText />
+            // <form className="flex flex-col items-center justify-center p-2">
+            //   <textarea
+            //     name="text"
+            //     id="text"
+            //     cols={50}
+            //     rows={5}
+            //     className="p-2 m-2 border border-black rounded-lg"
+            //   />
+            //   <button
+            //     className="px-4 my-2 border border-primario rounded-xl"
+            //     type="submit"
+            //   >
+            //     Accept
+            //   </button>
+            // </form>
+          )}
+        </>
+      )}
+      {/* {ctx?.playerName === game.admin.name ? (
         <>
           <p>Owner: you</p>
           {ctx.currentGame?.gameStatus === "new" && (
@@ -83,7 +106,7 @@ const GameView: React.FC<{ game: Corpse }> = ({ game }) => {
             </button>
           ) : null}
         </>
-      )}
+      )} */}
     </>
   );
 };
