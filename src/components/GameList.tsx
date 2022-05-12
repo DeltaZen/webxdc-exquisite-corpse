@@ -45,7 +45,6 @@ const StatusGroup: React.FC<StatusGroupI> = ({ status, gameStatus, title }) => {
             return <GameButton key={game.sessionName} game={game} />;
           })}
       </ul>
-      ;
     </>
   ) : null;
 };
