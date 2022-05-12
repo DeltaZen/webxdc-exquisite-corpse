@@ -45,6 +45,7 @@ const App = () => {
     view: "list",
     games: [],
     toggleCurrentGame: (game: Corpse | undefined) => {
+      console.log("setting new state for current game");
       setStatus({ ...status, currentGame: game });
     },
   });
@@ -81,7 +82,8 @@ const App = () => {
           status.games[index].gameStatus = payload.gameStatus;
         }
         if (currentGame.turnID < payload.turnID) {
-          // do stuff
+          console.log("new turn\n", status.games[index], "\nvs\n", payload);
+          status.games[index] = payload;
         }
       }
     }
