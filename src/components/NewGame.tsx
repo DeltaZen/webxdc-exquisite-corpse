@@ -26,7 +26,7 @@ const NewGame = () => {
   const playerName = window.webxdc.selfName;
   const playerAddr = window.webxdc.selfAddr;
 
-  const [corpse, setCorpse] = useState<Corpse>({
+  const [game, setGame] = useState<Corpse>({
     sessionName: playerName,
     admin: { name: playerName, address: playerAddr },
     gameStatus: "new",
@@ -42,13 +42,13 @@ const NewGame = () => {
   // TODO: session name must be unique
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (corpse.rounds > 1 && corpse.sessionName !== "") {
-      const info = `${corpse.admin.name} created ${corpse.sessionName} with ${corpse.rounds} rounds. Join!`;
-      window.webxdc.sendUpdate({ payload: corpse, info: info }, info);
+    if (game.rounds > 1 && game.sessionName !== "") {
+      const info = `${game.admin.name} created ${game.sessionName} with ${game.rounds} rounds. Join!`;
+      window.webxdc.sendUpdate({ payload: game, info: info }, info);
       setStatus({
         ...status,
-        currentPlayingGame: corpse,
-        currentViewedGame: corpse,
+        currentViewedGame: game,
+        view: "list",
       });
     }
   };
@@ -64,9 +64,7 @@ const NewGame = () => {
           type="text"
           placeholder="Session Name"
           className="px-1 my-4"
-          onChange={(e) =>
-            setCorpse({ ...corpse, sessionName: e.target.value })
-          }
+          onChange={(e) => setGame({ ...game, sessionName: e.target.value })}
         />
         <input
           id="rounds"
@@ -76,7 +74,7 @@ const NewGame = () => {
           max={10}
           min={2}
           onChange={(e) =>
-            setCorpse({ ...corpse, rounds: parseInt(e.target.value) })
+            setGame({ ...game, rounds: parseInt(e.target.value) })
           }
         />
         <button
@@ -87,7 +85,7 @@ const NewGame = () => {
         </button>
       </form>
 
-      <PlayerList players={corpse.players}>
+      <PlayerList players={game.players}>
         <h2 className="font-bold">Players</h2>
       </PlayerList>
     </>

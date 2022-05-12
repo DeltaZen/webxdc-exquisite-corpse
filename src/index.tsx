@@ -62,6 +62,7 @@ const processUpdate = (
       );
       const currentGame = status.games[index];
       // check for player list
+      console.log(status.games[index].players, payload.players);
       if (currentGame.players.length < payload.players.length) {
         console.log("new player joined");
         status.games[index].players = payload.players;
