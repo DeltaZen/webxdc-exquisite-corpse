@@ -1,5 +1,4 @@
 import React from "react";
-import PlayerList from "./PlayerList";
 import AppCtx from "../context/AppContext";
 
 interface Corpse {
@@ -12,8 +11,17 @@ interface Corpse {
   currentRound: number;
   turnID: number;
   corpse: string[];
+  spoiler: string;
 }
 
+interface IndexProps {
+  playerName: string;
+  playerAddr: string;
+  currentGame?: Corpse;
+  view: "new" | "list";
+  games: Corpse[];
+  toggleCurrentGame: (game: Corpse | undefined) => void;
+}
 interface Player {
   name: string;
   address: string;
@@ -45,31 +53,33 @@ const GameViewNew: React.FC<{ game: Corpse }> = ({ game }) => {
     }
   };
   return (
-    <>
-      {ctx?.playerName === game.admin.name ? (
-        <>
-          <p>Owner: you</p>
-          <button
-            className="px-4 my-2 border border-primario rounded-xl"
-            onClick={() => ctx?.toggleCurrentGame(startGame(game))}
-          >
-            Start Game
-          </button>
-        </>
-      ) : (
-        <>
-          <p>
-            Owner: {game.admin.name} ({game.admin.address})
-          </p>
-          <button
-            className="px-4 my-2 border border-primario rounded-xl"
-            onClick={() => ctx?.toggleCurrentGame(joinGame(game))}
-          >
-            Join Game
-          </button>
-        </>
-      )}
-    </>
+    <AppCtx.Consumer>
+      {(ctx) =>
+        ctx?.playerName === game.admin.name ? (
+          <>
+            <p>Owner: you</p>
+            <button
+              className="px-4 my-2 border border-primario rounded-xl"
+              onClick={() => ctx?.toggleCurrentGame(startGame(game))}
+            >
+              Start Game
+            </button>
+          </>
+        ) : (
+          <>
+            <p>
+              Owner: {game.admin.name} ({game.admin.address})
+            </p>
+            <button
+              className="px-4 my-2 border border-primario rounded-xl"
+              onClick={() => ctx?.toggleCurrentGame(joinGame(game))}
+            >
+              Join Game
+            </button>
+          </>
+        )
+      }
+    </AppCtx.Consumer>
   );
 };
 
