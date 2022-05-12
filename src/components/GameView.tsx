@@ -25,7 +25,7 @@ interface Player {
 const GameView: React.FC<{ game: Corpse }> = ({ game }) => {
   const ctx = React.useContext(AppCtx);
 
-  let isYourTurn = true;
+  let isYourTurn = ctx.currentGame?.currentPlayer.address === ctx.playerAddr;
 
   const startGame = (game: Corpse) => {
     const newgame = { ...game, gameStatus: "playing" as "playing" };
@@ -59,54 +59,17 @@ const GameView: React.FC<{ game: Corpse }> = ({ game }) => {
 
       {game.gameStatus === "new" && <GameViewNew game={game} />}
       {game.gameStatus === "playing" && (
+        <p>It's {ctx.currentGame?.currentPlayer.name}'s turn</p>
+      )}
+      {game.gameStatus === "playing" && (
         <>
-          {isYourTurn && (
+          {isYourTurn ? (
             <GameViewText />
-            // <form className="flex flex-col items-center justify-center p-2">
-            //   <textarea
-            //     name="text"
-            //     id="text"
-            //     cols={50}
-            //     rows={5}
-            //     className="p-2 m-2 border border-black rounded-lg"
-            //   />
-            //   <button
-            //     className="px-4 my-2 border border-primario rounded-xl"
-            //     type="submit"
-            //   >
-            //     Accept
-            //   </button>
-            // </form>
+          ) : (
+            <p>It's {ctx.currentGame?.currentPlayer.name}'s turn</p>
           )}
         </>
       )}
-      {/* {ctx?.playerName === game.admin.name ? (
-        <>
-          <p>Owner: you</p>
-          {ctx.currentGame?.gameStatus === "new" && (
-            <button
-              className="px-4 my-2 border border-primario rounded-xl"
-              onClick={() => ctx?.toggleCurrentGame(startGame(game))}
-            >
-              Start Game
-            </button>
-          )}
-        </>
-      ) : (
-        <>
-          <p>
-            Owner: {game.admin.name} ({game.admin.address})
-          </p>
-          {game.gameStatus === "new" ? (
-            <button
-              className="px-4 my-2 border border-primario rounded-xl"
-              onClick={() => ctx?.toggleCurrentGame(joinGame(game))}
-            >
-              Join Game
-            </button>
-          ) : null}
-        </>
-      )} */}
     </>
   );
 };
