@@ -45,7 +45,7 @@ export const processUpdate = (
       !gameList.includes(payload.sessionName)
     ) {
       const games = [...status.games, payload];
-      setStatus({ ...status, games });
+      setStatus({ ...status, games: games });
     } else if (gameList.includes(payload.sessionName)) {
       // handle game update
       const index = status.games.findIndex(
