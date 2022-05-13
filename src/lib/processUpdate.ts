@@ -5,7 +5,7 @@ export const processUpdate = (
   status: IndexProps,
   setStatus: React.Dispatch<React.SetStateAction<IndexProps>>
 ) => {
-  console.log("processing update");
+  // console.log("processing update");
   const payload = update.payload;
   if (status.games) {
     const gameList = status.games.map((game) => game.sessionName);
@@ -16,7 +16,7 @@ export const processUpdate = (
     ) {
       const games = [...status.games, payload];
       setStatus({ ...status, games: games });
-      console.log("new game added");
+      console.log("new game added: ", status.games.length, games.length);
     } else if (gameList.includes(payload.sessionName)) {
       // handle game update
       const index = status.games.findIndex(
@@ -31,17 +31,23 @@ export const processUpdate = (
       }
       // check for game status
 
-      // if (oldGame.gameStatus !== payload.gameStatus) {
-      //   console.log("game status changed");
-      //   status.games[index].gameStatus = payload.gameStatus;
-      // }
+      if (oldGame.gameStatus !== payload.gameStatus) {
+        console.log("game status changed");
+        status.games[index].gameStatus = payload.gameStatus;
+      }
 
       if (oldGame.turnID < payload.turnID) {
-        console.log("new turn", oldGame.turnID, payload.turnID);
+        console.log(
+          "new turn",
+          oldGame.turnID,
+          payload.turnID,
+          oldGame.currentPlayer.address,
+          payload.currentPlayer.address
+        );
         status.games[index] = payload;
         // const test = Object.keys(payload).map(k=>`${status.games[index][k]} - ${payload[k]}`)
         // console.log(test)
       }
-    }    
+    }
   }
 };

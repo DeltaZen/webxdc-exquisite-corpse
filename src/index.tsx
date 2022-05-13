@@ -22,12 +22,12 @@ const App = () => {
 
   const value = { status, setStatus };
 
-  useEffect(() => {
-    console.log("useEffect called");
-    window.webxdc.setUpdateListener((update) =>
-      processUpdate(update, status, setStatus)
-    );
-  });
+  // useEffect(() => {
+  //   console.log("useEffect called");
+  window.webxdc.setUpdateListener((update) =>
+    processUpdate(update, status, setStatus)
+  );
+  // });
 
   return (
     <AppCtx.Provider value={value}>
