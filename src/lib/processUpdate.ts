@@ -1,36 +1,5 @@
 import { ReceivedStatusUpdate } from "../../webxdc";
 
-interface Corpse {
-  sessionName: string;
-  admin: Player;
-  gameStatus: "new" | "playing" | "closed";
-  players: Player[];
-  currentPlayer: Player;
-  rounds: number;
-  currentRound: number;
-  turnID: number; // unique ID for each turn
-  corpse: string[];
-  spoiler: string;
-}
-
-interface Player {
-  name: string;
-  address: string;
-}
-
-interface IndexProps {
-  playerName: string;
-  playerAddr: string;
-  currentGame?: Corpse;
-  view: "new" | "list";
-  games: Corpse[];
-}
-
-interface ExquisiteContext {
-  ctxProps: IndexProps;
-  setCtxProps: React.Dispatch<React.SetStateAction<IndexProps>>;
-}
-
 export const processUpdate = (
   update: ReceivedStatusUpdate<Corpse>,
   status: IndexProps,
@@ -51,19 +20,19 @@ export const processUpdate = (
       const index = status.games.findIndex(
         (game) => game.sessionName === payload.sessionName
       );
-      const currentGame = status.games[index];
+      const oldGame = status.games[index];
       // check for player list
       console.log(status.games[index].players, payload.players);
-      if (currentGame.players.length < payload.players.length) {
+      if (oldGame.players.length < payload.players.length) {
         console.log("new player joined");
         status.games[index].players = payload.players;
       }
       // check for game status
-      if (currentGame.gameStatus !== payload.gameStatus) {
+      if (oldGame.gameStatus !== payload.gameStatus) {
         console.log("game status changed");
         status.games[index].gameStatus = payload.gameStatus;
       }
-      if (currentGame.turnID < payload.turnID) {
+      if (oldGame.turnID < payload.turnID) {
         console.log(
           "new turn\n",
           status.games[index].currentPlayer.address,
