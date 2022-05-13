@@ -19,6 +19,7 @@ const GameViewText = () => {
     e.preventDefault();
     console.log(text);
     if (validateText(text)) {
+      console.log("valid text");
       // 3 last words from the previous round
       const spoiler =
         corpse.corpse.length > 0
@@ -31,7 +32,8 @@ const GameViewText = () => {
       const round = Math.abs(turn / corpse.players.length) + 1;
       // find next player
       const nextPlayer = corpse.players[turn % corpse.players.length];
-      console.log(status.currentViewedGame);
+      console.log("Player index: ", turn % corpse.players.length);
+      //console.log(status.currentViewedGame);
       console.log(nextPlayer);
 
       const texts = [...corpse.corpse, text];
