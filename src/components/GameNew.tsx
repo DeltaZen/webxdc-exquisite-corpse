@@ -27,7 +27,7 @@ const NewGame = () => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     // const gameList = status.games.map((game) => game.sessionName);
-    if (game.rounds > 1 && game.sessionName !== "" && error.sessionName) {
+    if (game.rounds > 1 && game.sessionName !== "" && !error.sessionName) {
       setError({});
       const info = `${game.admin.name} created ${game.sessionName} with ${game.rounds} rounds. Join!`;
       window.webxdc.sendUpdate({ payload: game, info: info }, info);
@@ -36,13 +36,7 @@ const NewGame = () => {
         currentViewedGame: game,
         view: "list",
       });
-      // } else if (gameList.includes(game.sessionName)) {
-      //   setError({ ...error, sessionName: "Session name already exists" });
-    } else if (game.rounds <= 1 || game.rounds > 10) {
-      setError({
-        ...error,
-        rounds: "You must have at least 2 rounds and no more than 10",
-      });
+      console.log("created game not working");
     }
   };
 
