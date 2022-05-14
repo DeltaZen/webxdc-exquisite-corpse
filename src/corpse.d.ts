@@ -35,3 +35,8 @@ interface StatusGroupI {
   gameStatus: "new" | "playing" | "closed";
   title: string;
 }
+
+interface InputError {
+  sessionName?: string;
+  rounds?: string;
+}

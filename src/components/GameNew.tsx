@@ -2,24 +2,6 @@ import React, { useEffect, useState } from "react";
 import AppCtx from "../context/AppContext";
 import PlayerList from "./PlayerList";
 
-// interface Corpse {
-//   sessionName: string;
-//   admin: Player;
-//   gameStatus: "new" | "playing" | "closed";
-//   players: Player[];
-//   currentPlayer: Player;
-//   rounds: number;
-//   currentRound: number;
-//   turnID: number;
-//   corpse: string[];
-//   spoiler: string;
-// }
-
-// interface Player {
-//   name: string;
-//   address: string;
-// }
-
 const NewGame = () => {
   const { status, setStatus } = React.useContext(AppCtx);
 
@@ -39,10 +21,14 @@ const NewGame = () => {
     spoiler: "",
   });
 
+  const [error, setError] = useState<InputError>({});
+
   // TODO: session name must be unique
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (game.rounds > 1 && game.sessionName !== "") {
+    // const gameList = status.games.map((game) => game.sessionName);
+    if (game.rounds > 1 && game.sessionName !== "" && error.sessionName) {
+      setError({});
       const info = `${game.admin.name} created ${game.sessionName} with ${game.rounds} rounds. Join!`;
       window.webxdc.sendUpdate({ payload: game, info: info }, info);
       setStatus({
@@ -50,6 +36,27 @@ const NewGame = () => {
         currentViewedGame: game,
         view: "list",
       });
+      // } else if (gameList.includes(game.sessionName)) {
+      //   setError({ ...error, sessionName: "Session name already exists" });
+    } else if (game.rounds <= 1 || game.rounds > 10) {
+      setError({
+        ...error,
+        rounds: "You must have at least 2 rounds and no more than 10",
+      });
+    }
+  };
+
+  const handleName = (e: React.ChangeEvent<HTMLInputElement>) => {
+    e.preventDefault();
+    const gameList = status.games.map((game) => game.sessionName);
+    const name = e.target.value;
+    if (gameList.includes(name)) {
+      setError({ ...error, sessionName: "Session name already exists" });
+    } else if (name === "") {
+      setError({ ...error, sessionName: "Session name can't be empty" });
+    } else {
+      setError({ ...error, sessionName: undefined });
+      setGame({ ...game, sessionName: name });
     }
   };
 
@@ -63,9 +70,12 @@ const NewGame = () => {
           id="sessionName"
           type="text"
           placeholder="Session Name"
-          className="px-1 my-4"
-          onChange={(e) => setGame({ ...game, sessionName: e.target.value })}
+          className="px-1 my-4 text-center"
+          onChange={handleName}
         />
+        {error.sessionName && (
+          <span className="text-red-500">{error.sessionName}</span>
+        )}
         <input
           id="rounds"
           type="number"
@@ -84,7 +94,6 @@ const NewGame = () => {
           Create
         </button>
       </form>
-
       <PlayerList players={game.players}>
         <h2 className="font-bold">Players</h2>
       </PlayerList>

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { createRoot } from "react-dom/client";
 // import { ReceivedStatusUpdate } from "../webxdc";
-import NewGame from "./components/NewGame";
+import NewGame from "./components/GameNew";
 import GameList from "./components/GameList";
 import AppCtx from "./context/AppContext";
 import { processUpdate } from "./lib/processUpdate";
