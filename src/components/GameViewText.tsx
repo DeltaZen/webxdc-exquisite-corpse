@@ -2,7 +2,7 @@ import React from "react";
 import AppCtx from "../context/AppContext";
 
 const GameViewText = () => {
-  const { status } = React.useContext(AppCtx);
+  const { status, setStatus } = React.useContext(AppCtx);
 
   const [corpse, setCorpse] = React.useState<Corpse>(
     status.currentViewedGame as Corpse
@@ -60,6 +60,11 @@ const GameViewText = () => {
       const info = `${corpse.sessionName} updated!`;
       window.webxdc.sendUpdate({ payload: newCorpse }, info);
       setCorpse(newCorpse as Corpse);
+      setStatus({
+        ...status,
+        currentViewedGame: newCorpse as Corpse,
+        currentPlayingGame: newCorpse as Corpse,
+      });
     } else {
       console.log("invalid text");
       error = "Invalid text";
