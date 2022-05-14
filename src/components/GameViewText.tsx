@@ -20,6 +20,7 @@ const GameViewText = () => {
   const handleNewtext = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (validateText(text)) {
+      setError({ ...error, text: undefined });
       // 3 last words from the previous round
       const spoiler =
         corpse.corpse.length > 0
@@ -66,6 +67,7 @@ const GameViewText = () => {
     } else {
       console.log("invalid text");
       setError({
+        ...error,
         text: "Invalid text. Check that it has more than 40 characters and more than 5 words",
       });
     }
