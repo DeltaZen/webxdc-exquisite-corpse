@@ -8,6 +8,7 @@ const GameViewText = () => {
     status.currentViewedGame as Corpse
   );
   const [text, setText] = React.useState("");
+  const [error, setError] = React.useState<InputError>({});
 
   const validateText = (text: string) => {
     // check that text has more than 40 characters and more than 5 words
@@ -16,12 +17,9 @@ const GameViewText = () => {
     return val;
   };
 
-  let error = "";
-
   const handleNewtext = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (validateText(text)) {
-      console.log("valid text");
       // 3 last words from the previous round
       const spoiler =
         corpse.corpse.length > 0
@@ -67,7 +65,9 @@ const GameViewText = () => {
       });
     } else {
       console.log("invalid text");
-      error = "Invalid text";
+      setError({
+        text: "Invalid text. Check that it has more than 40 characters and more than 5 words",
+      });
     }
   };
 
@@ -87,6 +87,7 @@ const GameViewText = () => {
           className="p-2 m-2 border border-black rounded-lg"
           onChange={(e) => setText(e.target.value)}
         />
+        {error.text && <span className="text-red-500">{error.text}</span>}
         <button
           className="px-4 my-2 border border-primario rounded-xl"
           type="submit"
@@ -94,7 +95,6 @@ const GameViewText = () => {
           Accept
         </button>
       </form>
-      {error.length > 0 && <p>{error}</p>}
     </>
   );
 };

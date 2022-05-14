@@ -39,4 +39,5 @@ interface StatusGroupI {
 interface InputError {
   sessionName?: string;
   rounds?: string;
+  text?: string;
 }
