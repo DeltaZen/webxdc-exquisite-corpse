@@ -11,13 +11,15 @@ const GameViewText = () => {
 
   const validateText = (text: string) => {
     // check that text has more than 40 characters and more than 5 words
+    // TODO: this numbers can be variables
     const val = text.length > 40 && text.split(" ").length > 5 ? true : false;
     return val;
   };
 
+  let error = "";
+
   const handleNewtext = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log(text);
     if (validateText(text)) {
       console.log("valid text");
       // 3 last words from the previous round
@@ -33,7 +35,6 @@ const GameViewText = () => {
       // find next player
       const nextPlayer = corpse.players[(turn + 1) % corpse.players.length];
       console.log("Player index: ", turn % corpse.players.length);
-      //console.log(status.currentViewedGame);
       console.log(
         "Cambiando el turno ",
         corpse.currentPlayer.address,
@@ -49,17 +50,19 @@ const GameViewText = () => {
 
       const newCorpse = {
         ...corpse,
-        gameStatus,
+        gameStatus: gameStatus,
         currentPlayer: nextPlayer,
         currentRound: round,
         corpse: texts,
-        spoiler,
+        spoiler: spoiler,
       };
 
-      //   ctx.toggleCurrentGame(newCorpse as Corpse);
-      setCorpse(newCorpse as Corpse);
       const info = `${corpse.sessionName} updated!`;
       window.webxdc.sendUpdate({ payload: newCorpse }, info);
+      setCorpse(newCorpse as Corpse);
+    } else {
+      console.log("invalid text");
+      error = "Invalid text";
     }
   };
 
@@ -86,6 +89,7 @@ const GameViewText = () => {
           Accept
         </button>
       </form>
+      {error.length > 0 && <p>{error}</p>}
     </>
   );
 };
