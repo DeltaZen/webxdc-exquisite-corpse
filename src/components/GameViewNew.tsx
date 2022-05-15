@@ -8,7 +8,13 @@ const GameViewNew: React.FC<{ game: Corpse }> = ({ game }) => {
   const playerList = game.players.map((player) => player.address);
 
   const startGame = (game: Corpse, send: boolean) => {
-    const newgame = { ...game, gameStatus: "playing" as "playing" };
+    const newgame = {
+      ...game,
+      gameStatus: "playing" as "playing",
+      currentRound: 1,
+      turnID: 1,
+      spoiler: "You are the first one",
+    };
     //console.log(newgame);
     const info = `${newgame.admin.name} started "${newgame.sessionName}" in Exquisite Corpse`;
     send && window.webxdc.sendUpdate({ payload: newgame }, info);
