@@ -42,8 +42,8 @@ const GameViewText = () => {
         spoiler: spoiler,
       };
 
-      const info = `${corpse.sessionName} updated!`;
-      window.webxdc.sendUpdate({ payload: newCorpse }, info);
+      const info = `${corpse.sessionName} updated! ${nextPlayer.name} is up`;
+      window.webxdc.sendUpdate({ payload: newCorpse, info: info }, info);
       setCorpse(newCorpse as Corpse);
       setStatus({
         ...status,
