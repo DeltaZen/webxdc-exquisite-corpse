@@ -31,9 +31,7 @@ const GameViewText = () => {
       const texts = [...corpse.corpse, text];
 
       const gameStatus =
-        turn === corpse.players.length * corpse.rounds - 1
-          ? "closed"
-          : "playing";
+        turn === corpse.players.length * corpse.rounds ? "closed" : "playing";
 
       const newCorpse = {
         ...corpse,
