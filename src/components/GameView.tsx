@@ -3,6 +3,7 @@ import PlayerList from "./PlayerList";
 import AppCtx from "../context/AppContext";
 import GameViewNew from "./GameViewNew";
 import GameViewText from "./GameViewText";
+import GameViewClosed from "./GameViewClosed";
 
 const GameView: React.FC<{ game: Corpse }> = ({ game }) => {
   return (
@@ -40,6 +41,7 @@ const GameView: React.FC<{ game: Corpse }> = ({ game }) => {
               )}
             </>
           )}
+          {game.gameStatus === "closed" && <GameViewClosed game={game} />}
         </>
       )}
     </AppCtx.Consumer>
