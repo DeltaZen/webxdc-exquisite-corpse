@@ -51,6 +51,28 @@ const GameViewNew: React.FC<{ game: Corpse }> = ({ game }) => {
     }
   };
 
+  const handleJoin = (
+    game: Corpse,
+    status: IndexProps,
+    setStatus: React.Dispatch<React.SetStateAction<IndexProps>>
+  ) => {
+    setStatus({
+      ...status,
+      currentViewedGame: joinGame(
+        game,
+        status.playerName,
+        status.playerAddr,
+        false
+      ),
+      currentPlayingGame: joinGame(
+        game,
+        status.playerName,
+        status.playerAddr,
+        true
+      ),
+    });
+  };
+
   return (
     <AppCtx.Consumer>
       {({ status, setStatus }) =>
@@ -75,23 +97,7 @@ const GameViewNew: React.FC<{ game: Corpse }> = ({ game }) => {
             {!playerList.includes(status.playerAddr) && (
               <button
                 className="px-4 my-2 border border-primario rounded-xl"
-                onClick={() =>
-                  setStatus({
-                    ...status,
-                    currentViewedGame: joinGame(
-                      game,
-                      status.playerName,
-                      status.playerAddr,
-                      false
-                    ),
-                    currentPlayingGame: joinGame(
-                      game,
-                      status.playerName,
-                      status.playerAddr,
-                      true
-                    ),
-                  })
-                }
+                onClick={() => handleJoin(game, status, setStatus)}
               >
                 Join Game
               </button>
