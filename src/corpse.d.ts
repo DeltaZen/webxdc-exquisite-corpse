@@ -26,8 +26,8 @@ interface IndexProps {
 }
 
 interface ExquisiteContext {
-  ctxProps: IndexProps;
-  setCtxProps: React.Dispatch<React.SetStateAction<IndexProps>>;
+  status: IndexProps;
+  setStatus: React.Dispatch<React.SetStateAction<IndexProps>>;
 }
 
 interface StatusGroupI {

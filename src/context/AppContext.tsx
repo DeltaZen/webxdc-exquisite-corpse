@@ -10,11 +10,6 @@ const defaultIndexProps = {
   games: [],
 };
 
-interface ExquisiteContext {
-  status: IndexProps;
-  setStatus: React.Dispatch<React.SetStateAction<IndexProps>>;
-}
-
 const AppCtx = React.createContext<ExquisiteContext>({
   status: defaultIndexProps,
   setStatus: () => {},
