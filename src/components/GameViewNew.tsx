@@ -17,7 +17,7 @@ const GameViewNew: React.FC<{ game: Corpse }> = ({ game }) => {
     };
     //console.log(newgame);
     const info = `${newgame.admin.name} started "${newgame.sessionName}" in Exquisite Corpse`;
-    send && window.webxdc.sendUpdate({ payload: newgame }, info);
+    send && window.webxdc.sendUpdate({ payload: newgame, info: info }, info);
     return newgame;
   };
 
