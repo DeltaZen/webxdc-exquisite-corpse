@@ -22,23 +22,11 @@ const GameViewText = () => {
     if (validateText(text)) {
       setError({ ...error, text: undefined });
       // 3 last words from the previous round
-      const spoiler =
-        corpse.corpse.length > 0
-          ? corpse.corpse[corpse.corpse.length - 1]
-              .split(" ")
-              .slice(-3)
-              .join(" ")
-          : "You are the first one";
+      const spoiler = text.split(" ").slice(-3).join(" ");
       const turn = corpse.turnID++;
       const round = Math.floor(Math.abs(turn / corpse.players.length)) + 1;
       // find next player
-      const nextPlayer = corpse.players[(turn + 1) % corpse.players.length];
-      console.log("Player index: ", turn % corpse.players.length);
-      console.log(
-        "Cambiando el turno ",
-        corpse.currentPlayer.address,
-        nextPlayer.address
-      );
+      const nextPlayer = corpse.players[turn % corpse.players.length];
 
       const texts = [...corpse.corpse, text];
 
