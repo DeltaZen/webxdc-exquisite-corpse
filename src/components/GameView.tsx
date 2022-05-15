@@ -13,7 +13,7 @@ const GameView: React.FC<{ game: Corpse }> = ({ game }) => {
           <h2 className="m-2 mx-auto text-2xl font-bold">{game.sessionName}</h2>
           {game.gameStatus === "playing" && (
             <p>
-              ⌛ {game.currentRound}/{game.rounds}
+              ⌛ {game.currentRound}/{game.rounds} TurnID: {game.turnID}
             </p>
           )}
           {/* <PlayerList players={game.players}>
