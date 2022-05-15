@@ -10,9 +10,14 @@ const GameView: React.FC<{ game: Corpse }> = ({ game }) => {
       {({ status, setStatus }) => (
         <>
           <h2 className="m-2 mx-auto text-2xl font-bold">{game.sessionName}</h2>
-          <PlayerList players={game.players}>
+          {game.gameStatus === "playing" && (
+            <p>
+              ⌛ {game.currentRound}/{game.rounds}
+            </p>
+          )}
+          {/* <PlayerList players={game.players}>
             <h3 className="font-bold">Players</h3>
-          </PlayerList>
+          </PlayerList> */}
 
           <PlayerList players={status.currentViewedGame?.players as Player[]}>
             <h3 className="font-bold">Players (actual)</h3>
