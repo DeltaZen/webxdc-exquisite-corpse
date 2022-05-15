@@ -23,7 +23,6 @@ const NewGame = () => {
 
   const [error, setError] = useState<InputError>({});
 
-  // TODO: session name must be unique
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     // const gameList = status.games.map((game) => game.sessionName);

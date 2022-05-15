@@ -3,6 +3,7 @@ import AppCtx from "../context/AppContext";
 
 const GameViewNew: React.FC<{ game: Corpse }> = ({ game }) => {
   //const ctx = React.useContext(AppCtx);
+  const [error, setError] = React.useState<InputError>({});
 
   const playerList = game.players.map((player) => player.address);
 
@@ -32,6 +33,24 @@ const GameViewNew: React.FC<{ game: Corpse }> = ({ game }) => {
       return newGame;
     }
   };
+
+  const handleStart = (
+    game: Corpse,
+    status: IndexProps,
+    setStatus: React.Dispatch<React.SetStateAction<IndexProps>>
+  ) => {
+    if (game.players.length > 1) {
+      setError({});
+      setStatus({
+        ...status,
+        currentViewedGame: startGame(game, false),
+        currentPlayingGame: startGame(game, true),
+      });
+    } else {
+      setError({ ...error, players: "Need at least 2 players to start" });
+    }
+  };
+
   return (
     <AppCtx.Consumer>
       {({ status, setStatus }) =>
@@ -40,16 +59,13 @@ const GameViewNew: React.FC<{ game: Corpse }> = ({ game }) => {
             <p>Owner: you</p>
             <button
               className="px-4 my-2 border border-primario rounded-xl"
-              onClick={() =>
-                setStatus({
-                  ...status,
-                  currentViewedGame: startGame(game, false),
-                  currentPlayingGame: startGame(game, true),
-                })
-              }
+              onClick={() => handleStart(game, status, setStatus)}
             >
               Start Game
             </button>
+            {error.players && (
+              <span className="text-red-500">{error.players}</span>
+            )}
           </>
         ) : (
           <>

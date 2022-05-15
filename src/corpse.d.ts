@@ -40,4 +40,5 @@ interface InputError {
   sessionName?: string;
   rounds?: string;
   text?: string;
+  players?: string;
 }
