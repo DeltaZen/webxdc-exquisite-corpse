@@ -76,7 +76,8 @@ const GameViewText = () => {
   return (
     <>
       <h3>It's your turn</h3>
-      <p>Description blah blah blah</p>
+      <p>You can now continue what the last player wrote...</p>
+      <p>Spoiler: {corpse.spoiler}</p>
       <form
         className="flex flex-col items-center justify-center p-2"
         onSubmit={handleNewtext}
