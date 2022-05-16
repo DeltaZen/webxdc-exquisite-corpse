@@ -43,15 +43,7 @@ const App = () => {
           Exquisite Corpse
         </h1>
         {status.view === "list" ? (
-          <>
-            {status.games.length > 0 && <GameList />}
-            <button
-              onClick={() => setStatus({ ...status, view: "new" })}
-              className="px-4 border border-primario rounded-xl"
-            >
-              Create new game
-            </button>
-          </>
+          <>{status.games.length > 0 && <GameList />}</>
         ) : (
           <button
             onClick={() => setStatus({ ...status, view: "list" })}

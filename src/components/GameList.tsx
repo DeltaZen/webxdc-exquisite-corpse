@@ -35,6 +35,17 @@ const GameList = () => {
             >
               Go back
             </button>
+            {/* <button
+              onClick={() =>
+                setStatus({
+                  ...status,
+                  currentViewedGame: status.currentPlayingGame,
+                })
+              }
+              className="px-4 mb-2 border border-primario rounded-xl"
+            >
+              Refresh
+            </button> */}
           </>
         ) : (
           <>
@@ -46,6 +57,12 @@ const GameList = () => {
               title="In progress"
             />
             <StatusGroup status={status} gameStatus="closed" title="Closed" />
+            <button
+              onClick={() => setStatus({ ...status, view: "new" })}
+              className="px-4 border border-primario rounded-xl"
+            >
+              Create new game
+            </button>
           </>
         )
       }
