@@ -29,6 +29,13 @@ const App = () => {
   );
   // });
 
+  // let Games = GameList;
+
+  // useEffect(() => {
+  //   console.log("useEffect called");
+  //   Games = GameList;
+  // }, [status.currentViewedGame?.turnID]);
+
   return (
     <AppCtx.Provider value={value}>
       <div className="flex flex-col items-center justify-center h-[100vh] w-full">
