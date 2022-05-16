@@ -1,10 +1,13 @@
 @tailwind base;
 @layer base {
   body {
-    @apply font-got;
+    @apply font-got text-xl;
   }
   input[type="number"]::-webkit-inner-spin-button {
     opacity: 1;
+  }
+  .btn {
+    @apply px-4 my-2 border border-black rounded-xl first-letter:font-fancy first-letter:text-red-900 first-letter:text-xl w-full;
   }
 }
 @tailwind components;

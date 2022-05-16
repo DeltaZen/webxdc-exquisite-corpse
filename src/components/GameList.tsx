@@ -50,10 +50,10 @@ const GameList = () => {
         ) : (
           <>
             {!options.showGroup ? (
-              <>
+              <div className="my-auto flex flex-col items-center justify-center">
                 <button
                   onClick={() => setStatus({ ...status, view: "new" })}
-                  className="px-4 my-2 border border-primario rounded-xl first-letter:font-fancy first-letter:text-xl"
+                  className="btn"
                 >
                   Start a new story
                 </button>
@@ -66,7 +66,7 @@ const GameList = () => {
                       title: "Continue...",
                     })
                   }
-                  className="px-4 my-2 border border-primario rounded-xl first-letter:font-fancy first-letter:text-xl"
+                  className="btn"
                 >
                   Continue story
                 </button>
@@ -79,7 +79,7 @@ const GameList = () => {
                       title: "Join...",
                     })
                   }
-                  className="px-4 my-2 border border-primario rounded-xl first-letter:font-fancy first-letter:text-xl"
+                  className="btn"
                 >
                   Join story
                 </button>
@@ -92,17 +92,17 @@ const GameList = () => {
                       title: "Library",
                     })
                   }
-                  className="px-4 my-2 border border-primario rounded-xl first-letter:font-fancy first-letter:text-xl"
+                  className="btn"
                 >
                   Library
                 </button>
                 <button
                   onClick={() => setStatus({ ...status, view: "tutorial" })}
-                  className="px-4 my-2 border border-primario rounded-xl first-letter:font-fancy first-letter:text-xl"
+                  className="btn"
                 >
                   How to play
                 </button>
-              </>
+              </div>
             ) : (
               <>
                 <StatusGroup

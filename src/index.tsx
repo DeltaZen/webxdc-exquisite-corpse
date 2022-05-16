@@ -45,7 +45,7 @@ const App = () => {
         id="parchment"
         className="flex flex-col items-center justify-center h-[100vh] w-full"
       >
-        <h1 className="my-8 text-xl font-fancy">Exquisite Corpse</h1>
+        <h1 className="my-8 text-6xl font-fancy">Exquisite Corpse</h1>
         {status.view === "tutorial" && <GameTutorial />}
         {status.view === "new" && <NewGame />}
         {status.view === "list" ? (
