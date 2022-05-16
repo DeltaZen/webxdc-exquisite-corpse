@@ -21,7 +21,7 @@ interface IndexProps {
   playerAddr: string;
   currentViewedGame?: Corpse;
   currentPlayingGame?: Corpse;
-  view: "new" | "list";
+  view: "new" | "list" | "tutorial";
   games: Corpse[];
 }
 
@@ -41,4 +41,10 @@ interface InputError {
   rounds?: string;
   text?: string;
   players?: string;
+}
+
+interface GameGroup {
+  showGroup: boolean;
+  gameStatus: "new" | "playing" | "closed";
+  title: "continue" | "join" | "library";
 }
