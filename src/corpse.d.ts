@@ -33,7 +33,7 @@ interface ExquisiteContext {
 interface StatusGroupI {
   status: IndexProps;
   gameStatus: "new" | "playing" | "closed";
-  title: string;
+  title: "continue" | "join" | "library";
 }
 
 interface InputError {
