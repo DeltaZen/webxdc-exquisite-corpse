@@ -4,24 +4,10 @@ import GameButton from "./GameButton";
 import GameView from "./GameView";
 
 const StatusGroup: React.FC<StatusGroupI> = ({ status, gameStatus, title }) => {
-  let cooltitle = "";
-  switch (title) {
-    case "continue":
-      cooltitle = "Continue...";
-      break;
-    case "join":
-      cooltitle = "Join a story";
-      break;
-    case "library":
-      cooltitle = "Library";
-      break;
-    default:
-      break;
-  }
   return status.games.filter((game) => game.gameStatus === gameStatus).length >
     0 ? (
     <>
-      <h3>{cooltitle}</h3>
+      <h3>{title}</h3>
       <ul className="container flex flex-row flex-wrap items-center justify-center w-full">
         {status.games
           .filter((game) => game.gameStatus === gameStatus)
@@ -32,7 +18,7 @@ const StatusGroup: React.FC<StatusGroupI> = ({ status, gameStatus, title }) => {
     </>
   ) : (
     <>
-      <h3>{cooltitle}</h3>
+      <h3>{title}</h3>
       <p>Sorry, no game found</p>
     </>
   );
@@ -77,7 +63,7 @@ const GameList = () => {
                       ...options,
                       gameStatus: "playing",
                       showGroup: true,
-                      title: "continue",
+                      title: "Continue...",
                     })
                   }
                   className="px-4 border border-primario rounded-xl"
@@ -88,9 +74,9 @@ const GameList = () => {
                   onClick={() =>
                     setOptions({
                       ...options,
-                      gameStatus: "playing",
+                      gameStatus: "new",
                       showGroup: true,
-                      title: "join",
+                      title: "Join...",
                     })
                   }
                   className="px-4 border border-primario rounded-xl"
@@ -103,7 +89,7 @@ const GameList = () => {
                       ...options,
                       gameStatus: "closed",
                       showGroup: true,
-                      title: "library",
+                      title: "Library",
                     })
                   }
                   className="px-4 border border-primario rounded-xl"
