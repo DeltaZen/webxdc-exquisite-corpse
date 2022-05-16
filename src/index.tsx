@@ -3,6 +3,7 @@ import { createRoot } from "react-dom/client";
 // import { ReceivedStatusUpdate } from "../webxdc";
 import NewGame from "./components/GameNew";
 import GameList from "./components/GameList";
+import GameTutorial from "./components/GameTutorial";
 import AppCtx from "./context/AppContext";
 import { processUpdate } from "./lib/processUpdate";
 import "./input.css";
@@ -42,6 +43,7 @@ const App = () => {
         <h1 className="my-8 text-xl font-bold text-red-600">
           Exquisite Corpse
         </h1>
+        {status.view === "tutorial" && <GameTutorial />}
         {status.view === "new" && <NewGame />}
         {status.view === "list" ? (
           <>{status.games.length > 0 && <GameList />}</>
