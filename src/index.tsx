@@ -42,7 +42,10 @@ const App = () => {
         {status.view === "tutorial" && <GameTutorial />}
         {status.view === "new" && <NewGame />}
         {status.view === "list" ? (
-          <>{status.games.length > 0 && <GameList />}</>
+          <>
+            {/* {status.games.length > 0 ? <GameList /> : <p>No hay nada aquí</p>} */}
+            <GameList />
+          </>
         ) : (
           <button
             onClick={() => setStatus({ ...status, view: "list" })}
