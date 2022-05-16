@@ -74,7 +74,6 @@ const NewGame = () => {
           type="number"
           placeholder="Rounds"
           className="px-1 my-4"
-          max={10}
           min={2}
           onChange={(e) =>
             setGame({ ...game, rounds: parseInt(e.target.value) })
