@@ -83,32 +83,30 @@ const GameViewNew: React.FC<{ game: Corpse }> = ({ game }) => {
     <AppCtx.Consumer>
       {({ status, setStatus }) =>
         status.playerName === game.admin.name ? (
-          <>
+          <div className="text-center">
             <p>Owner: you</p>
             <button
-              className="px-4 my-2 border border-primario rounded-xl"
+              className="btn-simple"
               onClick={() => handleStart(game, status, setStatus)}
             >
               Start Game
             </button>
-            {error.players && (
-              <span className="text-red-500">{error.players}</span>
-            )}
-          </>
+            {error.players && <p className="text-red-500">{error.players}</p>}
+          </div>
         ) : (
-          <>
+          <div className="text-center">
             <p>
               Owner: {game.admin.name} ({game.admin.address})
             </p>
             {!playerList.includes(status.playerAddr) && (
               <button
-                className="px-4 my-2 border border-primario rounded-xl"
+                className="btn-simple"
                 onClick={() => handleJoin(game, status, setStatus)}
               >
                 Join Game
               </button>
             )}
-          </>
+          </div>
         )
       }
     </AppCtx.Consumer>

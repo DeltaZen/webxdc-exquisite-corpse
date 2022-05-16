@@ -9,6 +9,12 @@
   .btn {
     @apply px-4 my-2 border border-black rounded-xl first-letter:font-fancy first-letter:text-red-900 first-letter:text-xl w-full;
   }
+  .btn-simple {
+    @apply px-4 my-2 border border-black rounded-xl first-letter:font-fancy first-letter:text-red-900 first-letter:text-xl;
+  }
+  .wrap {
+    @apply my-auto flex flex-col items-center justify-center;
+  }
 }
 @tailwind components;
 @tailwind utilities;

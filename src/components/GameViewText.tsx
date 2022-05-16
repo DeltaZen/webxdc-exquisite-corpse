@@ -77,10 +77,7 @@ const GameViewText = () => {
           onChange={(e) => setText(e.target.value)}
         />
         {error.text && <span className="text-red-500">{error.text}</span>}
-        <button
-          className="px-4 my-2 border border-primario rounded-xl"
-          type="submit"
-        >
+        <button className="btn-simple" type="submit">
           Accept
         </button>
       </form>

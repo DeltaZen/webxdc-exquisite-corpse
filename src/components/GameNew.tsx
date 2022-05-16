@@ -54,10 +54,7 @@ const NewGame = () => {
 
   return (
     <>
-      <form
-        className="flex flex-col items-center justify-center p-2"
-        onSubmit={handleSubmit}
-      >
+      <form className="wrap p-2" onSubmit={handleSubmit}>
         <input
           id="sessionName"
           type="text"
@@ -78,10 +75,7 @@ const NewGame = () => {
             setGame({ ...game, rounds: parseInt(e.target.value) })
           }
         />
-        <button
-          className="px-4 border border-primario rounded-xl"
-          type="submit"
-        >
+        <button className="btn-simple" type="submit">
           Create
         </button>
       </form>

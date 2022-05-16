@@ -4,7 +4,9 @@ const GameViewClosed: React.FC<{ game: Corpse }> = ({ game }) => {
   const text = game.corpse.join(" ");
   return (
     <>
-      <p className="max-w-prose">{text}</p>
+      <p className="max-w-prose first-letter:font-fancy first-letter:text-6xl">
+        {text}
+      </p>
     </>
   );
 };

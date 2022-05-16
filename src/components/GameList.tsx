@@ -6,8 +6,8 @@ import GameView from "./GameView";
 const StatusGroup: React.FC<StatusGroupI> = ({ status, gameStatus, title }) => {
   return status.games.filter((game) => game.gameStatus === gameStatus).length >
     0 ? (
-    <>
-      <h3 className="font-bold text-lg">{title}</h3>
+    <div className="wrap">
+      <h3 className="font-bold text-2xl">{title}</h3>
       <ul className="container flex flex-row flex-wrap items-center justify-center w-full">
         {status.games
           .filter((game) => game.gameStatus === gameStatus)
@@ -15,12 +15,12 @@ const StatusGroup: React.FC<StatusGroupI> = ({ status, gameStatus, title }) => {
             return <GameButton key={game.sessionName} game={game} />;
           })}
       </ul>
-    </>
+    </div>
   ) : (
-    <>
-      <h3 className="font-bold text-lg">{title}</h3>
+    <div className="wrap">
+      <h3 className="font-bold text-2xl">{title}</h3>
       <p>Sorry, no game found</p>
-    </>
+    </div>
   );
 };
 
@@ -42,7 +42,7 @@ const GameList = () => {
                 setOptions({ ...options, showGroup: false });
                 setStatus({ ...status, currentViewedGame: undefined });
               }}
-              className="px-4 mb-2 border border-primario rounded-xl"
+              className="btn-simple"
             >
               Go back
             </button>
@@ -50,7 +50,7 @@ const GameList = () => {
         ) : (
           <>
             {!options.showGroup ? (
-              <div className="my-auto flex flex-col items-center justify-center">
+              <div className="wrap">
                 <button
                   onClick={() => setStatus({ ...status, view: "new" })}
                   className="btn"
@@ -115,7 +115,7 @@ const GameList = () => {
                     setOptions({ ...options, showGroup: false });
                     setStatus({ ...status, currentViewedGame: undefined });
                   }}
-                  className="px-4 mb-2 border border-primario rounded-xl"
+                  className="btn-simple"
                 >
                   Go back
                 </button>

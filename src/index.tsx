@@ -32,13 +32,6 @@ const App = () => {
   );
   // });
 
-  // let Games = GameList;
-
-  // useEffect(() => {
-  //   console.log("useEffect called");
-  //   Games = GameList;
-  // }, [status.currentViewedGame?.turnID]);
-
   return (
     <AppCtx.Provider value={value}>
       <div
@@ -53,7 +46,7 @@ const App = () => {
         ) : (
           <button
             onClick={() => setStatus({ ...status, view: "list" })}
-            className="px-4 border border-primario rounded-xl"
+            className="btn-simple"
           >
             Go back
           </button>
