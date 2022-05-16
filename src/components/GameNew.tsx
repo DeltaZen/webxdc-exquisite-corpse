@@ -73,8 +73,8 @@ const NewGame = () => {
           id="rounds"
           type="number"
           placeholder="Rounds"
-          className="px-1 my-4"
-          min={2}
+          className="px-1 my-4 text-center"
+          min={1}
           onChange={(e) =>
             setGame({ ...game, rounds: parseInt(e.target.value) })
           }
