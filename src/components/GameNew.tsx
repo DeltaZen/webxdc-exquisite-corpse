@@ -26,7 +26,7 @@ const NewGame = () => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     // const gameList = status.games.map((game) => game.sessionName);
-    if (game.rounds > 1 && game.sessionName !== "" && !error.sessionName) {
+    if (game.rounds > 0 && game.sessionName !== "" && !error.sessionName) {
       setError({});
       const info = `${game.admin.name} created ${game.sessionName} with ${game.rounds} rounds. Join!`;
       window.webxdc.sendUpdate({ payload: game, info: info }, info);
