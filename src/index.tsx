@@ -42,6 +42,7 @@ const App = () => {
         <h1 className="my-8 text-xl font-bold text-red-600">
           Exquisite Corpse
         </h1>
+        {status.view === "new" && <NewGame />}
         {status.view === "list" ? (
           <>{status.games.length > 0 && <GameList />}</>
         ) : (
@@ -52,7 +53,6 @@ const App = () => {
             Go back
           </button>
         )}
-        {status.view === "new" && <NewGame />}
         <p className="mt-auto mb-4">&copy;{year} Massick</p>
       </div>
     </AppCtx.Provider>
