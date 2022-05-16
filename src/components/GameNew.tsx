@@ -53,7 +53,10 @@ const NewGame = () => {
   };
 
   return (
-    <>
+    <div className="wrap">
+      <h3 className="text-2xl font-bold first-letter:font-fancy first-letter:text-4xl first-letter:text-red-900">
+        New Story
+      </h3>
       <form className="wrap p-2" onSubmit={handleSubmit}>
         <input
           id="sessionName"
@@ -79,7 +82,7 @@ const NewGame = () => {
           Create
         </button>
       </form>
-    </>
+    </div>
   );
 };
 
