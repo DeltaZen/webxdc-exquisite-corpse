@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import AppCtx from "../context/AppContext";
-import PlayerList from "./PlayerList";
 
 const NewGame = () => {
   const { status, setStatus } = React.useContext(AppCtx);
@@ -86,9 +85,6 @@ const NewGame = () => {
           Create
         </button>
       </form>
-      <PlayerList players={game.players}>
-        <h2 className="font-bold">Players</h2>
-      </PlayerList>
     </>
   );
 };
