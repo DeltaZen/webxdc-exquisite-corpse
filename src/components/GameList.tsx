@@ -7,7 +7,7 @@ const StatusGroup: React.FC<StatusGroupI> = ({ status, gameStatus, title }) => {
   return status.games.filter((game) => game.gameStatus === gameStatus).length >
     0 ? (
     <>
-      <h3>{title}</h3>
+      <h3 className="font-bold text-lg">{title}</h3>
       <ul className="container flex flex-row flex-wrap items-center justify-center w-full">
         {status.games
           .filter((game) => game.gameStatus === gameStatus)
@@ -18,7 +18,7 @@ const StatusGroup: React.FC<StatusGroupI> = ({ status, gameStatus, title }) => {
     </>
   ) : (
     <>
-      <h3>{title}</h3>
+      <h3 className="font-bold text-lg">{title}</h3>
       <p>Sorry, no game found</p>
     </>
   );
@@ -53,7 +53,7 @@ const GameList = () => {
               <>
                 <button
                   onClick={() => setStatus({ ...status, view: "new" })}
-                  className="px-4 border border-primario rounded-xl"
+                  className="px-4 my-2 border border-primario rounded-xl first-letter:font-fancy first-letter:text-xl"
                 >
                   Start a new story
                 </button>
@@ -66,7 +66,7 @@ const GameList = () => {
                       title: "Continue...",
                     })
                   }
-                  className="px-4 border border-primario rounded-xl"
+                  className="px-4 my-2 border border-primario rounded-xl first-letter:font-fancy first-letter:text-xl"
                 >
                   Continue story
                 </button>
@@ -79,7 +79,7 @@ const GameList = () => {
                       title: "Join...",
                     })
                   }
-                  className="px-4 border border-primario rounded-xl"
+                  className="px-4 my-2 border border-primario rounded-xl first-letter:font-fancy first-letter:text-xl"
                 >
                   Join story
                 </button>
@@ -92,13 +92,13 @@ const GameList = () => {
                       title: "Library",
                     })
                   }
-                  className="px-4 border border-primario rounded-xl"
+                  className="px-4 my-2 border border-primario rounded-xl first-letter:font-fancy first-letter:text-xl"
                 >
                   Library
                 </button>
                 <button
                   onClick={() => setStatus({ ...status, view: "tutorial" })}
-                  className="px-4 border border-primario rounded-xl"
+                  className="px-4 my-2 border border-primario rounded-xl first-letter:font-fancy first-letter:text-xl"
                 >
                   How to play
                 </button>

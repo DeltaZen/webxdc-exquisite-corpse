@@ -42,9 +42,7 @@ const App = () => {
   return (
     <AppCtx.Provider value={value}>
       <div className="flex flex-col items-center justify-center h-[100vh] w-full">
-        <h1 className="my-8 text-xl font-bold text-red-600">
-          Exquisite Corpse
-        </h1>
+        <h1 className="my-8 text-xl font-fancy">Exquisite Corpse</h1>
         {status.view === "tutorial" && <GameTutorial />}
         {status.view === "new" && <NewGame />}
         {status.view === "list" ? (
@@ -57,7 +55,9 @@ const App = () => {
             Go back
           </button>
         )}
-        <p className="mt-auto mb-4">&copy;{year} Massick</p>
+        <p className="mt-auto mb-4 font-thin font-mono">
+          &copy;{year} <span className="">Massick</span>
+        </p>
       </div>
     </AppCtx.Provider>
   );
