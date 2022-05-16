@@ -13,6 +13,8 @@
   "author": "M4ss1ck",
   "license": "0BSD",
   "dependencies": {
+    "@fontsource/grenze-gotisch": "^4.5.8",
+    "@fontsource/unifrakturmaguntia": "^4.5.9",
     "react": "^18.0.0",
     "react-dom": "^18.0.0"
   },

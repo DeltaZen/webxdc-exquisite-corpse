@@ -1,5 +1,8 @@
 @tailwind base;
 @layer base {
+  body {
+    @apply font-got;
+  }
   input[type="number"]::-webkit-inner-spin-button {
     opacity: 1;
   }

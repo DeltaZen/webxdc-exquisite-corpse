@@ -6,6 +6,8 @@ import GameList from "./components/GameList";
 import GameTutorial from "./components/GameTutorial";
 import AppCtx from "./context/AppContext";
 import { processUpdate } from "./lib/processUpdate";
+import "@fontsource/unifrakturmaguntia";
+import "@fontsource/grenze-gotisch";
 import "./input.css";
 
 const playerName = window.webxdc.selfName;
