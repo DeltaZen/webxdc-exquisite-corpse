@@ -35,7 +35,7 @@ const GameViewNew: React.FC<{ game: Corpse }> = ({ game }) => {
       const newGame = { ...game, players: newPlayers };
       // send update
       const info = `${newGame.admin.name} joined ${newGame.sessionName}`;
-      send && window.webxdc.sendUpdate({ payload: newGame }, info);
+      send && window.webxdc.sendUpdate({ payload: newGame, info: info }, info);
       return newGame;
     }
   };
