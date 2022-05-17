@@ -4,17 +4,17 @@ const GameTutorial = () => {
   return (
     <div className="text-justify wrap max-w-prose">
       <h2 className="text-2xl font-bold fl">How to play</h2>
-      <p className="w-full p-2 fl">
+      <p className="w-full p-2 px-4 fl">
         Start a <span className="text-red-900">new story</span> or join another
         one. The first player chooses the name and the number of rounds.
       </p>
-      <p className="w-full p-2 fl">
+      <p className="w-full p-2 px-4 fl">
         Once the game starts, each player (except the first one) will see a{" "}
         <span className="text-red-900">hint</span> of the last words written by
         the previous player and must use them to continue the development of the{" "}
         <span className="text-red-900">story</span>.
       </p>
-      <p className="w-full p-2 fl">
+      <p className="w-full p-2 px-4 fl">
         In the <span className="text-red-900">library</span> you can find the
         finished games and appreciate the real art.
       </p>
