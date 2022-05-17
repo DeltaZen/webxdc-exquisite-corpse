@@ -54,8 +54,8 @@ const App = () => {
             Go back
           </button>
         )}
-        <p className="mt-auto mb-4 font-thin font-mono">
-          &copy;{year} <span className="">Massick</span>
+        <p className="mt-auto mb-4 font-mono text-xs font-thin">
+          &copy;{year} Massick
         </p>
       </div>
     </AppCtx.Provider>
