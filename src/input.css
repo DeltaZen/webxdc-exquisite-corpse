@@ -15,6 +15,9 @@
   .wrap {
     @apply my-auto flex flex-col items-center justify-center;
   }
+  .fl {
+    @apply first-letter:font-fancy first-letter:text-red-900 first-letter:text-xl;
+  }
 }
 @tailwind components;
 @tailwind utilities;
