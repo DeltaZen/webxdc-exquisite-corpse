@@ -5,8 +5,9 @@ A social creative writing game for Delta Chat.
 ## Features
 
 1. React
-2. Tailwind CSS
-3. Vite
+2. TypeScript
+3. Tailwind CSS
+4. Vite
 
 ## Development
 
