@@ -42,7 +42,7 @@ const GameViewText = () => {
         spoiler: spoiler,
       };
 
-      const info = `${corpse.sessionName} updated! ${nextPlayer.name} is up`;
+      const info = `Round ${corpse.currentRound}/${corpse.rounds}: ${nextPlayer.name}, it's your turn`;
       window.webxdc.sendUpdate({ payload: newCorpse, info: info }, info);
       setCorpse(newCorpse as Corpse);
       setStatus({
