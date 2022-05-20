@@ -54,7 +54,7 @@ const GameViewText = () => {
       console.log("invalid text");
       setError({
         ...error,
-        text: "Invalid text. Check that it has more than 5 words",
+        text: "Invalid text. Check that it has more than 20 words",
       });
     }
   };
