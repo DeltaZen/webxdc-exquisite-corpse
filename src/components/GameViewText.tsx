@@ -54,7 +54,7 @@ const GameViewText = () => {
       console.log("invalid text");
       setError({
         ...error,
-        text: "Invalid text. Check that it has more than 20 words",
+        text: `Invalid text. Check that it has more than ${corpse.words} words`,
       });
     }
   };
@@ -81,10 +81,10 @@ const GameViewText = () => {
           onChange={(e) => setText(e.target.value)}
         />
         <p className="p-2 m-2 max-w-[90%]">
-          {text.trim().split(/\s+/).length > corpse.words
-            ? text.trim().split(/\s+/).length
-            : text.trim().split(/\s+/).length}
-          /{corpse.words}
+          {text.trim().split(/\s+/).length}
+          {text.trim().split(/\s+/).length >= corpse.words
+            ? ""
+            : `/${corpse.words}`}
         </p>
         {error.text && (
           <span className="p-2 mx-4 my-2 text-red-500">{error.text}</span>
