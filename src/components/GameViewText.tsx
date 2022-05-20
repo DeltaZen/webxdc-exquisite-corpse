@@ -61,11 +61,15 @@ const GameViewText = () => {
 
   return (
     <>
-      <h3>It's your turn</h3>
-      <p>You can now continue what the last player wrote...</p>
+      {corpse.spoiler.startsWith("Spoiler: ") && <h3>It's your turn</h3>}
+      {corpse.spoiler.startsWith("Spoiler: ") && (
+        <p className="p-2 mx-2">
+          You can now continue what the last player wrote...
+        </p>
+      )}
       <p>{corpse.spoiler}</p>
       <form
-        className="flex flex-col items-center justify-center p-2"
+        className="flex flex-col items-center justify-center p-2 max-w-[100%]"
         onSubmit={handleNewtext}
       >
         <textarea
