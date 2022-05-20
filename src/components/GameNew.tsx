@@ -59,32 +59,34 @@ const NewGame = () => {
         New Story
       </h3>
       <form className="p-2 wrap" onSubmit={handleSubmit}>
+        <label className="px-1 text-center">Name</label>
         <input
           id="sessionName"
           type="text"
-          placeholder="Session Name"
-          className="px-1 my-4 text-center"
+          className="px-1 mb-4 text-center"
           onChange={handleName}
         />
         {error.sessionName && (
           <span className="text-red-500">{error.sessionName}</span>
         )}
+        <label className="px-1 text-center">Rounds</label>
         <input
           id="rounds"
           type="number"
           placeholder="Rounds"
-          className="px-1 my-4 text-center"
+          className="px-1 mb-4 text-center"
           min={1}
           onChange={(e) =>
             setGame({ ...game, rounds: parseInt(e.target.value) })
           }
           value={game.rounds}
         />
+        <label className="px-1 text-center">Words (min)</label>
         <input
           id="words"
           type="number"
           placeholder="Words (min)"
-          className="px-1 my-4 text-center"
+          className="px-1 mb-4 text-center"
           min={5}
           onChange={(e) =>
             setGame({ ...game, words: parseInt(e.target.value) })
