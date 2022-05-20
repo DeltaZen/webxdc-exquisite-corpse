@@ -79,6 +79,12 @@ const GameViewText = () => {
           className="p-2 m-2 border border-black rounded-lg max-w-[90%]"
           onChange={(e) => setText(e.target.value)}
         />
+        <p className="p-2 m-2 max-w-[90%]">
+          {text.trim().split(/\s+/).length > corpse.words
+            ? text.trim().split(/\s+/).length
+            : text.trim().split(/\s+/).length}
+          /{corpse.words}
+        </p>
         {error.text && (
           <span className="p-2 mx-4 my-2 text-red-500">{error.text}</span>
         )}
