@@ -22,7 +22,7 @@ const GameViewText = () => {
     if (validateText(text)) {
       setError({ ...error, text: undefined });
       // 3 last words from the previous round
-      const spoiler = text.split(" ").slice(-3).join(" ");
+      const spoiler = "Spoiler: " + text.split(" ").slice(-3).join(" ");
       const turn = corpse.turnID++;
       const round = Math.floor(Math.abs(turn / corpse.players.length)) + 1;
       // find next player
@@ -63,7 +63,7 @@ const GameViewText = () => {
     <>
       <h3>It's your turn</h3>
       <p>You can now continue what the last player wrote...</p>
-      <p>Spoiler: {corpse.spoiler}</p>
+      <p>{corpse.spoiler}</p>
       <form
         className="flex flex-col items-center justify-center p-2"
         onSubmit={handleNewtext}
@@ -76,7 +76,9 @@ const GameViewText = () => {
           className="p-2 m-2 border border-black rounded-lg"
           onChange={(e) => setText(e.target.value)}
         />
-        {error.text && <span className="text-red-500">{error.text}</span>}
+        {error.text && (
+          <span className="p-2 mx-4 my-2 text-red-500">{error.text}</span>
+        )}
         <button className="btn-simple" type="submit">
           End turn
         </button>
