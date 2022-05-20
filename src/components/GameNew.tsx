@@ -15,6 +15,7 @@ const NewGame = () => {
     currentPlayer: { name: playerName, address: playerAddr },
     rounds: 1,
     words: 20,
+    spoilerWords: 5,
     currentRound: 0,
     turnID: 0,
     corpse: [],
@@ -30,7 +31,9 @@ const NewGame = () => {
       game.rounds > 0 &&
       game.sessionName !== "" &&
       !error.sessionName &&
-      game.words > 5
+      game.words > 4 &&
+      game.spoilerWords > 2 &&
+      game.spoilerWords <= Math.ceil(game.words / 2)
     ) {
       setError({});
       const info = `${game.admin.name} created "${game.sessionName}". Join!`;
@@ -67,7 +70,7 @@ const NewGame = () => {
         <input
           id="sessionName"
           type="text"
-          className="px-1 mb-4 text-center"
+          className="w-full px-1 mb-4 text-center"
           onChange={handleName}
         />
         {error.sessionName && (
@@ -78,7 +81,7 @@ const NewGame = () => {
           id="rounds"
           type="number"
           placeholder="Rounds"
-          className="px-1 mb-4 text-center"
+          className="w-full px-1 mb-4 text-center"
           min={1}
           onChange={(e) =>
             setGame({ ...game, rounds: parseInt(e.target.value) })
@@ -89,13 +92,25 @@ const NewGame = () => {
         <input
           id="words"
           type="number"
-          placeholder="Words (min)"
-          className="px-1 mb-4 text-center"
+          className="w-full px-1 mb-4 text-center"
           min={5}
           onChange={(e) =>
             setGame({ ...game, words: parseInt(e.target.value) })
           }
           value={game.words}
+        />
+        <label className="px-1 text-center">Spoiler Words</label>
+        <input
+          id="spoilerWords"
+          type="number"
+          placeholder="Spoiler Words"
+          className="w-full px-1 mb-4 text-center"
+          min={3}
+          max={Math.ceil(game.words / 2)}
+          onChange={(e) =>
+            setGame({ ...game, spoilerWords: parseInt(e.target.value) })
+          }
+          value={game.spoilerWords}
         />
         <button className="btn-simple" type="submit">
           Create

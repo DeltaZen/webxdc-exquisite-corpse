@@ -21,7 +21,8 @@ const GameViewText = () => {
     if (validateText(text)) {
       setError({ ...error, text: undefined });
       // 3 last words from the previous round
-      const spoiler = "Spoiler: " + text.split(" ").slice(-5).join(" ");
+      const spoiler =
+        "Spoiler: " + text.split(" ").slice(-corpse.spoilerWords).join(" ");
       const turn = corpse.turnID++;
       const round = Math.floor(Math.abs(turn / corpse.players.length)) + 1;
       // find next player
