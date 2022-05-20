@@ -78,7 +78,7 @@ const GameViewText = () => {
         />
         {error.text && <span className="text-red-500">{error.text}</span>}
         <button className="btn-simple" type="submit">
-          Accept
+          End turn
         </button>
       </form>
     </>
