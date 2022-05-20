@@ -13,7 +13,7 @@ const PlayerList: React.FC<{ players: Player[]; children?: JSX.Element }> = ({
             return <li key={player.name}>{player.name}</li>;
           })
         ) : (
-          <li>Algo pasó con la lista. F</li>
+          <li>You shouldn't be able to see this error 🚶‍♂️</li>
         )}
       </ul>
     </>

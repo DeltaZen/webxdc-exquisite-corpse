@@ -27,7 +27,7 @@ const NewGame = () => {
     // const gameList = status.games.map((game) => game.sessionName);
     if (game.rounds > 0 && game.sessionName !== "" && !error.sessionName) {
       setError({});
-      const info = `${game.admin.name} created ${game.sessionName}. Join!`;
+      const info = `${game.admin.name} created "${game.sessionName}". Join!`;
       window.webxdc.sendUpdate({ payload: game, info: info }, info);
       setStatus({
         ...status,
