@@ -5,6 +5,7 @@ interface Corpse {
   players: Player[];
   currentPlayer: Player;
   rounds: number;
+  words: number;
   currentRound: number;
   turnID: number; // unique ID for each turn
   corpse: string[];

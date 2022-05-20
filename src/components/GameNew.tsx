@@ -14,6 +14,7 @@ const NewGame = () => {
     players: [{ name: playerName, address: playerAddr }],
     currentPlayer: { name: playerName, address: playerAddr },
     rounds: 1,
+    words: 20,
     currentRound: 0,
     turnID: 0,
     corpse: [],
@@ -78,6 +79,17 @@ const NewGame = () => {
             setGame({ ...game, rounds: parseInt(e.target.value) })
           }
           value={game.rounds}
+        />
+        <input
+          id="words"
+          type="number"
+          placeholder="Words (min)"
+          className="px-1 my-4 text-center"
+          min={5}
+          onChange={(e) =>
+            setGame({ ...game, words: parseInt(e.target.value) })
+          }
+          value={game.words}
         />
         <button className="btn-simple" type="submit">
           Create

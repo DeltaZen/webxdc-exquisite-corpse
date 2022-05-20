@@ -11,9 +11,8 @@ const GameViewText = () => {
   const [error, setError] = React.useState<InputError>({});
 
   const validateText = (text: string) => {
-    // check that text has more than 20 words
-    // TODO: this numbers can be variables
-    const val = text.split(" ").length > 20 ? true : false;
+    // check that text has more than the configured amount of words
+    const val = text.split(" ").length > corpse.words ? true : false;
     return val;
   };
 
