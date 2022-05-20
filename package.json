@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "vite --host --open",
     "prebuild": "vite build",
-    "build": "pnpx jszip-cli -c .jsziprc.json",
+    "build": "jszip-cli -c .jsziprc.json",
     "preview": "vite preview"
   },
   "keywords": [],
