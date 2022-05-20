@@ -11,9 +11,9 @@ const GameViewText = () => {
   const [error, setError] = React.useState<InputError>({});
 
   const validateText = (text: string) => {
-    // check that text has more than 40 characters and more than 5 words
+    // check that text has more than 5 words
     // TODO: this numbers can be variables
-    const val = text.length > 40 && text.split(" ").length > 5 ? true : false;
+    const val = text.split(" ").length > 5 ? true : false;
     return val;
   };
 
@@ -54,7 +54,7 @@ const GameViewText = () => {
       console.log("invalid text");
       setError({
         ...error,
-        text: "Invalid text. Check that it has more than 40 characters and more than 5 words",
+        text: "Invalid text. Check that it has more than 5 words",
       });
     }
   };
