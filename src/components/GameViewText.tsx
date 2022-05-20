@@ -77,7 +77,7 @@ const GameViewText = () => {
           id="text"
           cols={50}
           rows={5}
-          className="p-2 m-2 border border-black rounded-lg"
+          className="p-2 m-2 border border-black rounded-lg max-w-[90%]"
           onChange={(e) => setText(e.target.value)}
         />
         {error.text && (
