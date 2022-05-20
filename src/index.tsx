@@ -36,7 +36,7 @@ const App = () => {
     <AppCtx.Provider value={value}>
       <div
         id="parchment"
-        className="flex flex-col items-center justify-center h-[100vh] w-full"
+        className="flex flex-col items-center justify-center min-h-[100vh] w-full"
       >
         <h1 className="my-8 text-4xl font-fancy">Exquisite Corpse</h1>
         {status.view === "tutorial" && <GameTutorial />}
