@@ -26,7 +26,12 @@ const NewGame = () => {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     // const gameList = status.games.map((game) => game.sessionName);
-    if (game.rounds > 0 && game.sessionName !== "" && !error.sessionName) {
+    if (
+      game.rounds > 0 &&
+      game.sessionName !== "" &&
+      !error.sessionName &&
+      game.words > 5
+    ) {
       setError({});
       const info = `${game.admin.name} created "${game.sessionName}". Join!`;
       window.webxdc.sendUpdate({ payload: game, info: info }, info);
@@ -35,7 +40,6 @@ const NewGame = () => {
         currentViewedGame: game,
         view: "list",
       });
-      console.log("created game not working");
     }
   };
 
