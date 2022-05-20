@@ -13,7 +13,7 @@ const NewGame = () => {
     gameStatus: "new",
     players: [{ name: playerName, address: playerAddr }],
     currentPlayer: { name: playerName, address: playerAddr },
-    rounds: 0,
+    rounds: 1,
     currentRound: 0,
     turnID: 0,
     corpse: [],
@@ -77,6 +77,7 @@ const NewGame = () => {
           onChange={(e) =>
             setGame({ ...game, rounds: parseInt(e.target.value) })
           }
+          value={game.rounds}
         />
         <button className="btn-simple" type="submit">
           Create
