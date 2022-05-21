@@ -88,7 +88,7 @@ const NewGame = () => {
           }
           value={game.rounds}
         />
-        <label className="px-1 text-center">Words (min)</label>
+        <label className="px-1 text-center">Minimum Text Length</label>
         <input
           id="words"
           type="number"
@@ -99,7 +99,7 @@ const NewGame = () => {
           }
           value={game.words}
         />
-        <label className="px-1 text-center">Spoiler Words</label>
+        <label className="px-1 text-center">Preview Length</label>
         <input
           id="spoilerWords"
           type="number"
