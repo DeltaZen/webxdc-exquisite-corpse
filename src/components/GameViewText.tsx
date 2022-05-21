@@ -20,7 +20,7 @@ const GameViewText = () => {
     e.preventDefault();
     if (validateText(text)) {
       setError({ ...error, text: undefined });
-      // 3 last words from the previous round
+      // last words from the previous round
       const spoiler =
         "Spoiler: " + text.split(" ").slice(-corpse.spoilerWords).join(" ");
       const turn = corpse.turnID++;

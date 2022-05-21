@@ -33,7 +33,7 @@ const NewGame = () => {
       !error.sessionName &&
       game.words > 4 &&
       game.spoilerWords > 2 &&
-      game.spoilerWords <= Math.ceil(game.words / 2)
+      game.spoilerWords <= game.words
     ) {
       setError({});
       const info = `${game.admin.name} created "${game.sessionName}". Join!`;
@@ -106,7 +106,7 @@ const NewGame = () => {
           placeholder="Spoiler Words"
           className="w-full px-1 mb-4 text-center"
           min={3}
-          max={Math.ceil(game.words / 2)}
+          max={game.words}
           onChange={(e) =>
             setGame({ ...game, spoilerWords: parseInt(e.target.value) })
           }
