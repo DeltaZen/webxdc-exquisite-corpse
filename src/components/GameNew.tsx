@@ -26,7 +26,6 @@ const NewGame = () => {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // const gameList = status.games.map((game) => game.sessionName);
     if (
       game.rounds > 0 &&
       game.sessionName !== "" &&
@@ -43,6 +42,8 @@ const NewGame = () => {
         currentViewedGame: game,
         view: "list",
       });
+    } else if (game.sessionName === "") {
+      setError({ ...error, sessionName: "Session name can't be empty" });
     }
   };
 
@@ -72,6 +73,7 @@ const NewGame = () => {
           type="text"
           className="w-full px-1 mb-4 text-center"
           onChange={handleName}
+          value={game.sessionName}
         />
         {error.sessionName && (
           <span className="text-red-500">{error.sessionName}</span>
