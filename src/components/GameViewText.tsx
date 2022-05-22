@@ -12,7 +12,7 @@ const GameViewText = () => {
 
   const validateText = (text: string) => {
     // check that text has more than the configured amount of words
-    const val = text.split(" ").length > corpse.words ? true : false;
+    const val = text.split(" ").length >= corpse.words ? true : false;
     return val;
   };
 
