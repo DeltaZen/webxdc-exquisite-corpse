@@ -8,7 +8,7 @@ const NewGame = () => {
   const playerAddr = window.webxdc.selfAddr;
 
   const [game, setGame] = useState<Corpse>({
-    sessionName: playerName,
+    sessionName: "",
     admin: { name: playerName, address: playerAddr },
     gameStatus: "new",
     players: [{ name: playerName, address: playerAddr }],
@@ -93,7 +93,7 @@ const NewGame = () => {
           id="words"
           type="number"
           className="w-full px-1 mb-4 text-center"
-          min={5}
+          min={1}
           onChange={(e) =>
             setGame({ ...game, words: parseInt(e.target.value) })
           }
@@ -105,7 +105,7 @@ const NewGame = () => {
           type="number"
           placeholder="Spoiler Words"
           className="w-full px-1 mb-4 text-center"
-          min={3}
+          min={1}
           max={game.words}
           onChange={(e) =>
             setGame({ ...game, spoilerWords: parseInt(e.target.value) })
