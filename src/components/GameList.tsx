@@ -6,7 +6,7 @@ import GameView from "./GameView";
 const StatusGroup: React.FC<StatusGroupI> = ({ status, gameStatus, title }) => {
   return status.games.filter((game) => game.gameStatus === gameStatus).length >
     0 ? (
-    <div className="wrap">
+    <div className="wrap w-full">
       <h3 className="text-2xl font-bold fl">{title}</h3>
       <ul className="container flex flex-row flex-wrap items-center justify-center w-full">
         {status.games
