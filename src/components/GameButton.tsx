@@ -12,7 +12,7 @@ const Game: React.FC<{ game: Corpse }> = ({ game }) => {
       }}
     >
       <span className="font-bold break-words text-center">
-        {game.sessionName}
+        "{game.sessionName}"
       </span>
       <span>👑{game.admin.name}</span>
       {game.players.length > 0 && <span>🚶‍♂️{game.players.length}</span>}
