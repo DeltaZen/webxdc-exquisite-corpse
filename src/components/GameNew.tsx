@@ -50,10 +50,10 @@ const NewGame = () => {
   const handleName = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
     const gameList = status.games.map((game) => game.sessionName);
-    const name = e.target.value;
+    const name = e.target.value.replace(/\s+/g, " ");
     if (gameList.includes(name)) {
       setError({ ...error, sessionName: "Session name already exists" });
-    } else if (name === "") {
+    } else if (name === "" || name === " ") {
       setError({ ...error, sessionName: "Session name can't be empty" });
     } else {
       setError({ ...error, sessionName: undefined });
