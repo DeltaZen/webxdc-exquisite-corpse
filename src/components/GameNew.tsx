@@ -22,6 +22,8 @@ const NewGame = () => {
     spoiler: "",
   });
 
+  const [name, setName] = useState("");
+
   const [error, setError] = useState<InputError>({});
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -42,22 +44,23 @@ const NewGame = () => {
         currentViewedGame: game,
         view: "list",
       });
-    } else if (game.sessionName === "") {
+    } else if (name === "") {
       setError({ ...error, sessionName: "Session name can't be empty" });
     }
   };
 
   const handleName = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
+    setName(e.target.value);
     const gameList = status.games.map((game) => game.sessionName);
-    const name = e.target.value.replace(/\s+/g, " ");
-    if (gameList.includes(name)) {
+    const editedName = e.target.value.trim().replace(/\s+/g, " ");
+    if (gameList.includes(editedName)) {
       setError({ ...error, sessionName: "Session name already exists" });
-    } else if (name === "" || name === " ") {
+    } else if (editedName === "" || editedName === " ") {
       setError({ ...error, sessionName: "Session name can't be empty" });
     } else {
       setError({ ...error, sessionName: undefined });
-      setGame({ ...game, sessionName: name });
+      setGame({ ...game, sessionName: editedName });
     }
   };
 
@@ -73,7 +76,7 @@ const NewGame = () => {
           type="text"
           className="w-full px-1 mb-4 text-center"
           onChange={handleName}
-          value={game.sessionName}
+          value={name}
         />
         {error.sessionName && (
           <span className="text-red-500">{error.sessionName}</span>
