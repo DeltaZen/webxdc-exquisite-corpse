@@ -6,7 +6,7 @@ const PlayerList: React.FC<{ players: Player[]; children?: JSX.Element }> = ({
 }) => {
   return (
     <>
-      <ul className="flex flex-col items-center justify-center p-2 m-2 border border-black rounded-lg">
+      <ul className="flex flex-col items-center justify-center w-full p-2 m-2 border border-black rounded-lg">
         {children}
         {players ? (
           players.map((player: Player) => {

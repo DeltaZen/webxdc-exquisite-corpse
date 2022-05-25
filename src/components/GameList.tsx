@@ -6,7 +6,7 @@ import GameView from "./GameView";
 const StatusGroup: React.FC<StatusGroupI> = ({ status, gameStatus, title }) => {
   return status.games.filter((game) => game.gameStatus === gameStatus).length >
     0 ? (
-    <div className="wrap w-full">
+    <div className="w-full wrap">
       <h3 className="text-2xl font-bold fl">{title}</h3>
       <ul className="container flex flex-row flex-wrap items-center justify-center w-full">
         {status.games
@@ -32,99 +32,101 @@ const GameList = () => {
   });
   //const ctx = React.useContext(AppCtx);
   return (
-    <AppCtx.Consumer>
-      {({ status, setStatus }) =>
-        status.currentViewedGame ? (
-          <>
-            <GameView game={status.currentViewedGame} />
-            <button
-              onClick={() => {
-                setOptions({ ...options, showGroup: false });
-                setStatus({ ...status, currentViewedGame: undefined });
-              }}
-              className="btn-simple"
-            >
-              Go back
-            </button>
-          </>
-        ) : (
-          <>
-            {!options.showGroup ? (
-              <div className="wrap">
-                <button
-                  onClick={() => setStatus({ ...status, view: "new" })}
-                  className="btn"
-                >
-                  Start a new story
-                </button>
-                <button
-                  onClick={() =>
-                    setOptions({
-                      ...options,
-                      gameStatus: "playing",
-                      showGroup: true,
-                      title: "Continue...",
-                    })
-                  }
-                  className="btn"
-                >
-                  Continue story
-                </button>
-                <button
-                  onClick={() =>
-                    setOptions({
-                      ...options,
-                      gameStatus: "new",
-                      showGroup: true,
-                      title: "Join...",
-                    })
-                  }
-                  className="btn"
-                >
-                  Join story
-                </button>
-                <button
-                  onClick={() =>
-                    setOptions({
-                      ...options,
-                      gameStatus: "closed",
-                      showGroup: true,
-                      title: "Library",
-                    })
-                  }
-                  className="btn"
-                >
-                  Library
-                </button>
-                <button
-                  onClick={() => setStatus({ ...status, view: "tutorial" })}
-                  className="btn"
-                >
-                  How to play
-                </button>
-              </div>
-            ) : (
-              <>
-                <StatusGroup
-                  status={status}
-                  gameStatus={options.gameStatus}
-                  title={options.title}
-                />
-                <button
-                  onClick={() => {
-                    setOptions({ ...options, showGroup: false });
-                    setStatus({ ...status, currentViewedGame: undefined });
-                  }}
-                  className="btn-simple"
-                >
-                  Go back
-                </button>
-              </>
-            )}
-          </>
-        )
-      }
-    </AppCtx.Consumer>
+    <div className="text-justify wrap max-w-prose">
+      <AppCtx.Consumer>
+        {({ status, setStatus }) =>
+          status.currentViewedGame ? (
+            <>
+              <GameView game={status.currentViewedGame} />
+              <button
+                onClick={() => {
+                  setOptions({ ...options, showGroup: false });
+                  setStatus({ ...status, currentViewedGame: undefined });
+                }}
+                className="btn"
+              >
+                Go back
+              </button>
+            </>
+          ) : (
+            <>
+              {!options.showGroup ? (
+                <div className="wrap">
+                  <button
+                    onClick={() => setStatus({ ...status, view: "new" })}
+                    className="btn"
+                  >
+                    Start a new story
+                  </button>
+                  <button
+                    onClick={() =>
+                      setOptions({
+                        ...options,
+                        gameStatus: "playing",
+                        showGroup: true,
+                        title: "Continue...",
+                      })
+                    }
+                    className="btn"
+                  >
+                    Continue story
+                  </button>
+                  <button
+                    onClick={() =>
+                      setOptions({
+                        ...options,
+                        gameStatus: "new",
+                        showGroup: true,
+                        title: "Join...",
+                      })
+                    }
+                    className="btn"
+                  >
+                    Join story
+                  </button>
+                  <button
+                    onClick={() =>
+                      setOptions({
+                        ...options,
+                        gameStatus: "closed",
+                        showGroup: true,
+                        title: "Library",
+                      })
+                    }
+                    className="btn"
+                  >
+                    Library
+                  </button>
+                  <button
+                    onClick={() => setStatus({ ...status, view: "tutorial" })}
+                    className="btn"
+                  >
+                    How to play
+                  </button>
+                </div>
+              ) : (
+                <>
+                  <StatusGroup
+                    status={status}
+                    gameStatus={options.gameStatus}
+                    title={options.title}
+                  />
+                  <button
+                    onClick={() => {
+                      setOptions({ ...options, showGroup: false });
+                      setStatus({ ...status, currentViewedGame: undefined });
+                    }}
+                    className="btn-simple"
+                  >
+                    Go back
+                  </button>
+                </>
+              )}
+            </>
+          )
+        }
+      </AppCtx.Consumer>
+    </div>
   );
 };
 
