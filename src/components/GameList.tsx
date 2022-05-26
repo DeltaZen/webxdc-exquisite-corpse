@@ -43,7 +43,7 @@ const GameList = () => {
                   setOptions({ ...options, showGroup: false });
                   setStatus({ ...status, currentViewedGame: undefined });
                 }}
-                className="btn"
+                className="btn-simple"
               >
                 Go back
               </button>
