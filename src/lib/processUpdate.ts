@@ -12,30 +12,30 @@ export const processUpdate = (
       payload.gameStatus === "new" &&
       !gameList.includes(payload.sessionName)
     ) {
-      const games = [...status.games, payload];
+      const games = [payload, ...status.games];
       setStatus({ ...status, games: games });
-      console.log("new game added: ", status.games.length, games.length);
+      // console.log("new game added: ", status.games.length, games.length);
     } else if (gameList.includes(payload.sessionName)) {
       const index = status.games.findIndex(
         (game) => game.sessionName === payload.sessionName
       );
       const oldGame = status.games[index];
       if (oldGame.players.length < payload.players.length) {
-        console.log("new player joined");
+        // console.log("new player joined");
         status.games[index].players = payload.players;
       }
       if (oldGame.gameStatus !== payload.gameStatus) {
-        console.log("game status changed");
+        // console.log("game status changed");
         status.games[index].gameStatus = payload.gameStatus;
       }
       if (oldGame.turnID < payload.turnID) {
-        console.log(
-          "new turn",
-          oldGame.turnID,
-          payload.turnID,
-          oldGame.currentPlayer.address,
-          payload.currentPlayer.address
-        );
+        // console.log(
+        //   "new turn",
+        //   oldGame.turnID,
+        //   payload.turnID,
+        //   oldGame.currentPlayer.address,
+        //   payload.currentPlayer.address
+        // );
         status.games[index] = payload;
       }
     }
