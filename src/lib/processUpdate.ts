@@ -14,28 +14,18 @@ export const processUpdate = (
     ) {
       const games = [payload, ...status.games];
       setStatus({ ...status, games: games });
-      // console.log("new game added: ", status.games.length, games.length);
     } else if (gameList.includes(payload.sessionName)) {
       const index = status.games.findIndex(
         (game) => game.sessionName === payload.sessionName
       );
       const oldGame = status.games[index];
       if (oldGame.players.length < payload.players.length) {
-        // console.log("new player joined");
         status.games[index].players = payload.players;
       }
       if (oldGame.gameStatus !== payload.gameStatus) {
-        // console.log("game status changed");
         status.games[index].gameStatus = payload.gameStatus;
       }
       if (oldGame.turnID < payload.turnID) {
-        // console.log(
-        //   "new turn",
-        //   oldGame.turnID,
-        //   payload.turnID,
-        //   oldGame.currentPlayer.address,
-        //   payload.currentPlayer.address
-        // );
         status.games[index] = payload;
       }
     }
