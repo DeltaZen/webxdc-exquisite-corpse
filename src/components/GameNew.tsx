@@ -58,6 +58,11 @@ const NewGame = () => {
       setError({ ...error, sessionName: "Session name already exists" });
     } else if (editedName === "" || editedName === " ") {
       setError({ ...error, sessionName: "Session name can't be empty" });
+    } else if (editedName.length > 150) {
+      setError({
+        ...error,
+        sessionName: "Session name can't be more than 150 characters long",
+      });
     } else {
       setError({ ...error, sessionName: undefined });
       setGame({ ...game, sessionName: editedName });
