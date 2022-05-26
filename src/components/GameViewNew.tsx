@@ -86,7 +86,7 @@ const GameViewNew: React.FC<{ game: Corpse }> = ({ game }) => {
           <div className="text-center">
             <p>Owner: you</p>
             <button
-              className="btn-simple"
+              className="btn"
               onClick={() => handleStart(game, status, setStatus)}
             >
               Start Game

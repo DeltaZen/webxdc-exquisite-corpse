@@ -10,7 +10,9 @@ const GameView: React.FC<{ game: Corpse }> = ({ game }) => {
 
   return (
     <>
-      <h2 className="m-2 mx-auto text-4xl font-bold">"{game.sessionName}"</h2>
+      <h2 className="p-2 m-2 mx-auto text-4xl font-bold break-all">
+        "{game.sessionName}"
+      </h2>
       {game.gameStatus === "playing" && (
         <p>
           ⌛ {game.currentRound}/{game.rounds} Turn: {game.turnID}/

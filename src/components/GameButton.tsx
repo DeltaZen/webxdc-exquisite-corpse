@@ -11,7 +11,7 @@ const Game: React.FC<{ game: Corpse }> = ({ game }) => {
         setStatus({ ...status, currentViewedGame: game });
       }}
     >
-      <span className="font-bold break-words text-center">
+      <span className="p-2 font-bold text-center break-all">
         "{game.sessionName}"
       </span>
       <span>👑{game.admin.name}</span>
