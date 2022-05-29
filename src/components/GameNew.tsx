@@ -71,9 +71,7 @@ const NewGame = () => {
 
   return (
     <div className="wrap">
-      <h3 className="text-2xl font-bold first-letter:font-fancy first-letter:text-4xl first-letter:text-red-900">
-        New Story
-      </h3>
+      <h3 className="my-4 text-4xl font-bold fl">New Story</h3>
       <form className="p-2 wrap" onSubmit={handleSubmit}>
         <label className="px-1 text-center">Name</label>
         <input

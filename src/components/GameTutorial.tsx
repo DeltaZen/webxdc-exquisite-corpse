@@ -3,7 +3,7 @@ import React from "react";
 const GameTutorial = () => {
   return (
     <div className="text-justify wrap max-w-prose">
-      <h2 className="text-2xl font-bold fl">How to play</h2>
+      <h2 className="my-4 text-4xl font-bold fl">How to play</h2>
       <p className="w-full p-2 px-4 fl">
         Start a <span className="text-red-900">new story</span> or join another
         one. The first player chooses the name, the number of rounds, the
