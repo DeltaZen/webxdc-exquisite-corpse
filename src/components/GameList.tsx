@@ -2,6 +2,7 @@ import React from "react";
 import AppCtx from "../context/AppContext";
 import GameButton from "./GameButton";
 import GameView from "./GameView";
+import Marker from "./Marker";
 
 const StatusGroup: React.FC<StatusGroupI> = ({ status, gameStatus, title }) => {
   return status.games.filter((game) => game.gameStatus === gameStatus).length >
@@ -54,8 +55,9 @@ const GameList = () => {
                 <div className="wrap">
                   <button
                     onClick={() => setStatus({ ...status, view: "new" })}
-                    className="max-w-2xl btn w-[80vw]"
+                    className="max-w-2xl btn w-[80vw] relative"
                   >
+                    <Marker />
                     Start a new story
                   </button>
                   <button
@@ -67,8 +69,9 @@ const GameList = () => {
                         title: "Continue...",
                       })
                     }
-                    className="max-w-2xl btn w-[80vw]"
+                    className="max-w-2xl btn w-[80vw] relative"
                   >
+                    <Marker />
                     Continue story
                   </button>
                   <button
@@ -80,8 +83,9 @@ const GameList = () => {
                         title: "Join...",
                       })
                     }
-                    className="max-w-2xl btn w-[80vw]"
+                    className="max-w-2xl btn w-[80vw] relative"
                   >
+                    <Marker />
                     Join story
                   </button>
                   <button
@@ -93,14 +97,16 @@ const GameList = () => {
                         title: "Library",
                       })
                     }
-                    className="max-w-2xl btn w-[80vw]"
+                    className="max-w-2xl btn w-[80vw] relative"
                   >
+                    <Marker />
                     Library
                   </button>
                   <button
                     onClick={() => setStatus({ ...status, view: "tutorial" })}
-                    className="max-w-2xl btn w-[80vw]"
+                    className="max-w-2xl btn w-[80vw] relative"
                   >
+                    <Marker />
                     How to play
                   </button>
                 </div>
