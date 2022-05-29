@@ -25,12 +25,16 @@ const App = () => {
 
   const value = { status, setStatus };
 
-  // useEffect(() => {
-  //   console.log("useEffect called");
   window.webxdc.setUpdateListener((update) =>
     processUpdate(update, status, setStatus)
   );
-  // });
+
+  useEffect(() => {
+    console.log("useEffect called");
+  }, [
+    status.games.map((game) => game.turnID),
+    status.games.map((game) => game.gameStatus),
+  ]);
 
   return (
     <AppCtx.Provider value={value}>
