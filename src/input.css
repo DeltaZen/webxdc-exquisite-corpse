@@ -16,7 +16,7 @@
     @apply flex flex-col items-center justify-center my-auto;
   }
   .fl {
-    @apply first-letter:font-fancy first-letter:text-red-900 first-letter:text-2xl;
+    @apply first-letter:font-fancy first-letter:text-red-900 first-letter:text-6xl;
   }
 }
 @tailwind components;

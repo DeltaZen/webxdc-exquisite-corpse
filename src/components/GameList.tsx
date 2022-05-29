@@ -8,7 +8,7 @@ const StatusGroup: React.FC<StatusGroupI> = ({ status, gameStatus, title }) => {
   return status.games.filter((game) => game.gameStatus === gameStatus).length >
     0 ? (
     <div className="w-full wrap">
-      <h3 className="text-2xl font-bold fl">{title}</h3>
+      <h3 className="text-4xl font-bold fl">{title}</h3>
       <ul className="container flex flex-row flex-wrap items-center justify-center w-full">
         {status.games
           .filter((game) => game.gameStatus === gameStatus)
@@ -19,7 +19,7 @@ const StatusGroup: React.FC<StatusGroupI> = ({ status, gameStatus, title }) => {
     </div>
   ) : (
     <div className="wrap">
-      <h3 className="text-2xl font-bold fl">{title}</h3>
+      <h3 className="text-4xl font-bold fl">{title}</h3>
       <p>Sorry, no game found</p>
     </div>
   );
@@ -53,6 +53,9 @@ const GameList = () => {
             <>
               {!options.showGroup ? (
                 <div className="wrap">
+                  <h1 className="my-8 text-6xl text-center font-fancy">
+                    Exquisite Corpse
+                  </h1>
                   <button
                     onClick={() => setStatus({ ...status, view: "new" })}
                     className="max-w-2xl btn w-[80vw] relative"
