@@ -2,7 +2,7 @@ import React from "react";
 
 const GameTutorial = () => {
   return (
-    <div className="text-justify wrap max-w-prose">
+    <div className="text-2xl text-justify wrap max-w-prose ">
       <h2 className="my-4 text-4xl font-bold fl">How to play</h2>
       <p className="w-full p-2 px-4 fl">
         Start a <span className="text-red-900">new story</span> or join another
