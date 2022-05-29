@@ -7,10 +7,10 @@
     opacity: 1;
   }
   .btn {
-    @apply w-full px-4 my-2 border-2 border-black rounded-md first-letter:font-fancy first-letter:text-red-900 first-letter:text-xl;
+    @apply px-4 py-2 my-2 text-2xl border-2 border-black rounded-md first-letter:font-fancy first-letter:text-red-900 first-letter:text-4xl;
   }
   .btn-simple {
-    @apply px-4 my-2 border-2 border-black rounded-md first-letter:font-fancy first-letter:text-red-900 first-letter:text-xl;
+    @apply px-4 py-2 my-2 text-2xl border-2 border-black rounded-md first-letter:font-fancy first-letter:text-red-900 first-letter:text-4xl;
   }
   .wrap {
     @apply flex flex-col items-center justify-center my-auto;

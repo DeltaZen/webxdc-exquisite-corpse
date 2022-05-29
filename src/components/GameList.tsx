@@ -32,7 +32,7 @@ const GameList = () => {
   });
   //const ctx = React.useContext(AppCtx);
   return (
-    <div className="text-justify wrap max-w-prose">
+    <div className="w-full text-justify wrap max-w-prose">
       <AppCtx.Consumer>
         {({ status, setStatus }) =>
           status.currentViewedGame ? (
@@ -54,7 +54,7 @@ const GameList = () => {
                 <div className="wrap">
                   <button
                     onClick={() => setStatus({ ...status, view: "new" })}
-                    className="btn"
+                    className="max-w-2xl btn w-[80vw]"
                   >
                     Start a new story
                   </button>
@@ -67,7 +67,7 @@ const GameList = () => {
                         title: "Continue...",
                       })
                     }
-                    className="btn"
+                    className="max-w-2xl btn w-[80vw]"
                   >
                     Continue story
                   </button>
@@ -80,7 +80,7 @@ const GameList = () => {
                         title: "Join...",
                       })
                     }
-                    className="btn"
+                    className="max-w-2xl btn w-[80vw]"
                   >
                     Join story
                   </button>
@@ -93,13 +93,13 @@ const GameList = () => {
                         title: "Library",
                       })
                     }
-                    className="btn"
+                    className="max-w-2xl btn w-[80vw]"
                   >
                     Library
                   </button>
                   <button
                     onClick={() => setStatus({ ...status, view: "tutorial" })}
-                    className="btn"
+                    className="max-w-2xl btn w-[80vw]"
                   >
                     How to play
                   </button>

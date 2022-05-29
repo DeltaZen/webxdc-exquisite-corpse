@@ -10,7 +10,7 @@ const GameView: React.FC<{ game: Corpse }> = ({ game }) => {
 
   return (
     <>
-      <h2 className="max-w-full p-2 m-2 mx-auto overflow-hidden text-4xl font-bold text-center break-words">
+      <h2 className="p-2 m-2 mx-auto overflow-hidden text-4xl font-bold text-center break-words">
         "
         {game.sessionName.length > 63
           ? game.sessionName.slice(0, 60) + "..."
