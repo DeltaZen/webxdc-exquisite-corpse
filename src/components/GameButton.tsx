@@ -11,12 +11,10 @@ const Game: React.FC<{ game: Corpse }> = ({ game }) => {
         setStatus({ ...status, currentViewedGame: game });
       }}
     >
-      <span className="p-2 font-bold text-center break-words max-w-[90vw]">
-        "
+      <span className="p-2 font-bold text-center break-words max-w-[90vw] comillas">
         {game.sessionName.length > 63
           ? game.sessionName.slice(0, 60) + "..."
           : game.sessionName}
-        "
       </span>
       <span>👑{game.admin.name}</span>
       {game.players.length > 0 && <span>✍️{game.players.length}</span>}
