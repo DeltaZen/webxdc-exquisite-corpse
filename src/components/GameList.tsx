@@ -31,7 +31,6 @@ const GameList = () => {
     gameStatus: "closed",
     title: "library",
   });
-  //const ctx = React.useContext(AppCtx);
   return (
     <div className="w-full text-justify wrap max-w-prose">
       <AppCtx.Consumer>

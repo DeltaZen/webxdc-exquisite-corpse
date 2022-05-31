@@ -2,7 +2,6 @@ import React from "react";
 import AppCtx from "../context/AppContext";
 
 const GameViewNew: React.FC<{ game: Corpse }> = ({ game }) => {
-  //const ctx = React.useContext(AppCtx);
   const [error, setError] = React.useState<InputError>({});
 
   const playerList = game.players.map((player) => player.address);

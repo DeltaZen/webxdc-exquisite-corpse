@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from "react";
 import { createRoot } from "react-dom/client";
-// import { ReceivedStatusUpdate } from "../webxdc";
 import NewGame from "./components/GameNew";
 import GameList from "./components/GameList";
 import GameTutorial from "./components/GameTutorial";
@@ -46,8 +45,6 @@ const App = () => {
         {status.view === "new" && <NewGame />}
         {status.view === "list" ? (
           <>
-            {/* <h1 className="my-8 text-4xl font-fancy">Exquisite Corpse</h1> */}
-            {/* {status.games.length > 0 ? <GameList /> : <p>No hay nada aquí</p>} */}
             <GameList />
           </>
         ) : (
@@ -67,5 +64,5 @@ const App = () => {
 };
 
 const domContainer = document.getElementById("react-code");
-const root = createRoot(domContainer!); // createRoot(container!) if you use TypeScript
+const root = createRoot(domContainer!);
 root.render(<App />);

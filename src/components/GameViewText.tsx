@@ -11,7 +11,6 @@ const GameViewText = () => {
   const [error, setError] = React.useState<InputError>({});
 
   const validateText = (text: string) => {
-    // check that text has more than the configured amount of words
     const val = text.split(" ").length >= corpse.words ? true : false;
     return val;
   };
@@ -20,12 +19,10 @@ const GameViewText = () => {
     e.preventDefault();
     if (validateText(text)) {
       setError({ ...error, text: undefined });
-      // last words from the previous round
       const spoiler =
         "Spoiler: " + text.split(" ").slice(-corpse.spoilerWords).join(" ");
       const turn = corpse.turnID++;
       const round = Math.floor(Math.abs(turn / corpse.players.length)) + 1;
-      // find next player
       const nextPlayer = corpse.players[turn % corpse.players.length];
 
       const texts = [...corpse.corpse, text];
