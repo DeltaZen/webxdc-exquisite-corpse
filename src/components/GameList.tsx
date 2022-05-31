@@ -9,7 +9,7 @@ const StatusGroup: React.FC<StatusGroupI> = ({ status, gameStatus, title }) => {
     0 ? (
     <div className="w-full wrap">
       <h3 className="my-4 text-4xl font-bold fl">{title}</h3>
-      <ul className="w-full grid grid-flow-row grid-cols-2">
+      <ul className="grid w-full grid-flow-row grid-cols-2 md:grid-cols-3">
         {status.games
           .filter((game) => game.gameStatus === gameStatus)
           .map((game) => {

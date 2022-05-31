@@ -5,7 +5,7 @@ const Game: React.FC<{ game: Corpse }> = ({ game }) => {
   const { status, setStatus } = React.useContext(AppCtx);
   return (
     <li
-      className="relative flex flex-col items-center justify-between px-2 m-2 border border-black cursor-pointer btn-style"
+      className="relative flex flex-col items-center justify-between px-2 m-2 cursor-pointer btn-style"
       onClick={() => {
         setStatus({ ...status, currentViewedGame: game });
       }}
