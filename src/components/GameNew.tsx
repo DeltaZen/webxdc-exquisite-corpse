@@ -120,7 +120,7 @@ const NewGame = () => {
           }
           value={game.spoilerWords}
         />
-        <button className="btn-simple" type="submit">
+        <button className="btn-simple btn-style" type="submit">
           Create
         </button>
       </form>

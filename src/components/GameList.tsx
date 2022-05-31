@@ -9,7 +9,7 @@ const StatusGroup: React.FC<StatusGroupI> = ({ status, gameStatus, title }) => {
     0 ? (
     <div className="w-full wrap">
       <h3 className="my-4 text-4xl font-bold fl">{title}</h3>
-      <ul className="container flex flex-row flex-wrap items-center justify-center w-full">
+      <ul className="w-full grid grid-flow-row grid-cols-2">
         {status.games
           .filter((game) => game.gameStatus === gameStatus)
           .map((game) => {
@@ -43,7 +43,7 @@ const GameList = () => {
                   setOptions({ ...options, showGroup: false });
                   setStatus({ ...status, currentViewedGame: undefined });
                 }}
-                className="btn-simple"
+                className="btn-simple btn-style"
               >
                 Go back
               </button>
@@ -57,7 +57,7 @@ const GameList = () => {
                   </h1>
                   <button
                     onClick={() => setStatus({ ...status, view: "new" })}
-                    className="max-w-2xl btn w-[80vw] relative"
+                    className="max-w-2xl btn w-[80vw] relative btn-style"
                   >
                     <Marker />
                     Start a new story
@@ -71,7 +71,7 @@ const GameList = () => {
                         title: "Continue...",
                       })
                     }
-                    className="max-w-2xl btn w-[80vw] relative"
+                    className="max-w-2xl btn w-[80vw] relative btn-style"
                   >
                     <Marker />
                     Continue story
@@ -85,7 +85,7 @@ const GameList = () => {
                         title: "Join...",
                       })
                     }
-                    className="max-w-2xl btn w-[80vw] relative"
+                    className="max-w-2xl btn w-[80vw] relative btn-style"
                   >
                     <Marker />
                     Join story
@@ -99,14 +99,14 @@ const GameList = () => {
                         title: "Library",
                       })
                     }
-                    className="max-w-2xl btn w-[80vw] relative"
+                    className="max-w-2xl btn w-[80vw] relative btn-style"
                   >
                     <Marker />
                     Library
                   </button>
                   <button
                     onClick={() => setStatus({ ...status, view: "tutorial" })}
-                    className="max-w-2xl btn w-[80vw] relative"
+                    className="max-w-2xl btn w-[80vw] relative btn-style"
                   >
                     <Marker />
                     How to play
@@ -124,7 +124,7 @@ const GameList = () => {
                       setOptions({ ...options, showGroup: false });
                       setStatus({ ...status, currentViewedGame: undefined });
                     }}
-                    className="btn-simple"
+                    className="btn-simple btn-style"
                   >
                     Go back
                   </button>

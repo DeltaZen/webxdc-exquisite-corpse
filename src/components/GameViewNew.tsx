@@ -85,7 +85,7 @@ const GameViewNew: React.FC<{ game: Corpse }> = ({ game }) => {
           <div className="text-center">
             <p>Owner: you</p>
             <button
-              className="btn"
+              className="btn btn-style"
               onClick={() => handleStart(game, status, setStatus)}
             >
               Start Game
@@ -99,7 +99,7 @@ const GameViewNew: React.FC<{ game: Corpse }> = ({ game }) => {
             </p>
             {!playerList.includes(status.playerAddr) && (
               <button
-                className="btn-simple"
+                className="btn-simple btn-style"
                 onClick={() => handleJoin(game, status, setStatus)}
               >
                 Join Game

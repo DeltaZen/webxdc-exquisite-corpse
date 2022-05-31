@@ -50,7 +50,7 @@ const App = () => {
         ) : (
           <button
             onClick={() => setStatus({ ...status, view: "list" })}
-            className="btn-simple"
+            className="btn-simple btn-style"
           >
             Go back
           </button>

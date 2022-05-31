@@ -5,13 +5,12 @@ const Game: React.FC<{ game: Corpse }> = ({ game }) => {
   const { status, setStatus } = React.useContext(AppCtx);
   return (
     <li
-      className="flex flex-col items-center justify-between px-2 m-2 border border-black rounded-lg cursor-pointer max-w-1/3 w-1/3"
+      className="relative flex flex-col items-center justify-between px-2 m-2 border border-black cursor-pointer btn-style"
       onClick={() => {
-        console.log("clicked gameBtn.tsx to set status.currentViewedGame");
         setStatus({ ...status, currentViewedGame: game });
       }}
     >
-      <span className="p-2 font-bold text-center break-words max-w-[90vw] comillas">
+      <span className="p-2 font-bold text-center break-words max-w-[90vw] comillas clamp">
         {game.sessionName.length > 63
           ? game.sessionName.slice(0, 60) + "..."
           : game.sessionName}

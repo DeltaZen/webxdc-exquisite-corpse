@@ -89,7 +89,7 @@ const GameViewText = () => {
         {error.text && (
           <span className="p-2 mx-4 my-2 text-red-500">{error.text}</span>
         )}
-        <button className="btn-simple" type="submit">
+        <button className="btn-simple btn-style" type="submit">
           End turn
         </button>
       </form>
