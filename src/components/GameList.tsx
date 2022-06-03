@@ -2,7 +2,6 @@ import React from "react";
 import AppCtx from "../context/AppContext";
 import GameButton from "./GameButton";
 import GameView from "./GameView";
-import Marker from "./Marker";
 
 const GamesFiltered: React.FC<{ status: IndexProps }> = ({ status }) => {
   const myGames = status.games.filter((game) =>
@@ -73,7 +72,6 @@ const GameList = () => {
                     onClick={() => setStatus({ ...status, view: "new" })}
                     className="max-w-2xl btn w-[80vw] relative btn-style"
                   >
-                    <Marker />
                     Start a new story
                   </button>
                   <button
@@ -87,7 +85,6 @@ const GameList = () => {
                     }
                     className="max-w-2xl btn w-[80vw] relative btn-style"
                   >
-                    <Marker />
                     My stories
                   </button>
                   <button
@@ -101,7 +98,6 @@ const GameList = () => {
                     }
                     className="max-w-2xl btn w-[80vw] relative btn-style"
                   >
-                    <Marker />
                     Join story
                   </button>
                   <button
@@ -115,14 +111,12 @@ const GameList = () => {
                     }
                     className="max-w-2xl btn w-[80vw] relative btn-style"
                   >
-                    <Marker />
                     Library
                   </button>
                   <button
                     onClick={() => setStatus({ ...status, view: "tutorial" })}
                     className="max-w-2xl btn w-[80vw] relative btn-style"
                   >
-                    <Marker />
                     How to play
                   </button>
                 </div>
