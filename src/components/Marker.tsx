@@ -2,10 +2,10 @@ import React from "react";
 
 const Marker = () => {
   return (
-    <div className="absolute top-0 left-0 text-red-900 -translate-y-1/2">
+    <div className="absolute top-0 right-0 text-red-900 -translate-y-1/2">
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        className="w-8 h-8"
+        className="w-12 h-12"
         viewBox="0 0 20 20"
         fill="currentColor"
       >
