@@ -9,7 +9,7 @@ const GamesFiltered: React.FC<{ status: IndexProps }> = ({ status }) => {
   );
   return (
     <div>
-      <StatusGroup games={myGames} gameStatus={"new"} title={"Start"} />
+      <StatusGroup games={myGames} gameStatus={"new"} title={"Created"} />
 
       <StatusGroup games={myGames} gameStatus={"playing"} title={"Playing"} />
 
