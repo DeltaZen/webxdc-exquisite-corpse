@@ -33,7 +33,7 @@ interface ExquisiteContext {
 }
 
 interface StatusGroupI {
-  status: IndexProps;
+  games: Corpse[];
   gameStatus: "new" | "playing" | "closed";
   title: string;
 }

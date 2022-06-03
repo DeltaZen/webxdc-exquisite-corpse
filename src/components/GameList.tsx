@@ -4,13 +4,12 @@ import GameButton from "./GameButton";
 import GameView from "./GameView";
 import Marker from "./Marker";
 
-const StatusGroup: React.FC<StatusGroupI> = ({ status, gameStatus, title }) => {
-  return status.games.filter((game) => game.gameStatus === gameStatus).length >
-    0 ? (
+const StatusGroup: React.FC<StatusGroupI> = ({ games, gameStatus, title }) => {
+  return games.filter((game) => game.gameStatus === gameStatus).length > 0 ? (
     <div className="w-full wrap">
       <h3 className="my-4 text-4xl font-bold fl">{title}</h3>
       <ul className="grid w-full grid-flow-row grid-cols-2 md:grid-cols-3">
-        {status.games
+        {games
           .filter((game) => game.gameStatus === gameStatus)
           .map((game) => {
             return <GameButton key={game.sessionName} game={game} />;
@@ -74,7 +73,7 @@ const GameList = () => {
                     className="max-w-2xl btn w-[80vw] relative btn-style"
                   >
                     <Marker />
-                    Continue story
+                    My stories
                   </button>
                   <button
                     onClick={() =>
@@ -115,7 +114,7 @@ const GameList = () => {
               ) : (
                 <>
                   <StatusGroup
-                    status={status}
+                    games={status.games}
                     gameStatus={options.gameStatus}
                     title={options.title}
                   />
