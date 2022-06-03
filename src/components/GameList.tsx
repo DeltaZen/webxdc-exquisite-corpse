@@ -4,6 +4,19 @@ import GameButton from "./GameButton";
 import GameView from "./GameView";
 import Marker from "./Marker";
 
+const GamesFiltered: React.FC<{ status: IndexProps }> = ({ status }) => {
+  const myGames = status.games.filter((game) =>
+    game.players.some((player) => player.address === status.playerAddr)
+  );
+  return (
+    <div>
+      <StatusGroup games={myGames} gameStatus={"new"} title={"Start"} />
+      <StatusGroup games={myGames} gameStatus={"playing"} title={"Playing"} />
+      <StatusGroup games={myGames} gameStatus={"closed"} title={"Finished"} />
+    </div>
+  );
+};
+
 const StatusGroup: React.FC<StatusGroupI> = ({ games, gameStatus, title }) => {
   return games.filter((game) => game.gameStatus === gameStatus).length > 0 ? (
     <div className="w-full wrap">
@@ -49,7 +62,7 @@ const GameList = () => {
             </>
           ) : (
             <>
-              {!options.showGroup ? (
+              {!options.showGroup && options.gameStatus !== "playing" ? (
                 <div className="wrap">
                   <h1 className="my-8 text-6xl text-center font-fancy">
                     Exquisite Corpse
@@ -67,7 +80,7 @@ const GameList = () => {
                         ...options,
                         gameStatus: "playing",
                         showGroup: true,
-                        title: "Continue...",
+                        title: "My stories...",
                       })
                     }
                     className="max-w-2xl btn w-[80vw] relative btn-style"
@@ -111,7 +124,7 @@ const GameList = () => {
                     How to play
                   </button>
                 </div>
-              ) : (
+              ) : options.gameStatus !== "playing" ? (
                 <>
                   <StatusGroup
                     games={status.games}
@@ -121,6 +134,23 @@ const GameList = () => {
                   <button
                     onClick={() => {
                       setOptions({ ...options, showGroup: false });
+                      setStatus({ ...status, currentViewedGame: undefined });
+                    }}
+                    className="btn-simple btn-style"
+                  >
+                    Go back
+                  </button>
+                </>
+              ) : (
+                <>
+                  <GamesFiltered status={status} />
+                  <button
+                    onClick={() => {
+                      setOptions({
+                        ...options,
+                        showGroup: false,
+                        gameStatus: "closed",
+                      });
                       setStatus({ ...status, currentViewedGame: undefined });
                     }}
                     className="btn-simple btn-style"
