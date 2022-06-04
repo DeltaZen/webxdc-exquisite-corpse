@@ -29,11 +29,8 @@ const App = () => {
   );
 
   useEffect(() => {
-    console.log(
-      "useEffect called. Changes in TurnIDs or gameStatuses"
-      // status.games.map((game) => game.turnID),
-      // status.games.map((game) => game.gameStatus)
-    );
+    console.log("useEffect called. Changes in TurnIDs or gameStatuses");
+    setStatus(status);
   }, [
     status.games.map((game) => game.turnID),
     status.games.map((game) => game.gameStatus),
