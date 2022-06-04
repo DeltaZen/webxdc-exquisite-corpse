@@ -11,6 +11,7 @@ interface Corpse {
   turnID: number; // unique ID for each turn
   corpse: string[];
   spoiler: string;
+  lookForDeletedPlayers?: boolean;
 }
 
 interface Player {
