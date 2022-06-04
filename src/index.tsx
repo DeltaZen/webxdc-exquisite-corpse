@@ -29,11 +29,23 @@ const App = () => {
   );
 
   useEffect(() => {
-    console.log("useEffect called");
+    console.log(
+      "useEffect called. Changes in TurnIDs or gameStatuses"
+      // status.games.map((game) => game.turnID),
+      // status.games.map((game) => game.gameStatus)
+    );
   }, [
     status.games.map((game) => game.turnID),
     status.games.map((game) => game.gameStatus),
   ]);
+
+  // useEffect(() => {
+  //   console.log("useEffect called. Changes in some game player list");
+  // }, [
+  //   status.games
+  //     .map((game) => game.players.map((player) => player.address))
+  //     .flat(),
+  // ]);
 
   return (
     <AppCtx.Provider value={value}>

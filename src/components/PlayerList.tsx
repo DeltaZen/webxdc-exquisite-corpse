@@ -10,11 +10,9 @@ const PlayerList: React.FC<{ players: Player[]; children?: JSX.Element }> = ({
       <ul className="flex flex-col items-center justify-center max-w-2xl px-4 py-2 m-2 btn-style">
         {children}
         {players ? (
-          players
-            .filter((player) => !player.deleted)
-            .map((player: Player) => {
-              return <li key={player.name}>{player.name}</li>;
-            })
+          players.map((player: Player) => {
+            return <li key={player.name}>{player.name}</li>;
+          })
         ) : (
           <li>You shouldn't be able to see this error 🚶‍♂️</li>
         )}

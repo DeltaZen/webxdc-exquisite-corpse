@@ -21,14 +21,17 @@ const GameViewText = () => {
       setError({ ...error, text: undefined });
       const spoiler =
         "Spoiler: " + text.split(" ").slice(-corpse.spoilerWords).join(" ");
-      const turn = corpse.turnID++;
+      let turn = corpse.turnID++;
+      // let nextPlayer: Player, gameStatus: "closed" | "playing";
+
       const round = Math.floor(Math.abs(turn / corpse.players.length)) + 1;
-      const nextPlayer = corpse.players[turn % corpse.players.length];
 
       const texts = [...corpse.corpse, text];
 
       const gameStatus =
         turn === corpse.players.length * corpse.rounds ? "closed" : "playing";
+
+      const nextPlayer = corpse.players[turn % corpse.players.length];
 
       const newCorpse = {
         ...corpse,
