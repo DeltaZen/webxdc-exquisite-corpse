@@ -32,8 +32,8 @@ const NewGame = () => {
       game.rounds > 0 &&
       game.sessionName !== "" &&
       !error.sessionName &&
-      game.words > 4 &&
-      game.spoilerWords > 2 &&
+      game.words > 0 &&
+      game.spoilerWords > 0 &&
       game.spoilerWords <= game.words
     ) {
       setError({});
@@ -46,6 +46,15 @@ const NewGame = () => {
       });
     } else if (name === "") {
       setError({ ...error, sessionName: "Session name can't be empty" });
+    } else {
+      const text = `${game.words <= 0 ? "Must be at least 1 word." : ""}${
+        game.spoilerWords <= 0 ? "Spoilers must contain at least 1 word." : ""
+      }${
+        game.spoilerWords > game.words
+          ? "Spoiler can't be more than words."
+          : ""
+      }`;
+      setError({ ...error, text: text });
     }
   };
 
@@ -92,7 +101,10 @@ const NewGame = () => {
           className="w-full px-1 mb-4 text-center"
           min={1}
           onChange={(e) =>
-            setGame({ ...game, rounds: parseInt(e.target.value) })
+            setGame({
+              ...game,
+              rounds: parseInt(e.target.value) || 0,
+            })
           }
           value={game.rounds}
         />
@@ -103,7 +115,10 @@ const NewGame = () => {
           className="w-full px-1 mb-4 text-center"
           min={1}
           onChange={(e) =>
-            setGame({ ...game, words: parseInt(e.target.value) })
+            setGame({
+              ...game,
+              words: parseInt(e.target.value) || 0,
+            })
           }
           value={game.words}
         />
@@ -114,15 +129,19 @@ const NewGame = () => {
           placeholder="Spoiler Words"
           className="w-full px-1 mb-4 text-center"
           min={1}
-          max={game.words}
+          max={game.words ?? 1}
           onChange={(e) =>
-            setGame({ ...game, spoilerWords: parseInt(e.target.value) })
+            setGame({
+              ...game,
+              spoilerWords: parseInt(e.target.value) || 0,
+            })
           }
           value={game.spoilerWords}
         />
         <button className="btn-simple btn-style" type="submit">
           Create
         </button>
+        {error.text && <span className="text-red-500">{error.text}</span>}
       </form>
     </div>
   );
