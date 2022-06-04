@@ -64,11 +64,13 @@ const GameViewText = () => {
 
   return (
     <>
-      {corpse.spoiler.startsWith("Spoiler: ") && <h3>It's your turn</h3>}
       {corpse.spoiler.startsWith("Spoiler: ") && (
-        <p className="p-2 mx-2">
-          You can now continue what the last player wrote...
-        </p>
+        <>
+          <h3>It's your turn</h3>
+          <p className="p-2 mx-2">
+            You can now continue what the last player wrote...
+          </p>
+        </>
       )}
       <p>{corpse.spoiler}</p>
       <form

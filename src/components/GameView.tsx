@@ -52,7 +52,9 @@ const GameView: React.FC<{ game: Corpse }> = ({ game }) => {
             </>
           ) : (
             <>
-              <p>It's {status.currentViewedGame?.currentPlayer.name}'s turn</p>
+              <p className="clamp-1">
+                It's {status.currentViewedGame?.currentPlayer.name}'s turn
+              </p>
             </>
           )}
         </>
