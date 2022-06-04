@@ -13,10 +13,8 @@ const Game: React.FC<{ game: Corpse }> = ({ game }) => {
       }}
     >
       <Marker />
-      <span className="p-2 font-bold text-center break-words max-w-[90vw] comillas clamp">
-        {game.sessionName.length > 63
-          ? game.sessionName.slice(0, 60) + "..."
-          : game.sessionName}
+      <span className="max-w-full p-2 font-bold text-center comillas clamp">
+        {game.sessionName}
       </span>
       <span className="flex flex-row items-center justify-center">
         <Crown />
