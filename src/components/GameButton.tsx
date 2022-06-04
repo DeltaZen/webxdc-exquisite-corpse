@@ -18,12 +18,13 @@ const Game: React.FC<{ game: Corpse }> = ({ game }) => {
           : game.sessionName}
       </span>
       <span>👑{game.admin.name}</span>
-      {game.players.length > 0 && <span>✍️{game.players.length}</span>}
+      {game.gameStatus === "new" && <span>⌛{game.rounds}</span>}
       {game.gameStatus === "playing" && (
         <span>
           ⌛{game.currentRound}/{game.rounds}
         </span>
       )}
+      {game.players.length > 0 && <span>✍️{game.players.length}</span>}
     </li>
   );
 };
