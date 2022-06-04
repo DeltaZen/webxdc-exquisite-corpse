@@ -86,22 +86,24 @@ const PlayerListAdmin: React.FC<{
     <>
       <ul className="flex flex-col items-start justify-center max-w-2xl px-4 py-2 m-2 btn-style">
         <h3 className="font-bold">Players</h3>
-        {game.players.map((player: Player) => {
-          return (
-            <li
-              key={player.address}
-              className="flex flex-row items-center justify-start"
-            >
-              <span className="mr-auto clamp-1">{player.name}</span>
-              {player.address !== adminAddr && (
-                <Delete
-                  playerAddr={player.address}
-                  sessionName={game.sessionName}
-                />
-              )}
-            </li>
-          );
-        })}
+        {game.players
+          .filter((player) => !player.deleted)
+          .map((player: Player) => {
+            return (
+              <li
+                key={player.address}
+                className="flex flex-row items-center justify-start"
+              >
+                <span className="mr-auto clamp-1">{player.name}</span>
+                {player.address !== adminAddr && (
+                  <Delete
+                    playerAddr={player.address}
+                    sessionName={game.sessionName}
+                  />
+                )}
+              </li>
+            );
+          })}
       </ul>
     </>
   );
@@ -116,7 +118,11 @@ const Delete: React.FC<{ playerAddr: string; sessionName: string }> = ({
     const currentGame = status.games.find(
       (game) => game.sessionName === sessionName
     );
-    if (currentGame && currentGame.players.length > 2) {
+    const activePlayers = currentGame?.players.filter(
+      (player) => !player.deleted
+    ).length;
+    // console.log(activePlayers);
+    if (currentGame && activePlayers && activePlayers > 2) {
       console.log("Vamos a eliminar a ", playerAddr);
       const index = status.games.findIndex(
         (game) => game.sessionName === sessionName
