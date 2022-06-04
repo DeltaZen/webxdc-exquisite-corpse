@@ -1,12 +1,13 @@
 import React from "react";
 import AppCtx from "../context/AppContext";
 import Marker from "./Marker";
+import { SandClock, Crown, Users } from "./icons";
 
 const Game: React.FC<{ game: Corpse }> = ({ game }) => {
   const { status, setStatus } = React.useContext(AppCtx);
   return (
     <li
-      className="relative flex flex-col items-center justify-between px-2 m-4 cursor-pointer btn-style"
+      className="relative flex flex-col items-start justify-between px-2 m-4 cursor-pointer btn-style"
       onClick={() => {
         setStatus({ ...status, currentViewedGame: game });
       }}
@@ -17,14 +18,28 @@ const Game: React.FC<{ game: Corpse }> = ({ game }) => {
           ? game.sessionName.slice(0, 60) + "..."
           : game.sessionName}
       </span>
-      <span>👑{game.admin.name}</span>
-      {game.gameStatus === "new" && <span>⌛{game.rounds}</span>}
-      {game.gameStatus === "playing" && (
-        <span>
-          ⌛{game.currentRound}/{game.rounds}
+      <span className="flex flex-row items-center justify-center">
+        <Crown />
+        {game.admin.name}
+      </span>
+      {game.gameStatus === "new" && (
+        <span className="flex flex-row items-center justify-center">
+          <SandClock />
+          {game.rounds}
         </span>
       )}
-      {game.players.length > 0 && <span>✍️{game.players.length}</span>}
+      {game.gameStatus === "playing" && (
+        <span className="flex flex-row items-center justify-center">
+          <SandClock />
+          {game.currentRound}/{game.rounds}
+        </span>
+      )}
+      {game.players.length > 0 && (
+        <span className="flex flex-row items-center justify-center">
+          <Users />
+          {game.players.length}
+        </span>
+      )}
     </li>
   );
 };

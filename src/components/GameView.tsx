@@ -3,6 +3,7 @@ import PlayerList from "./PlayerList";
 import AppCtx from "../context/AppContext";
 import GameViewNew from "./GameViewNew";
 import GameViewText from "./GameViewText";
+import { SandClock } from "./icons";
 import GameViewClosed from "./GameViewClosed";
 
 const GameView: React.FC<{ game: Corpse }> = ({ game }) => {
@@ -16,8 +17,8 @@ const GameView: React.FC<{ game: Corpse }> = ({ game }) => {
           : game.sessionName}
       </h2>
       {game.gameStatus === "playing" && (
-        <p>
-          ⌛ {game.currentRound}/{game.rounds} Turn: {game.turnID}/
+        <p className="flex flex-row items-center justify-center">
+          <SandClock /> {game.currentRound}/{game.rounds} Turn: {game.turnID}/
           {game.players.length * game.rounds}
         </p>
       )}
