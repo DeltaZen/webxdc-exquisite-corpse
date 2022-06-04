@@ -44,6 +44,13 @@
   overflow: hidden;
 }
 
+.clamp-1 {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+  overflow: hidden;
+}
+
 .btn-style {
   box-shadow: 0 0.25rem 0.5rem black, 0 0 1.5rem #8f5922 inset;
   /* background: #fffef0; */
