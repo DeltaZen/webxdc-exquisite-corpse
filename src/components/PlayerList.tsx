@@ -11,7 +11,7 @@ const PlayerList: React.FC<{ players: Player[]; children?: JSX.Element }> = ({
         {children}
         {players ? (
           players.map((player: Player) => {
-            return <li key={player.name}>{player.name}</li>;
+            return <li key={player.address}>{player.name}</li>;
           })
         ) : (
           <li>You shouldn't be able to see this error 🚶‍♂️</li>

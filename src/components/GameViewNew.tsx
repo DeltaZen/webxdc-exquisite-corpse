@@ -81,7 +81,7 @@ const GameViewNew: React.FC<{ game: Corpse }> = ({ game }) => {
   return (
     <AppCtx.Consumer>
       {({ status, setStatus }) =>
-        status.playerName === game.admin.name ? (
+        status.playerAddr === game.admin.address ? (
           <div className="text-center">
             <p>Owner: you</p>
             <button
