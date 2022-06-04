@@ -93,7 +93,12 @@ const PlayerListAdmin: React.FC<{
               className="flex flex-row items-center justify-start"
             >
               <span className="mr-auto clamp-1">{player.name}</span>
-              {player.address !== adminAddr && <Delete />}
+              {player.address !== adminAddr && (
+                <Delete
+                  playerAddr={player.address}
+                  sessionName={game.sessionName}
+                />
+              )}
             </li>
           );
         })}
@@ -102,14 +107,44 @@ const PlayerListAdmin: React.FC<{
   );
 };
 
-const Delete = () => {
+const Delete: React.FC<{ playerAddr: string; sessionName: string }> = ({
+  playerAddr,
+  sessionName,
+}) => {
   const { status, setStatus } = React.useContext(AppCtx);
-  const deletePlayer = () => alert("Not implemented yet");
+  const deletePlayer = () => {
+    const currentGame = status.games.find(
+      (game) => game.sessionName === sessionName
+    );
+    if (currentGame && currentGame.players.length > 2) {
+      console.log("Vamos a eliminar a ", playerAddr);
+      const index = status.games.findIndex(
+        (game) => game.sessionName === sessionName
+      );
+      console.log(
+        "before ",
+        status.games[index].players.filter(
+          (player) => playerAddr === player.address
+        )
+      );
+      status.games[index].players = status.games[index].players.map((player) =>
+        player.address === playerAddr ? { ...player, deleted: true } : player
+      );
+      console.log(
+        "after ",
+        status.games[index].players.filter(
+          (player) => playerAddr === player.address
+        )
+      );
+    } else {
+      alert("Can't do that. Only 2 players left");
+    }
+  };
   return (
     <button onClick={deletePlayer} className="ml-2">
       <svg
         xmlns="http://www.w3.org/2000/svg"
-        className="w-6 h-6"
+        className="w-6 h-6 hover:text-red-900 focus:text-red-900"
         fill="none"
         viewBox="0 0 24 24"
         stroke="currentColor"
