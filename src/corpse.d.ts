@@ -16,6 +16,7 @@ interface Corpse {
 interface Player {
   name: string;
   address: string;
+  deleted?: boolean;
 }
 
 interface IndexProps {
