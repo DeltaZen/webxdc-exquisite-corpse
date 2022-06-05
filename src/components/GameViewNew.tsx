@@ -15,7 +15,7 @@ const GameViewNew: React.FC<{ game: Corpse }> = ({ game }) => {
       spoiler: "You are the first one",
     };
     // choose first player
-    const info = `${newgame.currentPlayer.name}, it's your turn`;
+    const info = `[Round ${newgame.currentRound}/${newgame.rounds}] ${newgame.currentPlayer.name}, it's your turn`;
     send && window.webxdc.sendUpdate({ payload: newgame, info: info }, info);
     return newgame;
   };
