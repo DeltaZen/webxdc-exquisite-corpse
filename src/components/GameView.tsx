@@ -15,9 +15,13 @@ const GameView: React.FC<{ game: Corpse }> = ({ game }) => {
         {game.sessionName}
       </h2>
       {game.gameStatus === "playing" && (
-        <p className="flex flex-row items-center justify-center">
-          <SandClock /> {game.currentRound}/{game.rounds} Turn: {game.turnID}/
-          {game.players.length * game.rounds}
+        <p className="flex flex-row items-center justify-between">
+          <span className="flex flex-row items-center justify-center mr-3">
+            <SandClock /> {game.currentRound}/{game.rounds}
+          </span>{" "}
+          <span className="flex flex-row items-center justify-center ml-3">
+            Turn: {game.turnID}/{game.players.length * game.rounds}
+          </span>
         </p>
       )}
 
