@@ -14,8 +14,8 @@ const GameViewNew: React.FC<{ game: Corpse }> = ({ game }) => {
       turnID: 1,
       spoiler: "You are the first one",
     };
-    //console.log(newgame);
-    const info = `${newgame.admin.name} started "${newgame.sessionName}" in Exquisite Corpse`;
+    // choose first player
+    const info = `${newgame.currentPlayer.name}, it's your turn`;
     send && window.webxdc.sendUpdate({ payload: newgame, info: info }, info);
     return newgame;
   };
