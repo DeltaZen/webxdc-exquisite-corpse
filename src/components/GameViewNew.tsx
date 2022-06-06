@@ -13,6 +13,7 @@ const GameViewNew: React.FC<{ game: Corpse }> = ({ game }) => {
       currentRound: 1,
       turnID: 1,
       spoiler: "You are the first one",
+      currentPlayer: game.players[0],
     };
     // choose first player
     const info = `[Round ${newgame.currentRound}/${newgame.rounds}] ${newgame.currentPlayer.name}, it's your turn`;
@@ -45,6 +46,9 @@ const GameViewNew: React.FC<{ game: Corpse }> = ({ game }) => {
     setStatus: React.Dispatch<React.SetStateAction<IndexProps>>
   ) => {
     if (game.players.length > 1) {
+      // shuffle player list
+      shuffleArray(game.players);
+
       setError({});
       setStatus({
         ...status,
@@ -113,3 +117,10 @@ const GameViewNew: React.FC<{ game: Corpse }> = ({ game }) => {
 };
 
 export default GameViewNew;
+
+function shuffleArray(array: any[]) {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+}
