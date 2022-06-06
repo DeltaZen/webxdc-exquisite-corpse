@@ -40,12 +40,13 @@ const GameViewText = () => {
         currentRound: round,
         corpse: texts,
         spoiler: spoiler,
+        date: gameStatus === "closed" ? new Date() : undefined,
       };
 
       const info =
         gameStatus === "closed"
           ? `"${corpse.sessionName}" has finished, go see the result 👀`
-          : `Round ${corpse.currentRound}/${corpse.rounds}: ${nextPlayer.name}, it's your turn`;
+          : `[Round ${corpse.currentRound}/${corpse.rounds}] ${nextPlayer.name}, it's your turn`;
       window.webxdc.sendUpdate({ payload: newCorpse, info: info }, info);
       setCorpse(newCorpse as Corpse);
       setStatus({
