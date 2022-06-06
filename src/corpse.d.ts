@@ -12,6 +12,7 @@ interface Corpse {
   corpse: string[];
   spoiler: string;
   lookForDeletedPlayers?: boolean;
+  date?: Date;
 }
 
 interface Player {
