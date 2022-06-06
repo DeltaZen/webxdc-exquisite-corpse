@@ -13,7 +13,7 @@ const NewGame = () => {
     gameStatus: "new",
     players: [{ name: playerName, address: playerAddr }],
     currentPlayer: { name: playerName, address: playerAddr },
-    rounds: 1,
+    rounds: 3,
     words: 20,
     spoilerWords: 5,
     currentRound: 0,
@@ -104,7 +104,7 @@ const NewGame = () => {
     <div className="wrap">
       <h3 className="my-4 text-4xl font-bold fl">New Story</h3>
       {showError && (
-        <p className="text-red-500 font-mono p-2 px-3 max-w-prose wrap mx-auto text-center text-base">
+        <p className="p-2 px-3 mx-auto font-mono text-base text-center text-red-500 max-w-prose wrap">
           [ERROR]{" "}
           {error.text && <span className="text-red-500">{error.text}</span>}
         </p>
@@ -132,7 +132,7 @@ const NewGame = () => {
           value={rounds}
         />
         {error.rounds && (
-          <span className="text-red-500 px-1 text-center">{error.rounds}</span>
+          <span className="px-1 text-center text-red-500">{error.rounds}</span>
         )}
         <label className="px-1 text-center">Minimum Text Length</label>
         <input
