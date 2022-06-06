@@ -22,21 +22,35 @@ const NewGame = () => {
     spoiler: "",
   });
 
+  const [showError, setShowError] = useState(false);
+
   const [name, setName] = useState("");
+  const [rounds, setRounds] = useState(game.rounds.toString());
+  const [words, setWords] = useState(game.words.toString());
+  const [spoilerWords, setSpoilerWords] = useState(
+    game.spoilerWords.toString()
+  );
 
   const [error, setError] = useState<InputError>({});
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (
-      game.rounds > 0 &&
+      parseInt(rounds) > 0 &&
       game.sessionName !== "" &&
-      !error.sessionName &&
-      game.words > 0 &&
-      game.spoilerWords > 0 &&
-      game.spoilerWords <= game.words
+      !error.text &&
+      parseInt(words) > 0 &&
+      parseInt(spoilerWords) > 0 &&
+      parseInt(spoilerWords) <= parseInt(words)
     ) {
+      setShowError(false);
       setError({});
+      setGame({
+        ...game,
+        rounds: parseInt(rounds),
+        words: parseInt(words),
+        spoilerWords: parseInt(spoilerWords),
+      });
       const info = `${game.admin.name} created "${game.sessionName}". Join!`;
       window.webxdc.sendUpdate({ payload: game, info: info }, info);
       setStatus({
@@ -45,16 +59,24 @@ const NewGame = () => {
         view: "list",
       });
     } else if (name === "") {
+      setShowError(true);
       setError({ ...error, sessionName: "Session name can't be empty" });
     } else {
-      const text = `${game.words <= 0 ? "Must be at least 1 word." : ""}${
-        game.spoilerWords <= 0 ? "Spoilers must contain at least 1 word." : ""
+      setShowError(true);
+      console.log(rounds, isNaN(parseInt(words)));
+      const text = `${name === "" ? " Session name can't be empty" : ""}${
+        parseInt(rounds) > 0 ? "" : " Wrong number of rounds."
+      }${parseInt(words) > 0 ? "" : " Text must be at least 1 word long."}${
+        parseInt(spoilerWords) > 0
+          ? ""
+          : " Preview must contain at least 1 word."
       }${
-        game.spoilerWords > game.words
-          ? "Spoiler can't be more than words."
+        parseInt(spoilerWords) > parseInt(words)
+          ? " Preview can't be bigger than minimum text length."
           : ""
       }`;
       setError({ ...error, text: text });
+      console.log("invalid game", error);
     }
   };
 
@@ -81,6 +103,12 @@ const NewGame = () => {
   return (
     <div className="wrap">
       <h3 className="my-4 text-4xl font-bold fl">New Story</h3>
+      {showError && (
+        <p className="text-red-500 font-mono p-2 px-3 max-w-prose wrap mx-auto text-center text-base">
+          [ERROR]{" "}
+          {error.text && <span className="text-red-500">{error.text}</span>}
+        </p>
+      )}
       <form className="p-2 wrap" onSubmit={handleSubmit}>
         <label className="px-1 text-center">Name</label>
         <input
@@ -97,51 +125,39 @@ const NewGame = () => {
         <input
           id="rounds"
           type="number"
-          placeholder="Rounds"
+          //placeholder="Rounds"
           className="w-full px-1 mb-4 text-center"
           min={1}
-          onChange={(e) =>
-            setGame({
-              ...game,
-              rounds: parseInt(e.target.value) || 0,
-            })
-          }
-          value={game.rounds}
+          onChange={(e) => setRounds(e.target.value)}
+          value={rounds}
         />
+        {error.rounds && (
+          <span className="text-red-500 px-1 text-center">{error.rounds}</span>
+        )}
         <label className="px-1 text-center">Minimum Text Length</label>
         <input
           id="words"
           type="number"
           className="w-full px-1 mb-4 text-center"
           min={1}
-          onChange={(e) =>
-            setGame({
-              ...game,
-              words: parseInt(e.target.value) || 0,
-            })
+          onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+            setWords(e.target.value)
           }
-          value={game.words}
+          value={words}
         />
         <label className="px-1 text-center">Preview Length</label>
         <input
           id="spoilerWords"
           type="number"
-          placeholder="Spoiler Words"
           className="w-full px-1 mb-4 text-center"
           min={1}
           max={game.words ?? 1}
-          onChange={(e) =>
-            setGame({
-              ...game,
-              spoilerWords: parseInt(e.target.value) || 0,
-            })
-          }
-          value={game.spoilerWords}
+          onChange={(e) => setSpoilerWords(e.target.value)}
+          value={spoilerWords}
         />
         <button className="btn-simple btn-style" type="submit">
           Create
         </button>
-        {error.text && <span className="text-red-500">{error.text}</span>}
       </form>
     </div>
   );
