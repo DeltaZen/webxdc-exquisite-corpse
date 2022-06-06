@@ -13,7 +13,7 @@ const Game: React.FC<{ game: Corpse }> = ({ game }) => {
       }}
     >
       <Marker />
-      <span className="max-w-full p-2 font-bold text-center comillas">
+      <span className="max-w-full px-2 py-0 my-1 font-bold text-center comillas">
         {game.sessionName}
       </span>
       <span className="flex flex-row items-center justify-center">
