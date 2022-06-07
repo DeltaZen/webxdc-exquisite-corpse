@@ -1,7 +1,6 @@
 import React from "react";
 import AppCtx from "../context/AppContext";
-import Marker from "./Marker";
-import { SandClock, Crown, Users } from "./icons";
+import { SandClock, Crown, Users, Marker } from "./icons";
 
 const Game: React.FC<{ game: Corpse }> = ({ game }) => {
   const { status, setStatus } = React.useContext(AppCtx);
