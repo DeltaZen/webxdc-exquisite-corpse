@@ -7,7 +7,26 @@ import { SandClock } from "./icons";
 import GameViewClosed from "./GameViewClosed";
 
 const GameView: React.FC<{ game: Corpse }> = ({ game }) => {
-  const { status } = React.useContext(AppCtx);
+  const { status, setStatus } = React.useContext(AppCtx);
+
+  const handleEndGame = (corpse?: Corpse) => {
+    if (corpse) {
+      const newCorpse = {
+        ...corpse,
+        gameStatus: "closed",
+        date: new Date(),
+      };
+
+      const info = `"${corpse.sessionName}" finished, go see the result 👀`;
+      window.webxdc.sendUpdate({ payload: newCorpse, info: info }, info);
+
+      setStatus({
+        ...status,
+        currentViewedGame: newCorpse as Corpse,
+        currentPlayingGame: newCorpse as Corpse,
+      });
+    }
+  };
 
   return (
     <>
@@ -57,6 +76,16 @@ const GameView: React.FC<{ game: Corpse }> = ({ game }) => {
               <p className="clamp-1">
                 It's {status.currentViewedGame?.currentPlayer.name}'s turn
               </p>
+              {status.currentViewedGame?.admin.address ===
+                status.playerAddr && (
+                <button
+                  className="btn-simple btn-style"
+                  type="button"
+                  onClick={() => handleEndGame(status.currentViewedGame)}
+                >
+                  End game
+                </button>
+              )}
             </>
           )}
         </>
