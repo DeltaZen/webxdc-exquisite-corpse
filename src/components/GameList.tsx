@@ -25,6 +25,7 @@ const StatusGroup: React.FC<StatusGroupI> = ({ games, gameStatus, title }) => {
       <ul className="grid w-full grid-flow-row grid-cols-2 md:grid-cols-3">
         {games
           .filter((game) => game.gameStatus === gameStatus)
+          .reverse()
           .map((game) => {
             return <GameButton key={game.sessionName} game={game} />;
           })}
