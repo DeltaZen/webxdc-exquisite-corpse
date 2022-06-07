@@ -125,7 +125,6 @@ const NewGame = () => {
         <input
           id="rounds"
           type="number"
-          //placeholder="Rounds"
           className="w-full px-1 mb-4 text-center"
           min={1}
           onChange={(e) => setRounds(e.target.value)}

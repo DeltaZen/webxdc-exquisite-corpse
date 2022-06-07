@@ -22,7 +22,6 @@ const GameViewText = () => {
       const spoiler =
         "Spoiler: " + text.split(" ").slice(-corpse.spoilerWords).join(" ");
       let turn = corpse.turnID++;
-      // let nextPlayer: Player, gameStatus: "closed" | "playing";
 
       const round = Math.floor(Math.abs(turn / corpse.players.length)) + 1;
 

@@ -33,7 +33,7 @@ const GameViewNew: React.FC<{ game: Corpse }> = ({ game }) => {
         { name: playerName, address: playerAddr },
       ];
       const newGame = { ...game, players: newPlayers };
-      // send update
+
       const info = `${playerName} joined "${newGame.sessionName}"`;
       send && window.webxdc.sendUpdate({ payload: newGame, info: info }, info);
       return newGame;
@@ -46,7 +46,6 @@ const GameViewNew: React.FC<{ game: Corpse }> = ({ game }) => {
     setStatus: React.Dispatch<React.SetStateAction<IndexProps>>
   ) => {
     if (game.players.length > 1) {
-      // shuffle player list
       shuffleArray(game.players);
 
       setError({});
