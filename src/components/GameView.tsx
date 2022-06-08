@@ -55,7 +55,10 @@ const GameView: React.FC<{ game: Corpse }> = ({ game }) => {
       )}
       {game.gameStatus === "playing" && (
         <>
-          <PlayerList players={status.currentViewedGame?.players as Player[]}>
+          <PlayerList
+            players={status.currentViewedGame?.players as Player[]}
+            currentPlayer={status.currentViewedGame?.currentPlayer}
+          >
             <h3 className="font-bold">Players</h3>
           </PlayerList>
           {status.currentViewedGame?.currentPlayer.address ===

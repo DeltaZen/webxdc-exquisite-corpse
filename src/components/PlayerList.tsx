@@ -1,9 +1,11 @@
 import React from "react";
+import { SandClock } from "./icons";
 
-const PlayerList: React.FC<{ players: Player[]; children?: JSX.Element }> = ({
-  players,
-  children,
-}) => {
+const PlayerList: React.FC<{
+  players: Player[];
+  children?: JSX.Element;
+  currentPlayer?: Player;
+}> = ({ players, children, currentPlayer }) => {
   console.log(players);
   return (
     <>
@@ -12,7 +14,12 @@ const PlayerList: React.FC<{ players: Player[]; children?: JSX.Element }> = ({
         {players ? (
           players.map((player: Player) => {
             return (
-              <li key={player.address} className="clamp-1">
+              <li key={player.address} className="relative px-6 clamp-1">
+                {currentPlayer?.address === player.address ? (
+                  <span className="absolute left-0 inline-flex w-8 h-8 py-1 -translate-y-1/2 top-1/2">
+                    <SandClock />
+                  </span>
+                ) : null}
                 {player.name}
               </li>
             );
