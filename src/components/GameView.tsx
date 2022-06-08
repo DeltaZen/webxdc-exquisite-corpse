@@ -55,20 +55,12 @@ const GameView: React.FC<{ game: Corpse }> = ({ game }) => {
       )}
       {game.gameStatus === "playing" && (
         <>
+          <PlayerList players={status.currentViewedGame?.players as Player[]}>
+            <h3 className="font-bold">Players</h3>
+          </PlayerList>
           {status.currentViewedGame?.currentPlayer.address ===
           status.playerAddr ? (
             <>
-              <PlayerList
-                players={
-                  status.currentViewedGame.sessionName ===
-                  status.currentPlayingGame?.sessionName
-                    ? (status.currentPlayingGame?.players as Player[])
-                    : (status.currentViewedGame.players as Player[])
-                }
-              >
-                <h3 className="font-bold">Players</h3>
-              </PlayerList>
-
               <GameViewText />
             </>
           ) : (
