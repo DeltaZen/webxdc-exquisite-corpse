@@ -19,7 +19,12 @@ const GamesFiltered: React.FC<{ status: IndexProps }> = ({ status }) => {
   );
 };
 
-const StatusGroup: React.FC<StatusGroupI> = ({ games, gameStatus, title }) => {
+const StatusGroup: React.FC<StatusGroupI> = ({
+  games,
+  gameStatus,
+  title,
+  addr,
+}) => {
   return games.filter((game) => game.gameStatus === gameStatus).length > 0 ? (
     <div className="w-full wrap">
       <h3 className="my-4 text-4xl font-bold fl">{title}</h3>
@@ -28,7 +33,14 @@ const StatusGroup: React.FC<StatusGroupI> = ({ games, gameStatus, title }) => {
           .filter((game) => game.gameStatus === gameStatus)
           .reverse()
           .map((game) => {
-            return <GameButton key={game.sessionName} game={game} />;
+            if (addr && gameStatus === "new") {
+              const playerList = game.players.map((player) => player.address);
+              return !playerList.includes(addr) ? (
+                <GameButton key={game.sessionName} game={game} />
+              ) : null;
+            } else {
+              return <GameButton key={game.sessionName} game={game} />;
+            }
           })}
       </ul>
     </div>
@@ -129,6 +141,7 @@ const GameList = () => {
                     games={status.games}
                     gameStatus={options.gameStatus}
                     title={options.title}
+                    addr={status.playerAddr}
                   />
                   <button
                     onClick={() => {

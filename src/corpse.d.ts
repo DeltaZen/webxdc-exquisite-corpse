@@ -39,6 +39,7 @@ interface StatusGroupI {
   games: Corpse[];
   gameStatus: "new" | "playing" | "closed";
   title: string;
+  addr?: string;
 }
 
 interface InputError {
