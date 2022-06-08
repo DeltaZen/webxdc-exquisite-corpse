@@ -51,6 +51,16 @@ const GameView: React.FC<{ game: Corpse }> = ({ game }) => {
           </PlayerList>
 
           <GameViewNew game={game} />
+
+          {status.currentViewedGame?.admin.address === status.playerAddr && (
+            <button
+              className="btn-simple btn-style"
+              type="button"
+              onClick={() => handleEndGame(status.currentViewedGame)}
+            >
+              End game
+            </button>
+          )}
         </>
       )}
       {game.gameStatus === "playing" && (
