@@ -1,6 +1,7 @@
 import React from "react";
 import AppCtx from "../context/AppContext";
 import GameButton from "./GameButton";
+import { Back } from "./icons";
 import GameView from "./GameView";
 
 const GamesFiltered: React.FC<{ status: IndexProps }> = ({ status }) => {
@@ -46,7 +47,7 @@ const GameList = () => {
     title: "library",
   });
   return (
-    <div className="w-full text-justify wrap max-w-prose">
+    <div className="relative w-full text-justify wrap max-w-prose">
       <AppCtx.Consumer>
         {({ status, setStatus }) =>
           status.currentViewedGame ? (
@@ -57,9 +58,10 @@ const GameList = () => {
                   setOptions({ ...options, showGroup: false });
                   setStatus({ ...status, currentViewedGame: undefined });
                 }}
-                className="btn-simple btn-style"
+                className="p-1 pr-2 rounded-lg btn-style back"
               >
-                Go back
+                <Back />
+                {/* Go back */}
               </button>
             </>
           ) : (
@@ -133,9 +135,9 @@ const GameList = () => {
                       setOptions({ ...options, showGroup: false });
                       setStatus({ ...status, currentViewedGame: undefined });
                     }}
-                    className="btn-simple btn-style"
+                    className="p-1 pr-2 rounded-lg btn-style back"
                   >
-                    Go back
+                    <Back />
                   </button>
                 </>
               ) : (
@@ -150,9 +152,9 @@ const GameList = () => {
                       });
                       setStatus({ ...status, currentViewedGame: undefined });
                     }}
-                    className="btn-simple btn-style"
+                    className="p-1 pr-2 rounded-lg btn-style back"
                   >
-                    Go back
+                    <Back />
                   </button>
                 </>
               )}

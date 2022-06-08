@@ -18,6 +18,9 @@
   .fl {
     @apply first-letter:font-fancy first-letter:text-red-900 first-letter:text-6xl;
   }
+  .back {
+    @apply absolute top-0 left-0 translate-x-8 translate-y-8;
+  }
 }
 @tailwind components;
 @tailwind utilities;

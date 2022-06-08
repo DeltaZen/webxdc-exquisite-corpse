@@ -5,6 +5,7 @@ import GameList from "./components/GameList";
 import GameTutorial from "./components/GameTutorial";
 import AppCtx from "./context/AppContext";
 import { processUpdate } from "./lib/processUpdate";
+import { Back } from "./components/icons";
 import "@fontsource/unifrakturmaguntia";
 import "@fontsource/grenze-gotisch";
 import "./input.css";
@@ -39,7 +40,7 @@ const App = () => {
     <AppCtx.Provider value={value}>
       <div
         id="parchment"
-        className="flex flex-col items-center justify-center min-h-[100vh] w-full"
+        className="flex flex-col items-center justify-center min-h-[100vh] w-full relative"
       >
         {status.view === "tutorial" && <GameTutorial />}
         {status.view === "new" && <NewGame />}
@@ -50,9 +51,10 @@ const App = () => {
         ) : (
           <button
             onClick={() => setStatus({ ...status, view: "list" })}
-            className="btn-simple btn-style"
+            className="p-1 pr-2 rounded-lg btn-style back"
           >
-            Go back
+            {/* Go back */}
+            <Back />
           </button>
         )}
         <p className="mt-auto mb-4 font-mono text-xs font-thin">
