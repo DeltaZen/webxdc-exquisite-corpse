@@ -58,7 +58,10 @@ const App = () => {
           </button>
         )}
         <p className="mt-auto mb-4 font-mono text-xs font-thin">
-          &copy;{year} Massick
+          &copy;{year}{" "}
+          <a href="https://github.com/DeltaZen" className="text-red-900">
+            DeltaZen
+          </a>
         </p>
       </div>
     </AppCtx.Provider>
