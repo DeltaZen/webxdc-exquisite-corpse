@@ -59,7 +59,7 @@ const GameList = () => {
     title: "library",
   });
   return (
-    <div className="relative w-full text-justify wrap max-w-prose">
+    <div className="w-full text-justify wrap max-w-prose">
       <AppCtx.Consumer>
         {({ status, setStatus }) =>
           status.currentViewedGame ? (

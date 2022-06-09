@@ -40,7 +40,7 @@ const App = () => {
     <AppCtx.Provider value={value}>
       <div
         id="parchment"
-        className="flex flex-col items-center justify-center min-h-[100vh] w-full relative"
+        className="flex flex-col items-center justify-center min-h-[100vh] w-full"
       >
         {status.view === "tutorial" && <GameTutorial />}
         {status.view === "new" && <NewGame />}
