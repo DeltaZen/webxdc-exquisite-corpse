@@ -17,6 +17,7 @@ const App = () => {
   const year = new Date().getFullYear();
 
   const [status, setStatus] = useState<IndexProps>({
+    id: 1,
     playerName: playerName,
     playerAddr: playerAddr,
     view: "list",
@@ -29,12 +30,11 @@ const App = () => {
     processUpdate(update, status, setStatus)
   );
 
+  let id = status.id;
   useEffect(() => {
-    setStatus(status);
-  }, [
-    status.games.map((game) => game.turnID),
-    status.games.map((game) => game.gameStatus),
-  ]);
+    id = status.id;
+    console.log(id);
+  }, [status.id]);
 
   return (
     <AppCtx.Provider value={value}>

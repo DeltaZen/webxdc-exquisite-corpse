@@ -96,7 +96,9 @@ const GameList = () => {
                     Exquisite Corpse
                   </h1>
                   <button
-                    onClick={() => setStatus({ ...status, view: "new" })}
+                    onClick={() =>
+                      setStatus({ ...status, id: status.id + 1, view: "new" })
+                    }
                     className="max-w-2xl btn w-[80vw] relative btn-style"
                   >
                     Start a new story
@@ -141,7 +143,13 @@ const GameList = () => {
                     Library
                   </button>
                   <button
-                    onClick={() => setStatus({ ...status, view: "tutorial" })}
+                    onClick={() =>
+                      setStatus({
+                        ...status,
+                        id: status.id + 1,
+                        view: "tutorial",
+                      })
+                    }
                     className="max-w-2xl btn w-[80vw] relative btn-style"
                   >
                     How to play
@@ -158,7 +166,11 @@ const GameList = () => {
                   <button
                     onClick={() => {
                       setOptions({ ...options, showGroup: false });
-                      setStatus({ ...status, currentViewedGame: undefined });
+                      setStatus({
+                        ...status,
+                        id: status.id + 1,
+                        currentViewedGame: undefined,
+                      });
                     }}
                     className="p-1 pr-2 rounded-lg btn-style back"
                   >
@@ -175,7 +187,11 @@ const GameList = () => {
                         showGroup: false,
                         gameStatus: "closed",
                       });
-                      setStatus({ ...status, currentViewedGame: undefined });
+                      setStatus({
+                        ...status,
+                        id: status.id + 1,
+                        currentViewedGame: undefined,
+                      });
                     }}
                     className="p-1 pr-2 rounded-lg btn-style back"
                   >

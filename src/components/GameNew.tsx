@@ -62,6 +62,7 @@ const NewGame = () => {
       window.webxdc.sendUpdate({ payload: newGame, info: info }, info);
       setStatus({
         ...status,
+        id: status.id + 1,
         currentViewedGame: newGame,
         view: "list",
       });

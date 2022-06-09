@@ -50,6 +50,7 @@ const GameViewText = () => {
       setCorpse(newCorpse as Corpse);
       setStatus({
         ...status,
+        id: status.id + 1,
         currentViewedGame: newCorpse as Corpse,
         currentPlayingGame: newCorpse as Corpse,
       });
