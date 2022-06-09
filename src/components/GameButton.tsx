@@ -17,24 +17,32 @@ const Game: React.FC<{ game: Corpse }> = ({ game }) => {
       </span>
       <span className="flex flex-row items-center justify-center">
         <Crown />
-        {game.admin.name}
+        <span className="clamp-1">{game.admin.name}</span>
       </span>
       {game.gameStatus === "new" && (
         <span className="flex flex-row items-center justify-center">
           <SandClock />
-          {game.rounds}
+          <span className="clamp-1">{game.rounds} rounds</span>
         </span>
       )}
       {game.gameStatus === "playing" && (
-        <span className="flex flex-row items-center justify-center">
-          <SandClock />
-          {game.currentRound}/{game.rounds}
-        </span>
+        <>
+          <span className="flex flex-row items-center justify-center">
+            <SandClock />
+            <span className="clamp-1">
+              {game.currentRound}/{game.rounds}
+            </span>
+          </span>
+          <span className="flex flex-row items-center justify-center">
+            <Users />
+            <span className="clamp-1">{game.currentPlayer.name}'s turn</span>
+          </span>
+        </>
       )}
-      {game.players.length > 0 && (
+      {game.players.length > 0 && game.gameStatus !== "playing" && (
         <span className="flex flex-row items-center justify-center">
           <Users />
-          {game.players.length}
+          <span>{game.players.length} players</span>
         </span>
       )}
     </li>
