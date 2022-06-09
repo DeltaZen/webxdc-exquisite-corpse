@@ -7,7 +7,7 @@ const NewGame = () => {
   const playerName = window.webxdc.selfName;
   const playerAddr = window.webxdc.selfAddr;
 
-  const [game, setGame] = useState<Corpse>({
+  const [corp, setCorp] = useState<Corpse>({
     sessionName: "",
     admin: { name: playerName, address: playerAddr },
     gameStatus: "new",
@@ -25,10 +25,10 @@ const NewGame = () => {
   const [showError, setShowError] = useState(false);
 
   const [name, setName] = useState("");
-  const [rounds, setRounds] = useState(game.rounds.toString());
-  const [words, setWords] = useState(game.words.toString());
+  const [rounds, setRounds] = useState(corp.rounds.toString());
+  const [words, setWords] = useState(corp.words.toString());
   const [spoilerWords, setSpoilerWords] = useState(
-    game.spoilerWords.toString()
+    corp.spoilerWords.toString()
   );
 
   const [error, setError] = useState<InputError>({});
@@ -37,7 +37,7 @@ const NewGame = () => {
     e.preventDefault();
     if (
       parseInt(rounds) > 0 &&
-      game.sessionName !== "" &&
+      corp.sessionName !== "" &&
       !error.text &&
       parseInt(words) > 0 &&
       parseInt(spoilerWords) > 0 &&
@@ -45,17 +45,24 @@ const NewGame = () => {
     ) {
       setShowError(false);
       setError({});
-      setGame({
-        ...game,
-        rounds: parseInt(rounds),
-        words: parseInt(words),
-        spoilerWords: parseInt(spoilerWords),
-      });
-      const info = `${game.admin.name} created "${game.sessionName}". Join!`;
-      window.webxdc.sendUpdate({ payload: game, info: info }, info);
+      const numWords = parseInt(words);
+      const numSpoilerWords = parseInt(spoilerWords);
+      const numRounds = parseInt(rounds);
+      const newGame = {
+        ...corp,
+        rounds: numRounds,
+        words: numWords,
+        spoilerWords: numSpoilerWords,
+      };
+      setCorp(newGame);
+      const info = `${corp.admin.name} created "${corp.sessionName}". Join!`;
+      // checking game info
+      console.log(newGame);
+
+      window.webxdc.sendUpdate({ payload: newGame, info: info }, info);
       setStatus({
         ...status,
-        currentViewedGame: game,
+        currentViewedGame: newGame,
         view: "list",
       });
     } else if (name === "") {
@@ -96,7 +103,7 @@ const NewGame = () => {
       });
     } else {
       setError({ ...error, sessionName: undefined });
-      setGame({ ...game, sessionName: editedName });
+      setCorp({ ...corp, sessionName: editedName });
     }
   };
 
@@ -105,7 +112,6 @@ const NewGame = () => {
       <h3 className="my-4 text-4xl font-bold fl">New Story</h3>
       {showError && (
         <p className="p-2 px-3 mx-auto font-mono text-base text-center text-red-500 max-w-prose wrap">
-          [ERROR]{" "}
           {error.text && <span className="text-red-500">{error.text}</span>}
         </p>
       )}
@@ -150,7 +156,6 @@ const NewGame = () => {
           type="number"
           className="w-full px-1 mb-4 text-center"
           min={1}
-          max={game.words ?? 1}
           onChange={(e) => setSpoilerWords(e.target.value)}
           value={spoilerWords}
         />
