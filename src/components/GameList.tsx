@@ -10,7 +10,7 @@ const GamesFiltered: React.FC<{ status: IndexProps }> = ({ status }) => {
   );
   return (
     <div>
-      <StatusGroup games={myGames} gameStatus={"new"} title={"Created"} />
+      <StatusGroup games={myGames} gameStatus={"new"} title={"Waiting"} />
 
       <StatusGroup games={myGames} gameStatus={"playing"} title={"Playing"} />
 
@@ -30,7 +30,7 @@ const StatusGroup: React.FC<StatusGroupI> = ({
   return gameList.length > 0 ? (
     <div className="w-full wrap">
       <h3 className="my-4 text-4xl font-bold fl">{title}</h3>
-      <ul className="grid w-full grid-flow-row grid-cols-2 md:grid-cols-3 relative">
+      <ul className="relative grid w-full grid-flow-row grid-cols-2 md:grid-cols-3">
         {!addr ? (
           gameList.reverse().map((game) => {
             return <GameButton key={game.sessionName} game={game} />;
@@ -50,7 +50,7 @@ const StatusGroup: React.FC<StatusGroupI> = ({
             }
           })
         ) : (
-          <p className="mx-auto text-center absolute translate-x-1/2">
+          <p className="absolute mx-auto text-center translate-x-1/2">
             Sorry, no game found
           </p>
         )}
