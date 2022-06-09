@@ -46,10 +46,11 @@ const GameView: React.FC<{ game: Corpse }> = ({ game }) => {
 
       {game.gameStatus === "new" && (
         <>
+          <span>{game.words} words minimum</span>
+          <span>{game.spoilerWords} spoiler words</span>
           <PlayerList players={status.currentViewedGame?.players as Player[]}>
             <h3 className="font-bold">Players</h3>
           </PlayerList>
-
           <GameViewNew game={game} />
 
           {status.currentViewedGame?.admin.address === status.playerAddr && (
