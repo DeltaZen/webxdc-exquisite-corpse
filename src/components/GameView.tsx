@@ -55,7 +55,7 @@ const GameView: React.FC<{ game: Corpse }> = ({ game }) => {
         <>
           <span>{game.rounds === 1 ? "1 round" : `${game.rounds} rounds`}</span>
           <span>{game.words} words minimum</span>
-          <span>{game.spoilerWords} spoiler words</span>
+          <span>{game.spoilerWords} preview words</span>
           <PlayerList players={status.currentViewedGame?.players as Player[]}>
             <h3 className="font-bold">Players</h3>
           </PlayerList>
