@@ -22,6 +22,7 @@ interface Player {
 }
 
 interface IndexProps {
+  id: number;
   playerName: string;
   playerAddr: string;
   currentViewedGame?: Corpse;

@@ -9,6 +9,12 @@ import GameViewClosed from "./GameViewClosed";
 const GameView: React.FC<{ game: Corpse }> = ({ game }) => {
   const { status, setStatus } = React.useContext(AppCtx);
 
+  let id = status.id;
+  useEffect(() => {
+    id = status.id;
+    console.log("New turn in GameView");
+  }, [status.id]);
+
   const handleEndGame = (corpse?: Corpse) => {
     if (corpse) {
       const newCorpse = {
@@ -22,6 +28,7 @@ const GameView: React.FC<{ game: Corpse }> = ({ game }) => {
 
       setStatus({
         ...status,
+        id: status.id + 1,
         currentViewedGame: newCorpse as Corpse,
         currentPlayingGame: newCorpse as Corpse,
       });

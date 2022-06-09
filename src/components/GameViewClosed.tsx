@@ -8,10 +8,10 @@ const GameViewClosed: React.FC<{ game: Corpse }> = ({ game }) => {
     ? new Date(game.date).toLocaleDateString("en-US")
     : "-";
   return (
-    <div className="max-w-prose flex flex-col items-center justify-center">
-      <p className="my-2 font-serif text-red-900 ml-auto">By: {authors}</p>
+    <div className="flex flex-col items-center justify-center max-w-prose">
+      <p className="px-2 my-2 ml-auto font-serif text-red-900">By: {authors}</p>
       {fecha && (
-        <p className="font-thin text-base text-red-900 my-2 font-mono ml-auto">
+        <p className="px-2 my-2 ml-auto font-mono text-base font-thin text-red-900">
           {fecha}
         </p>
       )}

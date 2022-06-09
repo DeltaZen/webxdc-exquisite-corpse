@@ -51,6 +51,7 @@ const GameViewNew: React.FC<{ game: Corpse }> = ({ game }) => {
       setError({});
       setStatus({
         ...status,
+        id: status.id + 1,
         currentViewedGame: startGame(game, false),
         currentPlayingGame: startGame(game, true),
       });
@@ -66,6 +67,7 @@ const GameViewNew: React.FC<{ game: Corpse }> = ({ game }) => {
   ) => {
     setStatus({
       ...status,
+      id: status.id + 1,
       currentViewedGame: joinGame(
         game,
         status.playerName,

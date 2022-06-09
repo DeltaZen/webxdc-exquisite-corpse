@@ -4,6 +4,7 @@ const playerName = window.webxdc.selfName;
 const playerAddr = window.webxdc.selfAddr;
 
 const defaultIndexProps = {
+  id: 1,
   playerName: playerName,
   playerAddr: playerAddr,
   view: "list" as "list",
