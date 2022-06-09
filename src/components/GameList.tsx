@@ -25,15 +25,22 @@ const StatusGroup: React.FC<StatusGroupI> = ({
   title,
   addr,
 }) => {
-  return games.filter((game) => game.gameStatus === gameStatus).length > 0 ? (
+  //const playerList = game.players.map((player) => player.address);
+  const gameList = games.filter((game) => game.gameStatus === gameStatus);
+  return gameList.length > 0 ? (
     <div className="w-full wrap">
       <h3 className="my-4 text-4xl font-bold fl">{title}</h3>
-      <ul className="grid w-full grid-flow-row grid-cols-2 md:grid-cols-3">
-        {games
-          .filter((game) => game.gameStatus === gameStatus)
-          .reverse()
-          .map((game) => {
-            if (addr && gameStatus === "new") {
+      <ul className="grid w-full grid-flow-row grid-cols-2 md:grid-cols-3 relative">
+        {!addr ? (
+          gameList.reverse().map((game) => {
+            return <GameButton key={game.sessionName} game={game} />;
+          })
+        ) : gameList.filter(
+            (game) =>
+              !game.players.map((player) => player.address).includes(addr)
+          ).length > 0 ? (
+          gameList.reverse().map((game) => {
+            if (gameStatus === "new") {
               const playerList = game.players.map((player) => player.address);
               return !playerList.includes(addr) ? (
                 <GameButton key={game.sessionName} game={game} />
@@ -41,7 +48,12 @@ const StatusGroup: React.FC<StatusGroupI> = ({
             } else {
               return <GameButton key={game.sessionName} game={game} />;
             }
-          })}
+          })
+        ) : (
+          <p className="mx-auto text-center absolute translate-x-1/2">
+            Sorry, no game found
+          </p>
+        )}
       </ul>
     </div>
   ) : (
