@@ -4,6 +4,7 @@ import { SandClock, Crown, Users, Marker } from "./icons";
 
 const Game: React.FC<{ game: Corpse }> = ({ game }) => {
   const { status, setStatus } = React.useContext(AppCtx);
+
   return (
     <li
       className="relative flex flex-col items-start justify-between px-2 m-4 py-3 cursor-pointer btn-style min-w-[120px]"
@@ -22,7 +23,9 @@ const Game: React.FC<{ game: Corpse }> = ({ game }) => {
       {game.gameStatus === "new" && (
         <span className="flex flex-row items-center justify-center">
           <SandClock />
-          <span className="clamp-1">{game.rounds} rounds</span>
+          <span className="clamp-1">
+            {game.rounds === 1 ? "1 round" : `${game.rounds} rounds`}
+          </span>
         </span>
       )}
       {game.gameStatus === "playing" && (
