@@ -13,7 +13,7 @@ export const processUpdate = (
       !gameList.includes(payload.sessionName)
     ) {
       const games = [payload, ...status.games];
-      setStatus({ ...status, games: games });
+      setStatus({ ...status, id: status.id + 1, games: games });
     } else if (gameList.includes(payload.sessionName)) {
       const index = status.games.findIndex(
         (game) => game.sessionName === payload.sessionName
@@ -21,12 +21,14 @@ export const processUpdate = (
       const oldGame = status.games[index];
       if (oldGame.players.length < payload.players.length) {
         status.games[index].players = payload.players;
+        setStatus({ ...status, id: status.id + 1 });
       }
       if (oldGame.gameStatus !== payload.gameStatus) {
         status.games[index].gameStatus = payload.gameStatus;
       }
       if (oldGame.turnID < payload.turnID) {
         status.games[index] = payload;
+        setStatus({ ...status, id: status.id + 1 });
       }
     }
   }

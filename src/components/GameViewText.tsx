@@ -7,6 +7,15 @@ const GameViewText = () => {
   const [corpse, setCorpse] = React.useState<Corpse>(
     status.currentViewedGame as Corpse
   );
+
+  // React.useEffect(() => {
+  //   console.log("cambio interno de GameViewText");
+  //   const statusGame = status.games.find(
+  //     (g) => g.sessionName === corpse.sessionName
+  //   );
+  //   if (statusGame) setCorpse(statusGame);
+  // }, [status.id]);
+
   const [text, setText] = React.useState("");
   const [error, setError] = React.useState<InputError>({});
 

@@ -2,9 +2,21 @@ import React from "react";
 import AppCtx from "../context/AppContext";
 
 const GameViewNew: React.FC<{ game: Corpse }> = ({ game }) => {
+  const { status, setStatus } = React.useContext(AppCtx);
+
+  const [updatedgame, setUpdatedgame] = React.useState(game);
+
+  React.useEffect(() => {
+    console.log("cambio interno de GameViewNew");
+    const statusGame = status.games.find(
+      (g) => g.sessionName === updatedgame.sessionName
+    );
+    if (statusGame) setUpdatedgame(statusGame);
+  }, [status.id]);
+
   const [error, setError] = React.useState<InputError>({});
 
-  const playerList = game.players.map((player) => player.address);
+  const playerList = updatedgame.players.map((player) => player.address);
 
   const startGame = (game: Corpse, send: boolean) => {
     const newgame = {
@@ -86,12 +98,12 @@ const GameViewNew: React.FC<{ game: Corpse }> = ({ game }) => {
   return (
     <AppCtx.Consumer>
       {({ status, setStatus }) =>
-        status.playerAddr === game.admin.address ? (
+        status.playerAddr === updatedgame.admin.address ? (
           <div className="text-center">
             <p>Owner: you</p>
             <button
               className="btn btn-style"
-              onClick={() => handleStart(game, status, setStatus)}
+              onClick={() => handleStart(updatedgame, status, setStatus)}
             >
               Start Game
             </button>
@@ -100,12 +112,12 @@ const GameViewNew: React.FC<{ game: Corpse }> = ({ game }) => {
         ) : (
           <div className="text-center">
             <p>
-              Owner: {game.admin.name} ({game.admin.address})
+              Owner: {updatedgame.admin.name} ({updatedgame.admin.address})
             </p>
             {!playerList.includes(status.playerAddr) && (
               <button
                 className="btn-simple btn-style"
-                onClick={() => handleJoin(game, status, setStatus)}
+                onClick={() => handleJoin(updatedgame, status, setStatus)}
               >
                 Join Game
               </button>
