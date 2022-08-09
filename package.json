@@ -1,17 +1,11 @@
 {
-  "name": "webxdc-exquisite-corpse",
-  "version": "0.1.0",
-  "description": "A social creative writing game for Delta Chat",
-  "main": "index.js",
+  "private": true,
   "scripts": {
     "dev": "vite --host --open",
     "prebuild": "vite build",
     "build": "jszip-cli -c .jsziprc.json",
     "preview": "vite preview"
   },
-  "keywords": [],
-  "author": "M4ss1ck",
-  "license": "0BSD",
   "dependencies": {
     "@fontsource/grenze-gotisch": "^4.5.8",
     "@fontsource/unifrakturmaguntia": "^4.5.9",

@@ -29,4 +29,4 @@ In `.jsziprc.json` is the configuration for how to build your app.
 
 # Build
 
-Run `pnpm build`, then just drop `your_cool_app.xdc` into any chat and you should be able to use it.
+Run `pnpm build`, the output file is saved in `dist/package.xdc`

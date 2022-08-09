@@ -3,9 +3,9 @@
   "dereferenceLinks": true,
   "entries": ["dist/assets", "dist/index.html", "manifest.toml", "icon.png"],
   "force": true,
-  "ignoreEntries": ["*.map"],
+  "ignoreEntries": ["*.map", "*~"],
   "mode": "add",
-  "outputEntry": "exquisite-corpse.xdc",
+  "outputEntry": "dist/package.xdc",
   "quiet": false,
   "verbose": false
 }
